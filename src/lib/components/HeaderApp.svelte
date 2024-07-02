@@ -45,13 +45,13 @@
               a.whitespace-nowrap.rounded-md.bg-indigo-600.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-indigo-500.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-indigo-600(
                 href='/login'
               ) Launch App
-        .flex.lg_hidden
+        .flex.md_hidden
           button.inline-flex.items-center.justify-center.rounded-md.text-gray-700(type='button', class='-m-2.5 p-2.5', on:click!='{ () => mobileMenuOpen = true }')
             span.sr-only Open main menu
             Menu.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')
 
       +if('mobileMenuOpen')
-        .lg_hidden(role='dialog', aria-modal='true')
+        .md_hidden(role='dialog', aria-modal='true')
           .fixed.inset-0.z-10
           .fixed.inset-y-0.right-0.z-10.w-full.overflow-y-auto.bg-white.px-6.py-6.sm_max-w-sm.sm_ring-1(class='sm_ring-gray-900/10')
             .flex.items-center.justify-between.gap-x-6

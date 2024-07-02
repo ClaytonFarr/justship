@@ -4,19 +4,19 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 
 ## Customizations
 
-+ added Svelte Preprocess + Pug
-+ converted markup to Pug syntax
-+ created separate routes for 'marketing' and 'app' content, with auth control
-+ added Inter font
-+ added Tailwind Forms
-+ removed DaisyUI
-+ removed Embla Carousel
-+ removed original marketing components
-+ (pending) added new Tailwind marketing components
-+ (pending) added new Tailwind app components
+- added Svelte Preprocess + Pug
+- converted markup to Pug syntax
+- added Inter font
+- added Tailwind Forms
+- removed DaisyUI
+- removed Embla Carousel
+- created separate routes for 'marketing' and 'app' content, with auth control
+- removed original marketing components
+- (pending) updated log in / sign up flow and UI
+- (pending) added new Tailwind marketing components
+- (pending) added new Tailwind app components
 
 ========================
-
 
 # Just Ship
 
@@ -100,12 +100,15 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 ## Tool / Service Rationale
 
 - _Why Turso?_
+
   - The simplicity of SQLite, and Turso extends that simplicity by allowing it not to run on the same server as your application. This offers the best of both worlds: an excellent local development story and worry-free scalability and backups in production.
 
 - _Why Vercel?_
+
   - Offers remarkable developer experience with features like branch previews and automatic deployments based on GitHub pushes. While it can be costlier with high traffic volumes, this boilerplate is meant for quick product experiments. If a product gains traction, migrating to another service is straightforward.
 
 - _Why Stripe?_
+
   - Stripe provides an excellent developer experience. While I'm not particularly concerned that they aren't the merchant of record—a key selling point for Paddle or LemonSqueezy — I am open to other payment providers. Feel free to submit a pull request to add alternative payment options.
 
 - _Why PostHog?_

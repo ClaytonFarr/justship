@@ -38,6 +38,11 @@ export const handle: Handle = async ({ event, resolve }) => {
     if (event.url.pathname.startsWith('/app')) {
       throw redirect(302, '/login')
     }
+  } else {
+    // If user is logged in and trying to access /login without the signout action, redirect to /app
+    if (event.url.pathname === '/login' && !event.url.searchParams.has('/signout')) {
+      throw redirect(302, '/app')
+    }
   }
 
   event.locals.user = user

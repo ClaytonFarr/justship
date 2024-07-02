@@ -14,4 +14,4 @@
             +else
               | An error occurred.
         p.mt-10.text-center
-          a.btn(href='/') Return Home</template>
+          a(href='/') Return Home</template>
