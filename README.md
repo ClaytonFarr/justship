@@ -8,14 +8,9 @@ A personalized version of Fulco's [JustShip](https://github.com/ocluf/justship) 
 
 + Svelte Preprocess & Pug markup
 + Tailwind Forms plugin
-+ (pending) Tailwind UI marketing components
-+ Inter Variable font
-+ separate routes for '(marketing)' and '(app)' content
++ Inter variable font
++ separate routes for 'marketing' and 'app' content
 
-*Removed*
-
-- pending: removed daisyui
-- pending: replaced marketing components with tailwind ui components
 
 ====
 
