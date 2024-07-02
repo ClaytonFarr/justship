@@ -32,12 +32,6 @@ importers:
       emailjs:
         specifier: ^4.0.3
         version: 4.0.3(typescript@5.5.2)
-      embla-carousel:
-        specifier: ^8.1.5
-        version: 8.1.5
-      embla-carousel-svelte:
-        specifier: ^8.1.5
-        version: 8.1.5(svelte@5.0.0-next.148)
       lucia:
         specifier: ^3.2.0
         version: 3.2.0
@@ -61,8 +55,8 @@ importers:
         specifier: ^1.45.0
         version: 1.45.0
       '@prettier/plugin-pug':
-        specifier: github:prettier/plugin-pug
-        version: https://codeload.github.com/prettier/plugin-pug/tar.gz/66f1c0f97810cefd667242302c9d6cb7477dffb1(prettier@3.3.2)
+        specifier: ^3.0.0
+        version: 3.0.0(prettier@3.3.2)
       '@sveltejs/adapter-auto':
         specifier: ^3.2.2
         version: 3.2.2(@sveltejs/kit@2.5.17(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.148)(vite@5.3.1(@types/node@20.13.0)))(svelte@5.0.0-next.148)(vite@5.3.1(@types/node@20.13.0)))
@@ -96,9 +90,6 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
-      daisyui:
-        specifier: ^4.12.8
-        version: 4.12.8(postcss@8.4.38)
       drizzle-kit:
         specifier: ^0.22.7
         version: 0.22.7
@@ -128,7 +119,7 @@ importers:
         version: 3.2.5(prettier@3.3.2)(svelte@5.0.0-next.148)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.5
-        version: 0.6.5(@prettier/plugin-pug@https://codeload.github.com/prettier/plugin-pug/tar.gz/66f1c0f97810cefd667242302c9d6cb7477dffb1(prettier@3.3.2))(prettier-plugin-svelte@3.2.5(prettier@3.3.2)(svelte@5.0.0-next.148))(prettier@3.3.2)
+        version: 0.6.5(@prettier/plugin-pug@3.0.0(prettier@3.3.2))(prettier-plugin-svelte@3.2.5(prettier@3.3.2)(svelte@5.0.0-next.148))(prettier@3.3.2)
       pug:
         specifier: ^3.0.3
         version: 3.0.3
@@ -1029,10 +1020,9 @@ packages:
     resolution: {integrity: sha512-xhhEcEvhQC8mP5oOr5hbE4CmUgmw/IPV1jhpGg2xSkzoFrt9i8YVqBQt9744EFesi5F7pBheWozg63RUBM/5JA==}
     engines: {node: '>=18.16.0'}
 
-  '@prettier/plugin-pug@https://codeload.github.com/prettier/plugin-pug/tar.gz/66f1c0f97810cefd667242302c9d6cb7477dffb1':
-    resolution: {tarball: https://codeload.github.com/prettier/plugin-pug/tar.gz/66f1c0f97810cefd667242302c9d6cb7477dffb1}
-    version: 3.0.0
-    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
+  '@prettier/plugin-pug@3.0.0':
+    resolution: {integrity: sha512-ERMMvGSJK/7CTc8OT7W/dtlV43sytyNeiCWckN0DIFepqwXotU0+coKMv5Wx6IWSNj7ZSjdNGBAA1nMPi388xw==}
+    engines: {node: ^16.13.0 || >=18.0.0, npm: '>=7.10.0'}
     peerDependencies:
       prettier: ^3.0.0
 
@@ -1552,21 +1542,10 @@ packages:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
 
-  css-selector-tokenizer@0.8.0:
-    resolution: {integrity: sha512-Jd6Ig3/pe62/qe5SBPTN8h8LeUg/pT4lLgtavPf7updwwHpvFzxvOQBHYj2LZDMjUnBzgvIUSjRcf6oT5HzHFg==}
-
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
-
-  culori@3.3.0:
-    resolution: {integrity: sha512-pHJg+jbuFsCjz9iclQBqyL3B2HLCBF71BwVNujUYEvCeQMvV97R59MNK3R2+jgJ3a1fcZgI9B3vYgz8lzr/BFQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
-  daisyui@4.12.8:
-    resolution: {integrity: sha512-FDdh0z9BsWMI0VeUSwZy6rwp9frEuUgd83SCPOaCYV3iULPzcgTEQT3IlcAbMCrsriu2ziDYZfGOUwPYHkHrfw==}
-    engines: {node: '>=16.9.0'}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -1741,19 +1720,6 @@ packages:
       typescript:
         optional: true
 
-  embla-carousel-reactive-utils@8.1.5:
-    resolution: {integrity: sha512-76uZTrSaEGGta+qpiGkMFlLK0I7N04TdjZ2obrBhyggYIFDWlxk1CriIEmt2lisLNsa1IYXM85kr863JoCMSyg==}
-    peerDependencies:
-      embla-carousel: 8.1.5
-
-  embla-carousel-svelte@8.1.5:
-    resolution: {integrity: sha512-3XEIqfALTwmA73narVxMo6vNDqy+ezFgn5LyywYBfoq/azh7AHbNGpfG/2mZQBttJcI3JBswYwQoZklajhil1Q==}
-    peerDependencies:
-      svelte: ^3.49.0 || ^4.0.0
-
-  embla-carousel@8.1.5:
-    resolution: {integrity: sha512-R6xTf7cNdR2UTNM6/yUPZlJFRmZSogMiRjJ5vXHO65II5MoUlrVYUAP0fHQei/py82Vf15lj+WI+QdhnzBxA2g==}
-
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
@@ -1897,9 +1863,6 @@ packages:
 
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
-
-  fastparse@1.1.2:
-    resolution: {integrity: sha512-483XLLxTVIwWK3QTrMGRqUfUpoOs/0hbQrl2oz4J0pAcm3A3bu84wxTFqGqkJzewCLdME38xJLJAxBABfQT8sQ==}
 
   fastq@1.17.1:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
@@ -2540,7 +2503,6 @@ packages:
 
   prettier-plugin-tailwindcss@0.6.5:
     resolution: {integrity: sha512-axfeOArc/RiGHjOIy9HytehlC0ZLeMaqY09mm8YCkMzznKiDkwFzOpBvtuhuv3xG5qB73+Mj7OCe2j/L1ryfuQ==}
-    version: 0.6.5
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -3814,7 +3776,7 @@ snapshots:
   '@poppinss/macroable@1.0.2':
     optional: true
 
-  '@prettier/plugin-pug@https://codeload.github.com/prettier/plugin-pug/tar.gz/66f1c0f97810cefd667242302c9d6cb7477dffb1(prettier@3.3.2)':
+  '@prettier/plugin-pug@3.0.0(prettier@3.3.2)':
     dependencies:
       prettier: 3.3.2
       pug-lexer: 5.0.1
@@ -4397,23 +4359,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  css-selector-tokenizer@0.8.0:
-    dependencies:
-      cssesc: 3.0.0
-      fastparse: 1.1.2
-
   cssesc@3.0.0: {}
-
-  culori@3.3.0: {}
-
-  daisyui@4.12.8(postcss@8.4.38):
-    dependencies:
-      css-selector-tokenizer: 0.8.0
-      culori: 3.3.0
-      picocolors: 1.0.1
-      postcss-js: 4.0.1(postcss@8.4.38)
-    transitivePeerDependencies:
-      - postcss
 
   data-uri-to-buffer@4.0.1: {}
 
@@ -4482,18 +4428,6 @@ snapshots:
   emailjs@4.0.3(typescript@5.5.2):
     optionalDependencies:
       typescript: 5.5.2
-
-  embla-carousel-reactive-utils@8.1.5(embla-carousel@8.1.5):
-    dependencies:
-      embla-carousel: 8.1.5
-
-  embla-carousel-svelte@8.1.5(svelte@5.0.0-next.148):
-    dependencies:
-      embla-carousel: 8.1.5
-      embla-carousel-reactive-utils: 8.1.5(embla-carousel@8.1.5)
-      svelte: 5.0.0-next.148
-
-  embla-carousel@8.1.5: {}
 
   emoji-regex@8.0.0: {}
 
@@ -4743,8 +4677,6 @@ snapshots:
   fast-json-stable-stringify@2.1.0: {}
 
   fast-levenshtein@2.0.6: {}
-
-  fastparse@1.1.2: {}
 
   fastq@1.17.1:
     dependencies:
@@ -5324,11 +5256,11 @@ snapshots:
       prettier: 3.3.2
       svelte: 5.0.0-next.148
 
-  prettier-plugin-tailwindcss@0.6.5(@prettier/plugin-pug@https://codeload.github.com/prettier/plugin-pug/tar.gz/66f1c0f97810cefd667242302c9d6cb7477dffb1(prettier@3.3.2))(prettier-plugin-svelte@3.2.5(prettier@3.3.2)(svelte@5.0.0-next.148))(prettier@3.3.2):
+  prettier-plugin-tailwindcss@0.6.5(@prettier/plugin-pug@3.0.0(prettier@3.3.2))(prettier-plugin-svelte@3.2.5(prettier@3.3.2)(svelte@5.0.0-next.148))(prettier@3.3.2):
     dependencies:
       prettier: 3.3.2
     optionalDependencies:
-      '@prettier/plugin-pug': https://codeload.github.com/prettier/plugin-pug/tar.gz/66f1c0f97810cefd667242302c9d6cb7477dffb1(prettier@3.3.2)
+      '@prettier/plugin-pug': 3.0.0(prettier@3.3.2)
       prettier-plugin-svelte: 3.2.5(prettier@3.3.2)(svelte@5.0.0-next.148)
 
   prettier@3.3.2: {}

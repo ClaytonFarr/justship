@@ -1,7 +1,6 @@
 <script lang="ts">
-	let { children } = $props();
+  let { children } = $props()
 </script>
 
 <template lang="pug">
-	| {@render children()}
-</template>
+  | {@render children()}</template>

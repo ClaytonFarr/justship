@@ -1,5 +1,7 @@
-import adapter from '@sveltejs/adapter-auto';
-import { sveltePreprocess } from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-auto'
+import { sveltePreprocess } from 'svelte-preprocess'
+import path from 'path'
+
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,7 +15,12 @@ const config = {
       fallback: null,
       precompress: false,
       strict: true
-		})
+		}),
+      alias: {
+			$actions: path.resolve('./src/lib/actions'),
+			$components: path.resolve('./src/lib/components'),
+			$util: path.resolve('./src/lib/util')
+		}
 	}
 };
 

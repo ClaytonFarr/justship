@@ -1,9 +1,8 @@
 <script lang="ts">
-	import Header from '$lib/components/Header.svelte';
-	let { children } = $props();
+  import HeaderMarketing from '$lib/components/HeaderMarketing.svelte'
+  let { children } = $props()
 </script>
 
 <template lang="pug">
-	Header
-	| {@render children()}
-</template>
+  HeaderMarketing
+  | {@render children()}</template>

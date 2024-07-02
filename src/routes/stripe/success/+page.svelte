@@ -1,3 +1,2 @@
 <template lang="pug">
-	h1 Payment Successful
-</template>
+  h1 Payment Successful</template>

@@ -1,6 +1,5 @@
 {
 	"cSpell.words": [
-		"daisyui",
 		"emailtoken",
 		"Embla",
 		"fontsource",
@@ -14,6 +13,7 @@
 		"pageleave",
 		"pageview",
 		"posthog",
+		"precompress",
 		"Preprocess",
 		"ratelimit",
 		"RATELIMIT",
@@ -25,6 +25,7 @@
 		"socialcard",
 		"Squeezy",
 		"Superforms",
-		"Turso"
+		"Turso",
+		"viewbox"
 	]
 }
