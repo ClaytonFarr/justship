@@ -34,108 +34,67 @@
 </script>
 
 <Container>
-	<div class="py-24 md:py-32">
-		<h2 class="font-bold text-2xl md:text-4xl mb-16 text-center">
-			Everything you need to fix your problem right now
-		</h2>
+	<div class="py-24 md_py-32">
+		<h2 class="mb-16 text-center text-2xl font-bold md_text-4xl">Everything you need to fix your problem right now</h2>
 		<!-- on mobile show small icons without text -->
-		<div class="w-fit mx-auto mb-5 sm:hidden">
+		<div class="mx-auto mb-5 w-fit sm_hidden">
 			<div class="join">
-				<button class:btn-primary={index === 0} class="join-item btn" onclick={() => setIndex(0)}
-					><Smile />
-				</button>
-				<button class:btn-primary={index === 1} class="join-item btn" onclick={() => setIndex(1)}
-					><Dice6 /></button
-				>
-				<button class:btn-primary={index === 2} class="join-item btn" onclick={() => setIndex(2)}
-					><Aperture /></button
-				>
-				<button class:btn-primary={index === 3} class="join-item btn" onclick={() => setIndex(3)}
-					><Drama /></button
-				>
-				<button class:btn-primary={index === 4} class="join-item btn" onclick={() => setIndex(4)}
-					><Factory /></button
-				>
+				<button class:btn-primary={index === 0} class="btn join-item" onclick={() => setIndex(0)}><Smile /> </button>
+				<button class:btn-primary={index === 1} class="btn join-item" onclick={() => setIndex(1)}><Dice6 /></button>
+				<button class:btn-primary={index === 2} class="btn join-item" onclick={() => setIndex(2)}><Aperture /></button>
+				<button class:btn-primary={index === 3} class="btn join-item" onclick={() => setIndex(3)}><Drama /></button>
+				<button class:btn-primary={index === 4} class="btn join-item" onclick={() => setIndex(4)}><Factory /></button>
 			</div>
 		</div>
 
 		<!-- on desktop show large icons with text -->
-		<div class="hidden w-fit mx-auto space-x-10 sm:flex">
-			<button
-				class:text-primary={index === 0}
-				class="flex flex-col items-center"
-				onclick={() => setIndex(0)}
-				><Smile class="w-10 h-10" />
-				<div class="text-xl font-semibold mt-2">Smile</div>
+		<div class="mx-auto hidden w-fit space-x-10 sm_flex">
+			<button class:text-primary={index === 0} class="flex flex-col items-center" onclick={() => setIndex(0)}
+				><Smile class="h-10 w-10" />
+				<div class="mt-2 text-xl font-semibold">Smile</div>
 			</button>
-			<button
-				class:text-primary={index === 1}
-				class="flex flex-col items-center"
-				onclick={() => setIndex(1)}
-				><Dice6 class="w-10 h-10" />
-				<div class="text-xl font-semibold mt-2">Dice</div></button
+			<button class:text-primary={index === 1} class="flex flex-col items-center" onclick={() => setIndex(1)}
+				><Dice6 class="h-10 w-10" />
+				<div class="mt-2 text-xl font-semibold">Dice</div></button
 			>
-			<button
-				class:text-primary={index === 2}
-				class="flex flex-col items-center"
-				onclick={() => setIndex(2)}
-				><Aperture class="w-10 h-10" />
-				<div class="text-xl font-semibold mt-2">Aperture</div></button
+			<button class:text-primary={index === 2} class="flex flex-col items-center" onclick={() => setIndex(2)}
+				><Aperture class="h-10 w-10" />
+				<div class="mt-2 text-xl font-semibold">Aperture</div></button
 			>
-			<button
-				class:text-primary={index === 3}
-				class="flex flex-col items-center"
-				onclick={() => setIndex(3)}
-				><Drama class="w-10 h-10" />
-				<div class="text-xl font-semibold mt-2">Drama</div></button
+			<button class:text-primary={index === 3} class="flex flex-col items-center" onclick={() => setIndex(3)}
+				><Drama class="h-10 w-10" />
+				<div class="mt-2 text-xl font-semibold">Drama</div></button
 			>
-			<button
-				class:text-primary={index === 4}
-				class="flex flex-col items-center"
-				onclick={() => setIndex(4)}
-				><Factory class="w-10 h-10" />
-				<div class="text-xl font-bold mt-2">Factory</div></button
+			<button class:text-primary={index === 4} class="flex flex-col items-center" onclick={() => setIndex(4)}
+				><Factory class="h-10 w-10" />
+				<div class="mt-2 text-xl font-bold">Factory</div></button
 			>
 		</div>
 		<div class="embla pt-14">
-			<div
-				class="embla__viewport"
-				use:emblaCarouselSvelte={{ options, plugins: [] }}
-				onemblaInit={onInit}
-			>
+			<div class="embla__viewport" use:emblaCarouselSvelte={{ options, plugins: [] }} onemblaInit={onInit}>
 				<div class="embla__container">
 					<div class="embla__slide">
-						<div
-							class="rounded-xl flex items-center justify-center text-xl font-bold h-80 bg-slate-100"
-						>
+						<div class="flex h-80 items-center justify-center rounded-xl bg-slate-100 text-xl font-bold">
 							<span>feature 1</span>
 						</div>
 					</div>
 					<div class="embla__slide">
-						<div
-							class="rounded-xl flex items-center justify-center text-xl font-bold h-80 bg-slate-100"
-						>
+						<div class="flex h-80 items-center justify-center rounded-xl bg-slate-100 text-xl font-bold">
 							<span>feature 2</span>
 						</div>
 					</div>
 					<div class="embla__slide">
-						<div
-							class="rounded-xl flex items-center justify-center text-xl font-bold h-80 bg-slate-100"
-						>
+						<div class="flex h-80 items-center justify-center rounded-xl bg-slate-100 text-xl font-bold">
 							<span>feature 3</span>
 						</div>
 					</div>
 					<div class="embla__slide">
-						<div
-							class="rounded-xl flex items-center justify-center text-xl font-bold h-80 bg-slate-100"
-						>
+						<div class="flex h-80 items-center justify-center rounded-xl bg-slate-100 text-xl font-bold">
 							<span>feature 4</span>
 						</div>
 					</div>
 					<div class="embla__slide">
-						<div
-							class="rounded-xl flex items-center justify-center text-xl font-bold h-80 bg-slate-100"
-						>
+						<div class="flex h-80 items-center justify-center rounded-xl bg-slate-100 text-xl font-bold">
 							<span>feature 5</span>
 						</div>
 					</div>

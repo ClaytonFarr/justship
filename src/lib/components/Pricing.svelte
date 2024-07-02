@@ -25,21 +25,17 @@
 </div> -->
 
 <Container>
-	<div id="pricing" class="py-24 sm:py-32">
-		<h2 class="text-center text-md text-base text-base-content/70 font-semibold leading-7">
-			Pricing
-		</h2>
-		<div class="text-center mt-2 mb-10 sm:mb-20 text-2xl font-bold tracking-tight sm:text-4xl">
-			Choose the right plan for you
-		</div>
-		<div class="flex flex-wrap justify-center gap-10 md:gap-16 w-fit mx-auto">
+	<div id="pricing" class="py-24 sm_py-32">
+		<h2 class="text-md text-center text-base font-semibold leading-7 text-base-content/70">Pricing</h2>
+		<div class="mb-10 mt-2 text-center text-2xl font-bold tracking-tight sm_mb-20 sm_text-4xl">Choose the right plan for you</div>
+		<div class="mx-auto flex w-fit flex-wrap justify-center gap-10 md_gap-16">
 			<!-- Basic package -->
-			<div class="card p-8 w-80 ring-2 ring-base-200 shadow-xl">
-				<h3 class="text-xl font-extrabold mb-2 text-base-content text-opacity-80">Basic</h3>
+			<div class="card w-80 p-8 shadow-xl ring-2 ring-base-200">
+				<h3 class="mb-2 text-xl font-extrabold text-base-content text-opacity-80">Basic</h3>
 				<div class="text-5xl font-extrabold leading-snug">
-					$100 <span class="font-bold text-base">usd</span>
+					$100 <span class="text-base font-bold">usd</span>
 				</div>
-				<ul class="space-y-2 mt-3 mb-20">
+				<ul class="mb-20 mt-3 space-y-2">
 					{#each featuresBasic.included as feature}
 						<li class="flex items-center space-x-2">
 							<Check strokeWidth={1} class="text-primary" />
@@ -57,18 +53,14 @@
 			</div>
 
 			<!-- Premium package -->
-			<div class="relative card p-8 w-80 ring-2 ring-primary shadow-xl">
-				<div
-					class="absolute top-5 right-5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold leading-5 text-primary"
-				>
-					Most popular
-				</div>
+			<div class="card relative w-80 p-8 shadow-xl ring-2 ring-primary">
+				<div class="absolute right-5 top-5 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold leading-5 text-primary">Most popular</div>
 
-				<h3 class="text-xl font-extrabold mb-2 text-base-content text-opacity-80">Premium</h3>
+				<h3 class="mb-2 text-xl font-extrabold text-base-content text-opacity-80">Premium</h3>
 				<div class="text-5xl font-extrabold leading-snug">
-					$120 <span class="font-bold text-base">usd</span>
+					$120 <span class="text-base font-bold">usd</span>
 				</div>
-				<ul class="space-y-2 mt-3 mb-20">
+				<ul class="mb-20 mt-3 space-y-2">
 					{#each featuresPremium.included as feature}
 						<li class="flex items-center space-x-2">
 							<Check strokeWidth={1} class="text-primary" />

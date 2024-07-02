@@ -19,15 +19,13 @@
 </script>
 
 <Container>
-	<div id="faq" class="max-w-2xl mx-auto py-24 sm:py-32">
-		<div class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl text-center">FAQ</div>
-		<div class="mt-2 sm:mt-4 text-md sm:text-lg leading-6 sm:leading-8 text-center">
-			Still have questions? We've got you covered!
-		</div>
-		<div class="mt-5 md:mt-8 lg:mt-10">
+	<div id="faq" class="mx-auto max-w-2xl py-24 sm_py-32">
+		<div class="mt-2 text-center text-3xl font-bold tracking-tight sm_text-4xl">FAQ</div>
+		<div class="text-md mt-2 text-center leading-6 sm_mt-4 sm_text-lg sm_leading-8">Still have questions? We've got you covered!</div>
+		<div class="mt-5 md_mt-8 lg_mt-10">
 			<div class="join join-vertical w-full">
 				{#each faqs as faq}
-					<div class="collapse collapse-arrow join-item border">
+					<div class="collapse join-item collapse-arrow border">
 						<input type="radio" name="accordion" />
 						<div class="collapse-title text-xl font-medium">
 							{faq.question}
