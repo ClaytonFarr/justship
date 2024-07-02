@@ -48,7 +48,7 @@ export const actions = {
 			}
 		}
 
-		let ip_address = getClientAddress();
+		const ip_address = getClientAddress();
 
 		const signins = await getSignins({
 			email: form.data.email,

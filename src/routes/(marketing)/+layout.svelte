@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
-
 	let { children } = $props();
 </script>
 
-<Header></Header>
-{@render children()}
+<template lang="pug">
+	Header
+	| {@render children()}
+</template>

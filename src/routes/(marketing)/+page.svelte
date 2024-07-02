@@ -7,9 +7,14 @@
 	import Pricing from '$lib/components/Pricing.svelte';
 </script>
 
-<Hero />
-<FeatureCarousel />
-<About />
-<Pricing />
-<FAQ />
-<Footer></Footer>
+<template lang="pug">
+  .p-16
+    h1 At Marketing
+    a(href="/app").underline Go to App
+  //- Hero
+  //- FeatureCarousel
+  //- About
+  //- Pricing
+  //- FAQ
+  //- Footer
+</template>
