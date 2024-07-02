@@ -1,8 +1,9 @@
 import type { signinTable } from './server/database/schema'
 
 export type Link = {
-  name: string
+  label: string
   href: string
+  description?: string
 }
 
 // export type Faq = {
