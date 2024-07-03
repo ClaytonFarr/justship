@@ -7,9 +7,11 @@
   export let value: string = ''
   export let required: boolean = false
   export let autocomplete: string = 'off'
+  export let autofocus: boolean = false
   export let large: boolean = false
 </script>
 
+<!-- svelte-ignore a11y_autofocus -->
 <template lang="pug">
   label.block.space-y-2(for='{ id }')
     span.block.text-sm.font-medium.leading-6.text-gray-900 {label}
@@ -21,5 +23,6 @@
       required='{ required }',
       autocomplete='{ autocomplete }',
       bind:value,
-      class!='{ large ? "h-input-lg" : "h-input" }'
+      class!='{ large ? "h-input-lg" : "h-input" }',
+      autofocus='{ autofocus }'
     )</template>
