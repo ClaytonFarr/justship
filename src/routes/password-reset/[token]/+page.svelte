@@ -33,13 +33,13 @@
 </script>
 
 <template lang="pug">
-  .flex.min-h-screen.items-center.justify-center.bg-gray-50.px-4.py-12.sm_px-6.lg_px-8
+  .bg-surface-light.flex.min-h-screen.items-center.justify-center.px-4.py-12.sm_px-6.lg_px-8
     .w-full.max-w-sm.space-y-8
       div
         a(href='{PUBLIC_ORIGIN}/')
           img.mx-auto.h-12.w-auto(src='/logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
-        h2.mt-6.text-center.text-3xl.font-extrabold.text-gray-900 Reset your password
-        p.mt-4.text-center.text-sm.text-gray-600
+        h2.text-content-heading.mt-6.text-center.text-3xl.font-extrabold Reset your password
+        p.text-content-secondary.mt-4.text-center.text-sm
           | Enter your new password below.
 
       .mt-8
@@ -62,6 +62,6 @@
               .pt-2
                 Button(label='Reset password', type='submit', large, processingLabel='Resetting...', loading='{ $submitting }', disabled='{ $submitting }')
           .mt-10
-            a.group.flex.justify-center.gap-x-1.text-sm.text-slate-400.transition.hover_text-action-hover(href='{PUBLIC_ORIGIN}/')
+            a.text-content-tertiary.group.flex.justify-center.gap-x-1.text-sm.transition.hover_text-action-hover(href='{PUBLIC_ORIGIN}/')
               span &larr;
               span.underline.transition.group-hover_translate-x-1(class='translate-x-1.5') Return Home</template>

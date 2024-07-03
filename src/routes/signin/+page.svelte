@@ -59,8 +59,8 @@
             a(href='{PUBLIC_ORIGIN}/')
               img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
             .mt-8.space-y-3
-              h2.text-2xl.font-medium.leading-9.tracking-tight.text-slate-900 Welcome Back
-              p.mt-2.flex.gap-x-2.text-sm.leading-6.text-slate-500
+              h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Welcome Back
+              p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
                 span New?
                 button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => returningUser = !returningUser }')
                   span Sign Up
@@ -86,18 +86,18 @@
 
               .mt-10
                 .flex.items-center
-                  .w-full.border-t.border-slate-300(aria-hidden='true')
-                  span.px-6.text-slate-900.whitespace-nowrap Or sign in with
-                  .w-full.border-t.border-slate-300(aria-hidden='true')
+                  .w-full.border-t.border-input(aria-hidden='true')
+                  span.px-6.text-content-heading.whitespace-nowrap Or sign in with
+                  .w-full.border-t.border-input(aria-hidden='true')
                 .mt-6
-                  a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-slate-900.shadow-sm.ring-1.ring-inset.ring-slate-300.hover_bg-slate-50.focus-visible_ring-transparent(
+                  a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
                     href='{PUBLIC_ORIGIN}/signin/google'
                   )
                     Google
                     span.text-sm.font-medium.leading-6 Google
               
               .mt-10
-                a.group.flex.gap-x-1.text-sm.text-slate-400.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
+                a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
                   span &larr;
                   span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 
@@ -107,10 +107,10 @@
               a(href='{PUBLIC_ORIGIN}/')
                 img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
               .mt-8.space-y-3
-                h2.text-2xl.font-medium.leading-9.tracking-tight.text-slate-900 Reset Password 
-                p.text-sm.text-slate-500 Receive a link to reset your password.
+                h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Reset Password 
+                p.text-sm.text-content-secondary Receive a link to reset your password.
                 +if('!reset_email_sent')
-                  p.mt-2.flex.gap-x-2.text-sm.leading-6.text-slate-500
+                  p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
                     span Cancel?
                     button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => requestReset = !requestReset }')
                       span Sign In
@@ -126,12 +126,12 @@
                     .pt-2
                       Button(label='Send Reset Link', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Sending...')
                 +else
-                  .mt-10.space-y-3.text-slate-800.text-sm.max-w-xs
+                  .mt-10.space-y-3.text-content-body.text-sm.max-w-xs
                     p If an account exists for this address, you will receive a password reset link&nbsp;shortly.
                     p Please follow the instructions to reset your&nbsp;password.
 
               .mt-10
-                a.group.flex.gap-x-1.text-sm.text-slate-400.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
+                a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
                   span &larr;
                   span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 
@@ -142,8 +142,8 @@
             a(href='{PUBLIC_ORIGIN}/')
               img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
             .mt-8.space-y-3
-              h2.text-2xl.font-medium.leading-9.tracking-tight.text-slate-900 Sign Up for Free
-              p.mt-2.flex.gap-x-2.text-sm.leading-6.text-slate-500
+              h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Sign Up for Free
+              p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
                 span Have an account?
                 button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => returningUser = !returningUser }')
                   span Sign In
@@ -163,17 +163,17 @@
 
                 .mt-10
                   .flex.items-center
-                    .w-full.border-t.border-slate-300(aria-hidden='true')
-                    span.px-6.text-slate-900.whitespace-nowrap Or sign up with
-                    .w-full.border-t.border-slate-300(aria-hidden='true')
+                    .w-full.border-t.border-input(aria-hidden='true')
+                    span.px-6.text-content-heading.whitespace-nowrap Or sign up with
+                    .w-full.border-t.border-input(aria-hidden='true')
                   .mt-6
-                    a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-slate-900.shadow-sm.ring-1.ring-inset.ring-slate-300.hover_bg-slate-50.focus-visible_ring-transparent(
+                    a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
                       href='{PUBLIC_ORIGIN}/signin/google'
                     )
                       Google
                       span.text-sm.font-medium.leading-6 Google
               +else
-                .my-6.space-y-1.text-slate-800
+                .my-6.space-y-1.text-content-body
                   p
                     span Verification email sent
                     +if('email_input?.value')
@@ -184,7 +184,7 @@
                   p Please verify your address to sign in.
 
             .mt-10
-              a.group.flex.gap-x-1.text-sm.text-slate-400.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
+              a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
                 span &larr;
                 span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 

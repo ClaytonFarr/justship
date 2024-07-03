@@ -13,7 +13,26 @@ const config = {
           DEFAULT: colors.sky[600],
           hover: colors.sky[500],
           active: colors.sky[400],
-        }
+        },
+        content: {
+          heading: colors.slate[900],
+          body: colors.slate[800],
+          secondary: colors.slate[500],
+          tertiary: colors.slate[400],
+        },
+        input: {
+          dark: colors.slate[900],
+          DEFAULT: colors.slate[300],
+          light: colors.slate[200],
+        },
+        rule: {
+          DEFAULT: colors.slate[500],
+          light: colors.slate[200],
+        },
+        surface: {
+          light: colors.slate[50],
+          lightest: colors.white
+        },
       },
       fontFamily: {
         sans: [ 'Inter Variable', ...defaultTheme.fontFamily.sans ],

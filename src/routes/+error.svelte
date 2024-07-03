@@ -6,7 +6,7 @@
 <template lang="pug">
   Container
     .flex.min-h-screen.flex-col.items-center.justify-center.align-middle
-      .mb-4.flex.items-center.justify-items-stretch.divide-x.border.text-gray-900
+      .text-content-heading.mb-4.flex.items-center.justify-items-stretch.divide-x.border
         h1.px-3.text-lg.font-medium { $page.status }
         p.px-3.py-2
           +if('$page.status === 404')

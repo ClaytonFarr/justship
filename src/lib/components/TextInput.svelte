@@ -20,10 +20,10 @@
 <!-- svelte-ignore a11y_autofocus -->
 <template lang="pug">
   label.block.flex-1.space-y-2(for='{ id }')
-    span.block.text-sm.font-medium.leading-6.text-slate-900 {label}
+    span.text-content-heading.block.text-sm.font-medium.leading-6 {label}
     .relative
       // prettier-ignore
-      input.focus_ring-action.block.w-full.rounded-md.border-0.shadow-sm.ring-1.ring-inset.ring-slate-300.placeholder_text-slate-400.focus_ring-2.focus_ring-inset.sm_text-sm.sm_leading-6.large(id='{id}',
+      input.focus_ring-action.block.w-full.rounded-md.border-0.shadow-sm.ring-1.ring-inset.ring-input.placeholder_text-content-tertiary.focus_ring-2.focus_ring-inset.sm_text-sm.sm_leading-6.large(id='{id}',
         name='{ name }',
         type!='{ showPassword ? "text" : type }',
         placeholder='{ placeholder }',
@@ -42,6 +42,6 @@
         )
           span.sr-only Show / Hide
           +if('showPassword')
-            EyeOff.text-slate-400.transition.hover_text-action(size=18)
+            EyeOff.text-content-tertiary.transition.hover_text-action(size=18)
             +else
-              Eye.text-slate-400.transition.hover_text-action(size=18)</template>
+              Eye.text-content-tertiary.transition.hover_text-action(size=18)</template>
