@@ -42,7 +42,7 @@
           +else
             .flex.flex-1.items-center.justify-end.gap-x-7
               a.hidden.whitespace-nowrap.lg_block.lg_text-sm.lg_font-medium.lg_leading-6.lg_text-gray-900(href='/login') Log In
-              a.whitespace-nowrap.rounded-md.bg-indigo-600.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-indigo-500.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-indigo-600(
+              a.bg-action.focus-visible_outline-action.hover_bg-action-hover.whitespace-nowrap.rounded-md.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2(
                 href='/login'
               ) Launch App
         .flex.md_hidden
@@ -59,7 +59,7 @@
                 img.h-8.w-auto(src='logo.svg', alt='')
                 span.text-lg.font-semibold.text-gray-900.sm_sr-only {PUBLIC_PROJECT_NAME}
               +if('!$page.data.user')
-                a.ml-auto.whitespace-nowrap.rounded-md.bg-indigo-600.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-indigo-500.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-indigo-600(
+                a.bg-action.focus-visible_outline-action.hover_bg-action-hover.ml-auto.whitespace-nowrap.rounded-md.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2(
                   href='/login'
                 ) Sign Up
               button.rounded-md.text-gray-700(type='button', class='-m-2.5 p-2.5', on:click!='{ () => mobileMenuOpen = false }')

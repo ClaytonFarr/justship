@@ -30,7 +30,7 @@
           +each('navigation as item')
             a.text-sm.font-medium.leading-6.text-gray-900(href='{ item.href }') {item.label}
         .flex.flex-1.items-center.justify-end
-          a.whitespace-nowrap.rounded-md.bg-indigo-600.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-indigo-500.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-indigo-600(
+          a.bg-action.hover_bg-action-hover.focus-visible_outline-action.whitespace-nowrap.rounded-md.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2(
             href!='{ $page.data.user ? "/app" : "/login" }'
           ) Launch #[span.sr-only.sm_not-sr-only App]
         .flex.md_hidden
@@ -55,6 +55,6 @@
                   +each('navigation as item')
                     a.-mx-3.block.rounded-lg.px-3.py-2.text-base.font-medium.leading-7.text-gray-900.hover_bg-gray-50(href='{ item.href }') {item.label}
                 .py-8
-                  a.whitespace-nowrap.rounded-md.bg-indigo-600.px-3.py-3.text-base.font-medium.text-white.shadow-sm.hover_bg-indigo-500.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-indigo-600(
+                  a.hover_bg-action-hover.bg-action.focus-visible_outline-action.whitespace-nowrap.rounded-md.px-3.py-3.text-base.font-medium.text-white.shadow-sm.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2(
                     href!='{ $page.data.user ? "/app" : "/login" }'
                   ) Launch #[span.sr-only.sm_not-sr-only App]</template>
