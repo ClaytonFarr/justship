@@ -18,10 +18,11 @@
         p.mt-2.text-center.text-sm.text-gray-600
           | Enter your new password below.
 
-      form.mt-8.space-y-6(method='post', use:enhance)
-        TextInput(id='password', label='New password', type='password', required, autofocus)
+      .mt-8
         +if('$errors.password')
-          .text-sm.px-4.py-3.my-1.text-rose-900.border-rose-400.bg-rose-50 { $errors.password }
-        .pt-2
-          Button(label='Reset password', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Resetting...')
+          .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border-rose-400.bg-rose-50 { $errors.password }
+        form.space-y-6(method='post', use:enhance)
+          TextInput(id='password', label='New password', type='password', required, autofocus)
+          .pt-2
+            Button(label='Reset password', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Resetting...')
 </template>
