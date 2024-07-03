@@ -1,13 +1,21 @@
 <script lang="ts">
-  import { tick } from 'svelte'
   import { PUBLIC_PROJECT_NAME } from '$env/static/public'
+  import { tick } from 'svelte'
+  import { fade } from 'svelte/transition'
+  // import { enhance } from "$app/forms";
   import { superForm } from 'sveltekit-superforms'
-  import { Mail, Laugh } from 'lucide-svelte'
-  import Google from '$lib/components/icons/Google.svelte'
+  import TextInput from '$components/TextInput.svelte'
+  import Checkbox from '$components/Checkbox.svelte'
+  import Button from '$components/Button.svelte'
+  import Google from '$components/icons/Google.svelte'
+  import GitHub from '$components/icons/GitHub.svelte'
 
   const { data } = $props()
 
+  let returningUser = $state(true)
+  let rememberMe = $state(false)
   let email_input: HTMLInputElement | null = $state(null)
+  let password_input: HTMLInputElement | null = $state(null)
   let show_email_input = $state(true)
   let email_sent = $state(false)
 
@@ -19,63 +27,95 @@
       }
     },
   })
-
-  const handleEmail = async () => {
-    if (!show_email_input && email_input) {
-      show_email_input = true
-      await tick()
-      ;(email_input as HTMLInputElement).focus()
-    }
-  }
 </script>
 
 <template lang="pug">
-  .flex.h-screen.items-center.justify-center.bg-slate-50.p-6
-    .min-w-sm.flex.max-w-2xl.flex-col.items-center.space-y-4.rounded-xl.bg-white.p-12.shadow-sm
-      h1.flex.items-center.gap-x-3.pb-5
-        img.h-8.w-auto(src='logo.svg', alt='')
-        span.text-2xl.font-semibold.tracking-tight {PUBLIC_PROJECT_NAME}
+  .flex.min-h-screen
+    // prettier-ignore
+    .flex.flex-1.flex-col.px-6.py-12.sm_py-24.transition.sm_px-6.lg_flex-none.lg_px-20.xl_px-24.returningUser(class!='{ returningUser ? "bg-white" : "bg-action/10" }')
+      +if('returningUser')
+        .mx-auto.w-full.max-w-sm.lg_w-96
+          img.h-10.w-auto(src='logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
+          .mt-8.space-y-3
+            h2.text-2xl.font-medium.leading-9.tracking-tight.text-gray-900 Welcome Back
+            p.mt-2.flex.gap-x-2.text-sm.leading-6.text-gray-500
+              span New?
+              button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => returningUser = !returningUser }')
+                span Sign Up
+                span(class='group-hover_translate-x-1.5').translate-x-1.transition &rarr;
 
-      +if('email_sent')
-        .flex.flex-col.items-center.space-y-5
-          .flex.items-center.gap-x-3
-            Mail.w-6(strokeWidth='1.5')
-            h2.text-lg.font-medium.leading-none.tracking-tight Check Your Inbox
-          p.mx-auto.mt-4.max-w-sm.text-center.opacity-80
-            | We&apos;ve sent you an activation link. Please check your spam folder as well.
+          .mt-10
+            form.space-y-6(method='post', action='/login?/login_with_email', use:enhance)
+              // prettier-ignore
+              TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{returningUser ? true : false}')
+              // prettier-ignore
+              TextInput(id='password', label='Password', type='password', required, bind:value='{ password_input }', autocomplete='current-password')
+              .flex.items-center.justify-between
+                // prettier-ignore
+                Checkbox(id='remember-me', label='Remember me', bind:checked='{ rememberMe }')
+                .text-sm.leading-6
+                  a.font-medium.text-action.hover_text-action-hover(href='#fix') Forgot password?
+              .pt-2
+                Button(label='Sign In', type='submit', large)
+
+            .mt-10
+              .flex.items-center
+                .w-full.border-t.border-gray-300(aria-hidden='true')
+                span.px-6.text-gray-900.whitespace-nowrap Or sign in with
+                .w-full.border-t.border-gray-300(aria-hidden='true')
+              .mt-6
+                a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.hover_bg-gray-50.focus-visible_ring-transparent(
+                  href='/login/google'
+                )
+                  Google
+                  span.text-sm.font-medium.leading-6 Google
+            
+            .mt-10
+              a.group.flex.gap-x-1.text-sm.text-slate-400.hover_text-action-hover.transition(href='/')
+                span &larr;
+                span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 
         +else
-          form(method='post', action='/login?/login_with_email', use:enhance)
-            input.my-5.w-full.rounded.border-slate-500(
-              placeholder='Email',
-              type='email',
-              name='email',
-              class:hidden='{ !show_email_input }',
-              bind:this='{ email_input }'
-            )
+          .mx-auto.w-full.max-w-sm.lg_w-96
+            img.h-10.w-auto(src='logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
+            .mt-8.space-y-3
+              h2.text-2xl.font-medium.leading-9.tracking-tight.text-gray-900 Sign Up for Free
+              p.mt-2.flex.gap-x-2.text-sm.leading-6.text-gray-500
+                span Have an account?
+                button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => returningUser = !returningUser }')
+                  span Sign In
+                  span(class='group-hover_translate-x-1.5').translate-x-1.transition &rarr;
 
-            +if('$errors.email')
-              span.ml-1.mt-2.text-xs.text-red-500 {$errors.email}
- 
-            +if('show_email_input')
-              .space-y-2
-                button.w-full.rounded-md.border.border-gray-200.px-5.py-2.font-medium(type='submit', disabled='{ $submitting }')
-                  +if('$submitting')
-                    svg.-ml-1.mr-3.h-5.w-5.animate-spin.text-white(xmlns='http://www.w3.org/2000/svg', fill='none', viewBox='0 0 24 24')
-                      circle.opacity-25(cx='12', cy='12', r='10', stroke='currentColor', stroke-width='4')
-                      path.opacity-75(
-                        fill='currentColor',
-                        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-                      )
-                  span.text-md Sign In
-                button.w-full.px-5.py-2(type='button', onclick!='{ () => show_email_input = false }')
-                  span.text-sm Cancel
-              +else
-                button.flex.w-full.items-center.justify-center.gap-x-3.rounded-full.border.border-gray-200.px-6.py-2(onclick='{ handleEmail }', type='button')
-                  Mail.w-5(strokeWidth='2')
-                  span.text-md Sign In with Email
+            .mt-10
+              form.space-y-6(method='post', action='/login?/signup_with_email', use:enhance)
+                // prettier-ignore
+                TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{!returningUser ? true : false}')
+                // prettier-ignore
+                TextInput(id='password', label='Password', type='password', required, bind:value='{ password_input }', autocomplete='current-password')
+                .pt-2
+                  Button(label='Sign Up', type='submit', large)
 
-          +if('!show_email_input')
-            a.mt-4.flex.w-full.items-center.justify-center.rounded-full.border.border-gray-200.px-5.py-2(href='/login/google', class='gap-x-2.5')
-              Google.w-4
-              span.text-md Sign In with Google</template>
+              .mt-10
+                .flex.items-center
+                  .w-full.border-t.border-gray-300(aria-hidden='true')
+                  span.px-6.text-gray-900.whitespace-nowrap Or sign up with
+                  .w-full.border-t.border-gray-300(aria-hidden='true')
+                .mt-6
+                  a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.hover_bg-gray-50.focus-visible_ring-transparent(
+                    href='/login/google'
+                  )
+                    Google
+                    span.text-sm.font-medium.leading-6 Google
+
+              .mt-10
+                a.group.flex.gap-x-1.text-sm.text-slate-400.hover_text-action-hover.transition(href='/')
+                  span &larr;
+                  span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
+
+    .relative.hidden.w-0.flex-1.lg_block
+      +if('!returningUser')
+        .absolute.inset-0.z-10(class='bg-action/50', transition:fade='{{ duration: 300 }}')
+      img.absolute.inset-0.h-full.w-full.object-cover(
+        src='https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1908&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1908&q=80',
+        alt=''
+      )</template>
