@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit'
-import { lucia } from '$lib/server/auth'
+import { lucia } from '$lib/server/auth/auth'
 import type { Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -19,11 +19,19 @@ export const handle: Handle = async ({ event, resolve }) => {
   }
 
   const { session, user } = await lucia.validateSession(sessionId)
+
   if (session && session.fresh) {
     const sessionCookie = lucia.createSessionCookie(session.id)
+    // Preserve the original maxAge when refreshing the session
+    const originalCookie = event.cookies.get(lucia.sessionCookieName, { decode: (value) => value })
+    const originalMaxAge = originalCookie
+      ?.split(';')
+      .find((part) => part.trim().startsWith('Max-Age='))
+      ?.split('=')[1]
     event.cookies.set(sessionCookie.name, sessionCookie.value, {
       path: '.',
       ...sessionCookie.attributes,
+      maxAge: originalMaxAge ? parseInt(originalMaxAge) : undefined,
     })
   }
 

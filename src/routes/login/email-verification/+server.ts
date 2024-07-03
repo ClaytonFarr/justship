@@ -1,4 +1,4 @@
-import { lucia } from '$lib/server/auth'
+import { lucia } from '$lib/server/auth/auth'
 import { deleteEmailToken, getEmailToken } from '$lib/server/database/emailtoken.model'
 import { getUserById, updateUser } from '$lib/server/database/user.model'
 import { isWithinExpirationDate } from 'oslo'
@@ -18,8 +18,8 @@ export async function GET({ request }): Promise<Response> {
   }
 
   if (!email_token || !isWithinExpirationDate(email_token.expires_at)) {
-    console.error('Invalid or expired email token')
-    return new Response('error', { status: 400 })
+    console.error('Invalid or expired email verification token')
+    return new Response('Invalid or expired verification token.', { status: 400 })
   }
 
   const user = await getUserById(email_token.user_id)
@@ -39,7 +39,7 @@ export async function GET({ request }): Promise<Response> {
   return new Response(null, {
     status: 302,
     headers: {
-      location: '/',
+      location: '/app',
       'Set-Cookie': sessionCookie.serialize(),
     },
   })

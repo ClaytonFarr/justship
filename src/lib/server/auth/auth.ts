@@ -6,8 +6,8 @@ import { Lucia } from 'lucia'
 import { DrizzleSQLiteAdapter } from '@lucia-auth/adapter-drizzle'
 import { Google } from 'arctic'
 
-import { db } from './database/db'
-import { sessionTable, userTable } from './database/schema'
+import { db } from '../database/db'
+import { sessionTable, userTable } from '../database/schema'
 
 const adapter = new DrizzleSQLiteAdapter(db, sessionTable, userTable)
 

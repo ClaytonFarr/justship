@@ -29,3 +29,11 @@ export const signinTable = sqliteTable('signin', {
   ip_address: text('ip_address').notNull(),
   email: text('email').notNull(),
 })
+
+export const passwordResetTokenTable = sqliteTable('password_reset_token', {
+  id: text('id').primaryKey(),
+  user_id: text('user_id')
+    .notNull()
+    .references(() => userTable.id),
+  expires_at: integer('expires_at', { mode: 'timestamp' }).notNull(),
+})

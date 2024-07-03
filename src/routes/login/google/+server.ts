@@ -1,4 +1,4 @@
-import { google } from '$lib/server/auth'
+import { google } from '$lib/server/auth/auth'
 import { generateState, generateCodeVerifier } from 'arctic'
 import { redirect } from '@sveltejs/kit'
 

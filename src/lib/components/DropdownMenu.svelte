@@ -65,7 +65,7 @@
 
 <template lang="pug">
   .relative(bind:this='{ container }')
-    button.inline-flex.items-center.gap-x-2.text-sm.font-medium.leading-6.text-gray-900(
+    button.inline-flex.items-center.gap-x-2.text-sm.font-medium.leading-6.text-slate-900(
       type='button',
       aria-expanded='{ isOpen }',
       on:click='{ toggleMenu }',
@@ -83,13 +83,13 @@
         class!='{menuPosition === "center" ? "left-1/2 -translate-x-1/2" : ""}',
         bind:this='{ menuElement }'
         )
-        .w-screen.sm_w-auto.max-w-sm.flex-auto.rounded-lg.bg-white.text-sm.leading-6.shadow-lg.ring-1(class='ring-gray-900/5')
+        .w-screen.sm_w-auto.max-w-sm.flex-auto.rounded-lg.bg-white.text-sm.leading-6.shadow-lg.ring-1(class='ring-slate-900/5')
           .py-2
             +each('menuItems as item')
-              .relative.rounded-md.px-6.py-3.pr-16.hover_bg-gray-50
-                a.font-medium.text-gray-900(href='{ item.href }')
+              .relative.rounded-md.px-6.py-3.pr-16.hover_bg-slate-50
+                a.font-medium.text-slate-900(href='{ item.href }')
                   | { item.label }
                   span.absolute.inset-0
-                p.mt-1.text-gray-600 { item.description }
+                p.mt-1.text-slate-600 { item.description }
           div(class!='{slotBorder ? "border-t border-1 border-slate-200 py-2" : "-mt-2 pb-2"}')
             slot</template>

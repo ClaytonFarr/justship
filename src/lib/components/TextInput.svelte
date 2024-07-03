@@ -14,9 +14,9 @@
 <!-- svelte-ignore a11y_autofocus -->
 <template lang="pug">
   label.block.space-y-2(for='{ id }')
-    span.block.text-sm.font-medium.leading-6.text-gray-900 {label}
+    span.block.text-sm.font-medium.leading-6.text-slate-900 {label}
     // prettier-ignore
-    input.focus_ring-action.block.w-full.rounded-md.border-0.shadow-sm.ring-1.ring-inset.ring-gray-300.placeholder_text-gray-400.focus_ring-2.focus_ring-inset.sm_text-sm.sm_leading-6.large(id='{id}',
+    input.focus_ring-action.block.w-full.rounded-md.border-0.shadow-sm.ring-1.ring-inset.ring-slate-300.placeholder_text-slate-400.focus_ring-2.focus_ring-inset.sm_text-sm.sm_leading-6.large(id='{id}',
       name='{ name }',
       type='{ type }',
       placeholder='{ placeholder }',

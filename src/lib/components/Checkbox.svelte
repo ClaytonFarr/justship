@@ -8,5 +8,5 @@
 <template lang="pug">
   // prettier-ignore
   label(for='{id}').flex.items-center
-    input(type='checkbox', id='{id}' name='{name}' bind:checked).text-action.focus_ring-action.h-4.w-4.rounded.border-gray-300
-    span.ml-3.block.text-sm.leading-6.text-gray-700 {label}</template>
+    input(type='checkbox', id='{id}' name='{name}' bind:checked).text-action.focus_ring-action.h-4.w-4.rounded.border-slate-300
+    span.ml-3.block.text-sm.leading-6.text-slate-700 {label}</template>

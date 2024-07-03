@@ -1,4 +1,4 @@
-import { google, lucia } from '$lib/server/auth'
+import { google, lucia } from '$lib/server/auth/auth'
 import { OAuth2RequestError } from 'arctic'
 import { generateId } from 'lucia'
 import { parseJWT } from 'oslo/jwt'
