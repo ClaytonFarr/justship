@@ -7,7 +7,6 @@
   import Checkbox from '$components/Checkbox.svelte'
   import Button from '$components/Button.svelte'
   import Google from '$components/icons/Google.svelte'
-  import GitHub from '$components/icons/GitHub.svelte'
 
   const { data } = $props()
 
@@ -18,6 +17,15 @@
   let requestReset = $state(false)
   let signup_email_sent = $state(false)
   let reset_email_sent = $state(false)
+  let loadErrorMessage = $state('')
+
+  $derived: {
+    if (data.error === 'email_not_verified') {
+      loadErrorMessage = 'Check your inbox to verify your account email.'
+    } else {
+      loadErrorMessage = ''
+    }
+  }
 
   const { enhance, errors, submitting } = superForm(data.form, {
     onResult(event) {
@@ -33,8 +41,10 @@
 </script>
 
 <template lang="pug">
-  // TODO: Finish updating sign up + verification flow
-  // TODO: Test password reset flow
+  // TODO: Test signup
+  // TODO: Test email verification
+  // TODO: Test signin
+  // TODO: Test password reset
 
   .flex.min-h-screen
     // prettier-ignore
@@ -54,6 +64,8 @@
                   span(class='group-hover_translate-x-1.5').translate-x-1.transition &rarr;
 
             .mt-10
+              +if('loadErrorMessage')
+                .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border-rose-400.bg-rose-50.mb-6 { loadErrorMessage }
               form.space-y-6(method='post', action='/login?/login_with_email', use:enhance)
                 // prettier-ignore
                 TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{returningUser ? true : false}')
@@ -65,7 +77,7 @@
                   .text-sm.leading-6
                     button(type='button').font-medium.text-action.hover_text-action-hover(onclick!='{ () => requestReset = !requestReset }') Forgot password?
                 +if('$errors.signin_error_message || $errors.email || $errors.password')
-                  .text-sm.px-4.py-3.my-1.text-rose-900.border-rose-400.bg-rose-50 { $errors.signin_error_message } { $errors.email } { $errors.password }
+                  .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border-rose-400.bg-rose-50 { $errors.signin_error_message } { $errors.email } { $errors.password }
                 .pt-2
                   Button(label='Sign In', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Signing In...')
 
@@ -106,7 +118,7 @@
                     // prettier-ignore
                     TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{requestReset ? true : false}')
                     +if('$errors.reset_error_message || $errors.email')
-                      .text-sm.px-4.py-3.my-1.text-rose-900.border-rose-400.bg-rose-50 { $errors.reset_error_message } { $errors.email }
+                      .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border-rose-400.bg-rose-50 { $errors.reset_error_message } { $errors.email }
                     .pt-2
                       Button(label='Send Reset Link', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Sending...')
                 +else
@@ -144,7 +156,7 @@
                   // prettier-ignore
                   TextInput(id='password', label='Password', type='password', required, bind:value='{ password_input }', autocomplete='current-password')
                   +if('$errors.signup_error_message || $errors.email || $errors.password')
-                    .text-sm.px-4.py-3.my-1.text-rose-900.border-rose-400.bg-rose-50 { $errors.signup_error_message } { $errors.email } { $errors.password }
+                    .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border-rose-400.bg-rose-50 { $errors.signup_error_message } { $errors.email } { $errors.password }
                   .pt-2
                     Button(label='Sign Up', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Signing Up...')
 

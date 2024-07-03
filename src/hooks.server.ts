@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit'
 import { lucia } from '$lib/server/auth/auth'
+import { sendVerificationEmail } from '$lib/server/email/email'
 import type { Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -47,8 +48,18 @@ export const handle: Handle = async ({ event, resolve }) => {
       throw redirect(302, '/login')
     }
   } else {
-    // If user is logged in and trying to access /login without the signout action, redirect to /app
-    if (event.url.pathname === '/login' && !event.url.searchParams.has('/signout')) {
+    if (user && !user.emailVerified) {
+      if (event.url.pathname.startsWith('/app')) {
+        // resend verification email
+        await sendVerificationEmail({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          email_verified: user.emailVerified,
+        })
+        throw redirect(302, '/login?error=email_not_verified')
+      }
+    } else if (event.url.pathname === '/login' && !event.url.searchParams.has('signout')) {
       throw redirect(302, '/app')
     }
   }

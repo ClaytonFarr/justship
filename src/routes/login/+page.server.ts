@@ -1,6 +1,5 @@
 import { dev } from '$app/environment'
 import { env } from '$env/dynamic/private'
-import { env as public_env } from '$env/dynamic/public'
 import { PUBLIC_ORIGIN } from '$env/static/public'
 import { error, fail, redirect } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms'
@@ -9,8 +8,7 @@ import { z } from 'zod'
 import { lucia } from '$lib/server/auth/auth'
 import { generateIdFromEntropySize } from 'lucia'
 import { Argon2id } from 'oslo/password'
-import { loginEmailHtmlTemplate, sendEmail, sendPasswordResetLink } from '$lib/server/email/email'
-import { createEmailVerificationToken, deleteAllEmailTokensForUser } from '$lib/server/database/emailtoken.model'
+import { sendPasswordResetLink, sendVerificationEmail } from '$lib/server/email/email'
 import { createNewUser, getUserByEmail } from '$lib/server/database/user.model'
 import { createSignin, getSignins } from '$lib/server/database/signin.model'
 import { generatePasswordResetToken } from '$lib/server/auth/resettoken'
@@ -28,7 +26,8 @@ const schema = z.object({
 
 export const load: PageServerLoad = async (e) => {
   const form = await superValidate(zod(schema))
-  return { form, user: e.locals.user }
+  const error = e.url.searchParams.get('error')
+  return { form, user: e.locals.user, error }
 }
 
 export const actions: Actions = {
@@ -93,6 +92,16 @@ export const actions: Actions = {
 
     const { email, password, remember_me } = form.data
 
+    // Rate limiting
+    const ip_address = getClientAddress()
+    const signins = await getSignins({ email, ip_address })
+    const ratelimit = env.SIGNIN_IP_RATELIMIT ? parseInt(env.SIGNIN_IP_RATELIMIT) : 20
+
+    if (signins.length > ratelimit) {
+      form.errors.signin_error_message = ['Too many signins from this IP address in last hour, please try again later.']
+      return fail(429, { form })
+    }
+
     const user = await getUserByEmail(email)
     if (!user || !user.password_hash) {
       form.errors.signin_error_message = ['Sign in failed - please check email and password.']
@@ -115,16 +124,6 @@ export const actions: Actions = {
     // wait for 2 seconds to simulate a slow login
     if (dev) {
       await new Promise((resolve) => setTimeout(resolve, 2000))
-    }
-
-    // Rate limiting
-    const ip_address = getClientAddress()
-    const signins = await getSignins({ email, ip_address })
-    const ratelimit = env.SIGNIN_IP_RATELIMIT ? parseInt(env.SIGNIN_IP_RATELIMIT) : 20
-
-    if (signins.length > ratelimit) {
-      form.errors.signin_error_message = ['Too many signins from this IP address in last hour, please try again later.']
-      return fail(429, { form })
     }
 
     await createSignin({
@@ -177,22 +176,3 @@ export const actions: Actions = {
   },
 }
 
-async function sendVerificationEmail(user: { id: string; username: string; password_hash: string | null; email: string; email_verified: boolean | null }) {
-  await deleteAllEmailTokensForUser(user.id)
-  const verification_token = await createEmailVerificationToken(user.id, user.email)
-  const verificationLink = `${PUBLIC_ORIGIN}/login/email-verification?verification_token=${verification_token}`
-
-  await sendEmail({
-    from: `${public_env.PUBLIC_PROJECT_NAME} <${env.FROM_EMAIL}>`,
-    to: user.email,
-    subject: `Activation link for ${public_env.PUBLIC_PROJECT_NAME}`,
-    html: loginEmailHtmlTemplate({
-      product_url: PUBLIC_ORIGIN,
-      product_name: public_env.PUBLIC_PROJECT_NAME,
-      action_url: verificationLink,
-    }),
-    headers: {
-      'X-Entity-Ref-ID': generateIdFromEntropySize(16),
-    },
-  })
-}

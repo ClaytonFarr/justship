@@ -40,6 +40,10 @@ export const actions = {
     await db.update(userTable).set({ password_hash: hashedPassword }).where(eq(userTable.id, resetToken.user_id))
     await db.delete(passwordResetTokenTable).where(eq(passwordResetTokenTable.id, token))
 
+    // Invalidate all existing sessions for the user
+    await lucia.invalidateUserSessions(resetToken.user_id)
+
+    // Create a new session
     const session = await lucia.createSession(resetToken.user_id, {})
     const sessionCookie = lucia.createSessionCookie(session.id)
     cookies.set(sessionCookie.name, sessionCookie.value, {

@@ -1,11 +1,15 @@
 import { dev } from '$app/environment'
-import { SMTPClient } from 'emailjs'
-import { PUBLIC_ORIGIN, PUBLIC_PROJECT_NAME } from '$env/static/public'
+import { env } from '$env/dynamic/private'
 import { FROM_EMAIL, POSTMARK_SERVER_TOKEN } from '$env/static/private'
-import { inline } from '@css-inline/css-inline'
+import { env as public_env } from '$env/dynamic/public'
+import { PUBLIC_ORIGIN, PUBLIC_PROJECT_NAME } from '$env/static/public'
+import { deleteAllEmailTokensForUser, createEmailVerificationToken } from '$lib/server/database/emailtoken.model'
+import { generateIdFromEntropySize } from 'lucia'
+import { SMTPClient } from 'emailjs'
 import postmark from 'postmark'
+import { inline } from '@css-inline/css-inline'
 import layout from './layout.html?raw'
-import login from './login-email.html?raw'
+import verification from './verification-email.html?raw'
 import passwordReset from './password-reset-email.html?raw'
 
 const localClient = new SMTPClient({
@@ -34,7 +38,7 @@ type PasswordResetEmailVariables = LayoutEmailVariables & {
 export const loginEmailHtmlTemplate = (variables: LoginEmailVariables) => {
   return inline(
     layout
-      .replaceAll('{{{ @content }}}', login)
+      .replaceAll('{{{ @content }}}', verification)
       .replaceAll('{{ product_url }}', variables.product_url)
       .replaceAll('{{ product_name }}', variables.product_name)
       .replaceAll('{{ action_url }}', variables.action_url),
@@ -74,6 +78,31 @@ export const sendEmail = async (options: { from: string; to: string; subject: st
   }
 }
 
+export async function sendVerificationEmail(user: {
+  id: string
+  username: string
+  email: string
+  email_verified: boolean | null
+}) {
+  await deleteAllEmailTokensForUser(user.id)
+  const verification_token = await createEmailVerificationToken(user.id, user.email)
+  const verificationLink = `${PUBLIC_ORIGIN}/login/email-verification?verification_token=${verification_token}`
+
+  await sendEmail({
+    from: `${public_env.PUBLIC_PROJECT_NAME} <${env.FROM_EMAIL}>`,
+    to: user.email,
+    subject: `Account verification for ${public_env.PUBLIC_PROJECT_NAME}`,
+    html: loginEmailHtmlTemplate({
+      product_url: PUBLIC_ORIGIN,
+      product_name: public_env.PUBLIC_PROJECT_NAME,
+      action_url: verificationLink,
+    }),
+    headers: {
+      'X-Entity-Ref-ID': generateIdFromEntropySize(16),
+    },
+  })
+}
+
 export const sendPasswordResetLink = async (email: string, token: string) => {
   const resetLink = `${PUBLIC_ORIGIN}/password-reset/${token}`
   await sendEmail({
@@ -97,3 +126,4 @@ export const passwordResetEmailTemplate = (variables: PasswordResetEmailVariable
       .replaceAll('{{ action_url }}', variables.action_url),
   )
 }
+
