@@ -5,13 +5,14 @@
 
 <template lang="pug">
   Container
-    main.grid.min-h-full.place-items-center.px-6.py-24.sm_py-32
-      h1.text-error.text-center.text-4xl.font-bold {$page.status}
-      div
-        p.mt-4.text-center.text-lg
+    .flex.min-h-screen.flex-col.items-center.justify-center.align-middle
+      .mb-4.flex.items-center.justify-items-stretch.divide-x.border.text-gray-900
+        h1.px-3.text-lg.font-medium { $page.status }
+        p.px-3.py-2
           +if('$page.status === 404')
             | The page you are looking for does not exist.
+            +elseif('$page.error.message')
+              | {$page.error.message}
             +else
-              | An error occurred.
-        p.mt-10.text-center
-          a(href='/') Return Home</template>
+              | We encountered a site error.
+      p.mt-8: a.text-action.underline(href='/') &rarr; Return Home</template>

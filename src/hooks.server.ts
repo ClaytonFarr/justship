@@ -11,9 +11,9 @@ export const handle: Handle = async ({ event, resolve }) => {
     event.locals.user = null
     event.locals.session = null
 
-    // redirect to /login if the route starts with /app
-    if (event.url.pathname.startsWith('/app')) {
-      throw redirect(302, '/login')
+    // redirect to /signin if the route starts with /app
+    if (event.url.pathname.startsWith('/app') && !event.url.pathname.startsWith('/password-reset')) {
+      throw redirect(302, '/signin')
     }
 
     return resolve(event)
@@ -43,9 +43,9 @@ export const handle: Handle = async ({ event, resolve }) => {
       ...sessionCookie.attributes,
     })
 
-    // redirect to /login if the route starts with /app
+    // redirect to /signin if the route starts with /app
     if (event.url.pathname.startsWith('/app')) {
-      throw redirect(302, '/login')
+      throw redirect(302, '/signin')
     }
   } else {
     if (user && !user.emailVerified) {
@@ -57,9 +57,9 @@ export const handle: Handle = async ({ event, resolve }) => {
           email: user.email,
           email_verified: user.emailVerified,
         })
-        throw redirect(302, '/login?error=email_not_verified')
+        throw redirect(302, '/signin?error=email_not_verified')
       }
-    } else if (event.url.pathname === '/login' && !event.url.searchParams.has('signout')) {
+    } else if (event.url.pathname === '/signin' && !event.url.searchParams.has('signout')) {
       throw redirect(302, '/app')
     }
   }

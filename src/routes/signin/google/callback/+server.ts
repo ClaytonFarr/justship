@@ -20,7 +20,7 @@ type GoogleUser = {
 }
 
 export async function GET(event: RequestEvent): Promise<Response> {
-  console.log('GET /login/google/callback')
+  console.log('GET /signin/google/callback')
   const code = event.url.searchParams.get('code')
   const state = event.url.searchParams.get('state')
   const stored_state = event.cookies.get('google_oauth_state') ?? null

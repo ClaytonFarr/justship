@@ -41,7 +41,7 @@ interface DatabaseUserAttributes {
   email_verified: boolean
 }
 
-const redirect_url = dev ? 'http://localhost:5173/login/google/callback' : `${PUBLIC_ORIGIN}/login/google/callback`
+const redirect_url = dev ? 'http://localhost:5173/signin/google/callback' : `${PUBLIC_ORIGIN}/signin/google/callback`
 
 export const google = new Google(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, redirect_url)
 

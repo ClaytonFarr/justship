@@ -14,13 +14,15 @@ import { createSignin, getSignins } from '$lib/server/database/signin.model'
 import { generatePasswordResetToken } from '$lib/server/auth/resettoken'
 import type { Actions, PageServerLoad } from './$types'
 
-// Name has a default value just to display something in the form.
 const schema = z.object({
   email: z.string().trim().email({ message: 'Invalid email address.' }),
   password: z.string().min(8, { message: 'Password must be 8 or more characters.' }).max(255),
   remember_me: z.boolean().optional(),
   signin_error_message: z.string().optional(),
   signup_error_message: z.string().optional(),
+})
+const resetPasswordSchema = z.object({
+  email: z.string().trim().email({ message: 'Invalid email address.' }),
   reset_error_message: z.string().optional(),
 })
 
@@ -78,12 +80,11 @@ export const actions: Actions = {
     // Return success status without redirecting
     return {
       form,
-      success: true,
-      message: 'Signup successful. Please check your email for verification.',
+      signup_email_sent: true,
     }
   },
 
-  login_with_email: async ({ request, cookies, getClientAddress }) => {
+  signin_with_email: async ({ request, cookies, getClientAddress }) => {
     const form = await superValidate(request, zod(schema))
 
     if (!form.valid) {
@@ -110,7 +111,7 @@ export const actions: Actions = {
 
     // If email is not verified, send verification email
     if (!user.email_verified) {
-      form.errors.signin_error_message = ['Please verify your email address to sign in.']
+      form.errors.signin_error_message = ['Check your inbox to verify your account email.']
       await sendVerificationEmail(user)
       return fail(400, { form })
     }
@@ -121,7 +122,7 @@ export const actions: Actions = {
       return fail(400, { form })
     }
 
-    // wait for 2 seconds to simulate a slow login
+    // wait for 2 seconds to simulate a slow sign in
     if (dev) {
       await new Promise((resolve) => setTimeout(resolve, 2000))
     }
@@ -144,35 +145,35 @@ export const actions: Actions = {
     redirect(302, `${PUBLIC_ORIGIN}/app`)
   },
 
-  request_password_reset: async ({ request }) => {
-    const form = await superValidate(request, zod(schema))
+  request_password_reset: async ({ request, getClientAddress }) => {
+    const form = await superValidate(request, zod(resetPasswordSchema))
 
     if (!form.valid) {
       return fail(400, { form })
     }
 
     const { email } = form.data
-    const user = await getUserByEmail(email)
 
+    // Rate limiting
+    const ip_address = getClientAddress()
+    const resets = await getSignins({ email, ip_address }) // reuse getSignins for simplicity
+    const ratelimit = env.PASSWORD_RESET_RATELIMIT ? parseInt(env.PASSWORD_RESET_RATELIMIT) : 5
+
+    if (resets.length > ratelimit) {
+      form.errors.reset_error_message = ['Too many password reset attempts in last hour, please try again later.']
+      return fail(429, { form })
+    }
+
+    const user = await getUserByEmail(email)
     if (user) {
       const token = await generatePasswordResetToken(user.id)
       await sendPasswordResetLink(user.email, token)
     }
 
-    return { form }
-  },
-
-  signout: async (e) => {
-    if (!e.locals.session) {
-      return fail(401)
+    // Always return success to frontend, even if the email doesn't exist
+    return {
+      form,
+      reset_email_sent: true,
     }
-    await lucia.invalidateSession(e.locals.session.id)
-    const sessionCookie = lucia.createBlankSessionCookie()
-    e.cookies.set(sessionCookie.name, sessionCookie.value, {
-      path: '.',
-      ...sessionCookie.attributes,
-    })
-    redirect(302, `${PUBLIC_ORIGIN}/`)
   },
 }
-

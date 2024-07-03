@@ -1,4 +1,4 @@
-import { fail, redirect } from '@sveltejs/kit'
+import { fail } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
 import { z } from 'zod'
@@ -14,11 +14,24 @@ const schema = z.object({
 
 export const load = async ({ params }) => {
   const form = await superValidate(zod(schema))
-  return { form, token: params.token }
+  
+  // Check if the token is valid
+  const resetToken = await db.select().from(passwordResetTokenTable).where(eq(passwordResetTokenTable.id, params.token)).get()
+
+  if (!resetToken || new Date() > resetToken.expires_at) {
+    return {
+      form,
+      token: params.token,
+      invalidToken: true,
+      success: false
+    }
+  }
+
+  return { form, token: params.token, invalidToken: false, success: false }
 }
 
 export const actions = {
-  default: async ({ request, params, cookies }) => {
+  default: async ({ request, params }) => {
     const form = await superValidate(request, zod(schema))
 
     if (!form.valid) {
@@ -28,35 +41,25 @@ export const actions = {
     try {
       const { password } = form.data
       const { token } = params
-  
+
       const resetToken = await db.select().from(passwordResetTokenTable).where(eq(passwordResetTokenTable.id, token)).get()
-  
+
       if (!resetToken || new Date() > resetToken.expires_at) {
-        form.errors.password = ['Invalid or expired password reset token.']
-        return fail(400, { form })
+        return fail(400, { form, invalidToken: true, success: false })
       }
-  
+
       const hashedPassword = await new Argon2id().hash(password)
-  
+
       await db.update(userTable).set({ password_hash: hashedPassword }).where(eq(userTable.id, resetToken.user_id))
       await db.delete(passwordResetTokenTable).where(eq(passwordResetTokenTable.id, token))
-  
+
       // Invalidate all existing sessions for the user
       await lucia.invalidateUserSessions(resetToken.user_id)
-  
-      // Create a new session
-      const session = await lucia.createSession(resetToken.user_id, {})
-      const sessionCookie = lucia.createSessionCookie(session.id)
-      cookies.set(sessionCookie.name, sessionCookie.value, {
-        path: '.',
-        ...sessionCookie.attributes,
-      })
-  
-      redirect(302, '/login') 
 
+      return { form, success: true }
     } catch (e) {
       console.error(e)
       return fail(500, { form, message: 'An error occurred while resetting the password.' })
     }
-  }
+  },
 }

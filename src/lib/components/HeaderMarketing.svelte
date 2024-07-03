@@ -31,7 +31,7 @@
             a.text-sm.font-medium.leading-6.text-slate-900(href='{ item.href }') {item.label}
         .flex.flex-1.items-center.justify-end
           a.whitespace-nowrap.rounded-md.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
-            href!='{ $page.data.user ? "/app" : "/login" }'
+            href!='{ $page.data.user ? "/app" : "/signin" }'
           ) Launch #[span.sr-only.sm_not-sr-only App]
         .flex.md_hidden
           button.inline-flex.items-center.justify-center.rounded-md.text-slate-700(type='button', class='-m-2.5 p-2.5', on:click!='{ () => mobileMenuOpen = true }')
@@ -56,5 +56,5 @@
                     a.-mx-3.block.rounded-lg.px-3.py-2.text-base.font-medium.leading-7.text-slate-900.hover_bg-slate-50(href='{ item.href }') {item.label}
                 .py-8
                   a.whitespace-nowrap.rounded-md.bg-action.px-3.py-3.text-base.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
-                    href!='{ $page.data.user ? "/app" : "/login" }'
+                    href!='{ $page.data.user ? "/app" : "/signin" }'
                   ) Launch #[span.sr-only.sm_not-sr-only App]</template>

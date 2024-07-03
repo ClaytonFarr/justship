@@ -86,7 +86,7 @@ export async function sendVerificationEmail(user: {
 }) {
   await deleteAllEmailTokensForUser(user.id)
   const verification_token = await createEmailVerificationToken(user.id, user.email)
-  const verificationLink = `${PUBLIC_ORIGIN}/login/email-verification?verification_token=${verification_token}`
+  const verificationLink = `${PUBLIC_ORIGIN}/signin/email-verification?verification_token=${verification_token}`
 
   await sendEmail({
     from: `${public_env.PUBLIC_PROJECT_NAME} <${env.FROM_EMAIL}>`,

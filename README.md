@@ -12,7 +12,8 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - removed Embla Carousel
 - created separate routes for 'marketing' and 'app' content, with auth control
 - removed original marketing components
-- (pending) updated log in / sign up flow and UI
+- updated sign-up & sign-in to use email & password
+- added password reset flow
 - (pending) added new Tailwind marketing components
 - (pending) added new Tailwind app components
 
@@ -34,9 +35,9 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
    - start mailpit running in background (e.g. `brew services start mailpit`)
    - note: can stop background mailpit process after dev (e.g. `brew services stop mailpit`)
 5. run `npm run dev`
-6. create a new account at [login page](http://localhost:5173/login) using any email address
+6. create a new account at [sign in page](http://localhost:5173/signin) using any email address
    - check for sign-up email at [Mailpit localhost:8025](http://localhost:8025/)
-   - click email activation link to create account and login
+   - click email activation link to create account and sign in
 
 ### Production
 
