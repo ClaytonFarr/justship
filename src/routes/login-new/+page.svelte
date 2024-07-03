@@ -2,6 +2,7 @@
   import { PUBLIC_PROJECT_NAME } from '$env/static/public'
   import { tick } from 'svelte'
   import { fade } from 'svelte/transition'
+  // import { enhance } from "$app/forms";
   import { superForm } from 'sveltekit-superforms'
   import TextInput from '$components/TextInput.svelte'
   import Checkbox from '$components/Checkbox.svelte'
@@ -26,14 +27,6 @@
       }
     },
   })
-
-  const handleEmail = async () => {
-    if (!show_email_input && email_input) {
-      show_email_input = true
-      await tick()
-      ;(email_input as HTMLInputElement).focus()
-    }
-  }
 </script>
 
 <template lang="pug">
@@ -52,30 +45,27 @@
                 span(class='group-hover_translate-x-1.5').translate-x-1.transition &rarr;
 
           .mt-10
-            form.space-y-6(method='post', action='/login?/login_with_email', use:enhance)
+            form.space-y-6(method='post', action='/login-new?/login_with_email', use:enhance)
               // prettier-ignore
               TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{returningUser ? true : false}')
               // prettier-ignore
               TextInput(id='password', label='Password', type='password', required, bind:value='{ password_input }', autocomplete='current-password')
-
               .flex.items-center.justify-between
                 // prettier-ignore
                 Checkbox(id='remember-me', label='Remember me', bind:checked='{ rememberMe }')
                 .text-sm.leading-6
                   a.font-medium.text-action.hover_text-action-hover(href='#fix') Forgot password?
-
               .pt-2
-                Button(label='Sign In', type='submit', large, onClick='{ handleEmail }')
+                Button(label='Sign In', type='submit', large)
 
             .mt-10
               .flex.items-center
                 .w-full.border-t.border-gray-300(aria-hidden='true')
                 span.px-6.text-gray-900.whitespace-nowrap Or sign in with
                 .w-full.border-t.border-gray-300(aria-hidden='true')
-
               .mt-6
                 a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.hover_bg-gray-50.focus-visible_ring-transparent(
-                  href='/login/google'
+                  href='/login-new/google'
                 )
                   Google
                   span.text-sm.font-medium.leading-6 Google
@@ -97,24 +87,22 @@
                   span(class='group-hover_translate-x-1.5').translate-x-1.transition &rarr;
 
             .mt-10
-              form.space-y-6(method='post', action='/login?/login_with_email', use:enhance)
+              form.space-y-6(method='post', action='/login-new?/signup_with_email', use:enhance)
                 // prettier-ignore
                 TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{!returningUser ? true : false}')
                 // prettier-ignore
                 TextInput(id='password', label='Password', type='password', required, bind:value='{ password_input }', autocomplete='current-password')
-
                 .pt-2
-                  Button(label='Sign Up', type='submit', large, onClick='{ handleEmail }')
+                  Button(label='Sign Up', type='submit', large)
 
               .mt-10
                 .flex.items-center
                   .w-full.border-t.border-gray-300(aria-hidden='true')
                   span.px-6.text-gray-900.whitespace-nowrap Or sign up with
                   .w-full.border-t.border-gray-300(aria-hidden='true')
-
                 .mt-6
                   a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.hover_bg-gray-50.focus-visible_ring-transparent(
-                    href='/login/google'
+                    href='/login-new/google'
                   )
                     Google
                     span.text-sm.font-medium.leading-6 Google
@@ -123,8 +111,6 @@
                 a.group.flex.gap-x-1.text-sm.text-slate-400.hover_text-action-hover.transition(href='/')
                   span &larr;
                   span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
-
-
 
     .relative.hidden.w-0.flex-1.lg_block
       +if('!returningUser')

@@ -32,6 +32,8 @@ export const updateUser = async (id: string, user: UpdateUser) => {
 
 type NewUser = {
   id: string
+  username: string
+  password_hash: string // do not expose to client
   email: string
   email_verified: boolean
 }

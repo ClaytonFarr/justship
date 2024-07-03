@@ -15,6 +15,13 @@
       "when": 1717685975655,
       "tag": "0001_luxuriant_crystal",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1719997997374,
+      "tag": "0002_dear_chat",
+      "breakpoints": true
     }
   ]
 }

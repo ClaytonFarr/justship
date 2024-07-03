@@ -1,12 +1,13 @@
-import { db } from './database/db'
-import { Google } from 'arctic'
-import { Lucia } from 'lucia'
-
-import { DrizzleSQLiteAdapter } from '@lucia-auth/adapter-drizzle'
 import { dev } from '$app/environment'
-import { sessionTable, userTable } from './database/schema'
-import { GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_ID } from '$env/static/private'
 import { PUBLIC_ORIGIN } from '$env/static/public'
+import { GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_ID } from '$env/static/private'
+
+import { Lucia } from 'lucia'
+import { DrizzleSQLiteAdapter } from '@lucia-auth/adapter-drizzle'
+import { Google } from 'arctic'
+
+import { db } from './database/db'
+import { sessionTable, userTable } from './database/schema'
 
 const adapter = new DrizzleSQLiteAdapter(db, sessionTable, userTable)
 
@@ -19,8 +20,9 @@ export const lucia = new Lucia(adapter, {
   },
   getUserAttributes: (attributes) => {
     return {
-      emailVerified: attributes.email_verified,
+      username: attributes.username,
       email: attributes.email,
+      emailVerified: attributes.email_verified,
     }
   },
 })
@@ -28,11 +30,15 @@ export const lucia = new Lucia(adapter, {
 declare module 'lucia' {
   interface Register {
     Lucia: typeof lucia
-    DatabaseUserAttributes: {
-      email: string
-      email_verified: boolean
-    }
+    DatabaseUserAttributes: DatabaseUserAttributes
   }
+}
+
+interface DatabaseUserAttributes {
+  username: string
+  password_hash: string | null // do not expose to getUserAttributes
+  email: string
+  email_verified: boolean
 }
 
 const redirect_url = dev ? 'http://localhost:5173/login/google/callback' : `${PUBLIC_ORIGIN}/login/google/callback`
