@@ -4,6 +4,4 @@
 </script>
 
 <template lang="pug">
-  Hero
-  Container
-    h1 At Marketing</template>
+  Hero</template>

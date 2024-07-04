@@ -12,7 +12,7 @@ const config = {
         action: {
           DEFAULT: colors.sky[600],
           hover: colors.sky[500],
-          active: colors.sky[400],
+          active: colors.sky[700],
         },
         content: {
           heading: colors.slate[900],

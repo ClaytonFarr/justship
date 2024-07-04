@@ -6,7 +6,7 @@
   import TextInput from '$components/common/forms/TextInput.svelte'
   import Checkbox from '$components/common/forms/Checkbox.svelte'
   import Button from '$components/common/forms/Button.svelte'
-  import Google from '$components/common/icons/Google.svelte'
+  import Google from '$components/common/images/icons/Google.svelte'
 
   const { data } = $props()
 
