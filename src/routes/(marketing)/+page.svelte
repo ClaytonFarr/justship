@@ -1,7 +1,8 @@
 <script lang="ts">
   import Container from '$components/common/Container.svelte'
-  import Hero from '$components/marketing/Hero.svelte'
+  import HeroImage from '$components/marketing/HeroImage.svelte'
+  // import HeroProduct from '$components/marketing/HeroProduct.svelte'
 </script>
 
 <template lang="pug">
-  Hero</template>
+  HeroImage</template>

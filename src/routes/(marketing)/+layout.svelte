@@ -10,7 +10,7 @@
 
   let headerVisible = $state(false)
   let lastScrollY = $state(0)
-  let scrollStartFromTopVh = $state(1) // when to show header; 1 = 1 viewport height; based on viewport scroll top position
+  let scrollStartFromTopVh = $state(0.6) // when to show header; 1 = 1 viewport height; based on viewport scroll top position
   onMount(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
@@ -27,6 +27,6 @@
 
 <template lang="pug">
   +if('headerVisible')
-    .fixed.inset-x-0.top-0.z-10.shadow-md(transition:fade='{{ duration: 200, easing: cubicInOut }}')
+    .fixed.inset-x-0.top-0.z-50.shadow-md(transition:fade='{{ duration: 200, easing: cubicInOut }}')
       Header
   | {@render children()}</template>

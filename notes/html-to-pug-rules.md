@@ -25,12 +25,15 @@ Prompt: `convert this source code to a Svelte component using @html-to-pug-rules
 - write classes in short `dot` Pug syntax, except for classes that contain periods, slashes, or brackets in the class name - these should be added as in the 'class' attribute:
   - e.g. `<div class='class-name-1.5 class-name-2/4 class-name-3 class-name-4 class-name-[10px]'>` becomes `div.class-name-3.class-name-4(class='class-name-1.5 class-name-2/4 class-name-[10px]')`
   - e.g. `<img class='w-[76rem] rounded-md' alt='alt text'>` becomes `img.rounded-md(class='w-[76rem]', alt='alt text')`
-  - e.g `<p class='px-3.5 py-2.5 font-medium'>` becomes `p.font-medium(class='px-3.5 py-2.5')`
+  - e.g. `<p class='px-3.5 py-2.5 font-medium'>` becomes `p.font-medium(class='px-3.5 py-2.5')`
+  - e.g. `<a class='px-3.5 py-2.5 font-medium'>` becomes `a.font-medium(class='px-3.5 py-2.5')`
 - any colons in Tailwind classes need to be replaced by underscores
   - e.g. `<div class='sm:text-lg hover:text-red-500'>` becomes `div.sm_text-lg.hover_text-red-500`
   - e.g. `<div class="focus-visible:outline focus-visible:outline-2">` becomes `div(class="focus-visible_outline focus-visible_:_outline-2")`
 - if/else/each blocks use the Svelte Preprocess Pug syntax (no spaces, expression wrapped in parentheses and quotes)
-  - e.g. `+if('variable')`, `+else`, `+elseif('variable-two')`
+  - e.g. `+if('variable')`, `+else`, `+elseif('variable-two')`, `+each('navItems as items')`
+- each blocks are written in the syntax of 'groupName as itemName'
+  - e.g. `+each('navItems as item')`, NOT `+each('items in navItems')`
 - else/else if blocks must be indented under the parent if/else/each block
 - separate Pug element attributes with a comma space
 - replace source markup Tailwind colors for actions, text content, inputs, borders (rules), and backgrounds (surfaces) with equivalent Tailwind project colors (see tailwind.config.js excerpt below)
@@ -40,7 +43,7 @@ Prompt: `convert this source code to a Svelte component using @html-to-pug-rules
   - e.g. `<svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path></svg>` adds an icon import in script block `import { ChevronRight } from 'lucide-svelte'` and replaces element with Icon element, `ChevronRight`
 - replace references to logos with an image element that has a src attribute with the path to project logo
   - e.g. `<img class="h-11" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600" alt="Your Company">` becomes `img(src='logo.svg', alt='Your Company')`
-- replace `href="#"` href placeholders with `href="#fix"`
+- replace `href="#"` href placeholders with `href="#add"`
 - as necessary convert HTML entities to their equivalent Pug syntax
   - e.g. `&amp;` becomes `&`
 - only convert the existing markup and interaction, do not create or add any new elements, attributes or classes (unless they help accomplish an interaction indicated in the source)

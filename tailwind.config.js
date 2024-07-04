@@ -16,9 +16,13 @@ const config = {
         },
         content: {
           heading: colors.slate[900],
+          'heading-reversed': colors.white,
           body: colors.slate[800],
+          'body-reversed': colors.slate[100],
           secondary: colors.slate[500],
+          'secondary-reversed': colors.slate[300],
           tertiary: colors.slate[400],
+          'tertiary-reversed': colors.slate[400],
         },
         input: {
           dark: colors.slate[900],
