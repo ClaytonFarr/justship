@@ -1,7 +1,7 @@
 <script lang="ts">
   import { PUBLIC_PROJECT_NAME } from '$env/static/public'
-  import Container from './Container.svelte'
-  import DropdownMenu from './DropdownMenu.svelte'
+  import Container from '../common/Container.svelte'
+  import DropdownMenu from '../common/DropdownMenu.svelte'
   import { Menu, X, LogOut } from 'lucide-svelte'
   import { page } from '$app/stores'
   import { enhance } from '$app/forms'

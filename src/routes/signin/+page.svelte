@@ -3,10 +3,10 @@
   import { tick } from 'svelte'
   import { fade } from 'svelte/transition'
   import { superForm } from 'sveltekit-superforms'
-  import TextInput from '$components/TextInput.svelte'
-  import Checkbox from '$components/Checkbox.svelte'
-  import Button from '$components/Button.svelte'
-  import Google from '$components/icons/Google.svelte'
+  import TextInput from '$components/common/forms/TextInput.svelte'
+  import Checkbox from '$components/common/forms/Checkbox.svelte'
+  import Button from '$components/common/forms/Button.svelte'
+  import Google from '$components/common/icons/Google.svelte'
 
   const { data } = $props()
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import HeaderApp from '$lib/components/HeaderApp.svelte'
+  import Header from '$components/app/Header.svelte'
   let { children } = $props()
 </script>
 
 <template lang="pug">
-  HeaderApp
+  Header
   | {@render children()}</template>

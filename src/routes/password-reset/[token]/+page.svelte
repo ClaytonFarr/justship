@@ -1,8 +1,8 @@
 <script lang="ts">
   import { PUBLIC_PROJECT_NAME, PUBLIC_ORIGIN } from '$env/static/public'
   import { superForm } from 'sveltekit-superforms'
-  import TextInput from '$components/TextInput.svelte'
-  import Button from '$components/Button.svelte'
+  import TextInput from '$components/common/forms/TextInput.svelte'
+  import Button from '$components/common/forms/Button.svelte'
 
   const { data } = $props()
 

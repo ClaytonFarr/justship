@@ -1,7 +1,9 @@
 <script lang="ts">
-  import Container from "$components/Container.svelte";
+  import Container from '$components/common/Container.svelte'
+  import Hero from '$components/marketing/Hero.svelte'
 </script>
 
 <template lang="pug">
+  Hero
   Container
     h1 At Marketing</template>
