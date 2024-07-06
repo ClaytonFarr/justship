@@ -57,7 +57,7 @@
             .flex.items-center.justify-between.gap-x-6
               h1: a.flex.items-center.gap-5(href='{PUBLIC_ORIGIN}/', class='-m-1.5 p-1.5')
                 img.h-8.w-auto(src='logo.svg', alt='')
-                span.text-content-heading.text-lg.font-semibold.sm_sr-only {PUBLIC_PROJECT_NAME}
+                span.text-content-heading.text-xl.font-display.font-medium.sm_sr-only {PUBLIC_PROJECT_NAME}
               +if('!$page.data.user')
                 a.ml-auto.whitespace-nowrap.rounded-md.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
                   href='{PUBLIC_ORIGIN}/signin'

@@ -32,6 +32,7 @@ Prompt: `convert this source code to a Svelte component using @html-to-pug-rules
   - e.g. `<div class="focus-visible:outline focus-visible:outline-2">` becomes `div(class="focus-visible_outline focus-visible_:_outline-2")`
 - if/else/each blocks use the Svelte Preprocess Pug syntax (no spaces, expression wrapped in parentheses and quotes)
   - e.g. `+if('variable')`, `+else`, `+elseif('variable-two')`, `+each('navItems as items')`
+  - `#if variable === variable-two` is not a valid Pug syntax, it should be `+if('variable === variable-two')`
 - each blocks are written in the syntax of 'groupName as itemName'
   - e.g. `+each('navItems as item')`, NOT `+each('items in navItems')`
 - else/else if blocks must be indented under the parent if/else/each block

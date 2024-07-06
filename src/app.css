@@ -1,6 +1,9 @@
 /* Inter - supports weights 100-900 */
 @import '@fontsource-variable/inter';
 
+/* Supports weights 100-900 */
+@import '@fontsource-variable/lexend';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

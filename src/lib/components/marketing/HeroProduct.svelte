@@ -18,12 +18,12 @@
   export let subheadingText: string =
     'Achieve your goals with ease and confidence using our suite of specific, high-value tools and features.'
 
-  export let primaryLinkText: string = 'Launch App'
+  export let primaryLinkText: string = 'Try for Free'
   export let primaryLinkHref: string = '#add'
   export let secondaryLinkText: string = 'Learn More →'
   export let secondaryLinkHref: string = '#add'
 
-  export let productImageUrl: string = 'product-placeholder-01.svg'
+  export let featuredProductImageUrl: string = 'product-image-hero.svg'
 </script>
 
 <template lang="pug">
@@ -43,10 +43,10 @@
               Tag(label='{ newsPrimaryText }', style='filled')
               Tag(label='{ newsSecondaryText }', iconRight='{ ChevronRight }')
         .max-w-xl
-          h1.mt-10.text-4xl.font-bold.tracking-tight.text-content-heading.sm_text-6xl {headingText}
+          h1.mt-10.text-4xl.font-display.font-medium.tracking-tight.text-content-heading.sm_text-6xl {headingText}
           p.mt-6.text-lg.leading-8.text-content-secondary {subheadingText}
-        .mt-10.flex.items-center.gap-x-6
-          Link(href='{ primaryLinkHref }', label='{ primaryLinkText }', filled)
+        .mt-10.flex.items-baseline.gap-x-6
+          Link(href='{ primaryLinkHref }', label='{ primaryLinkText }', filled, large)
           Link(href='{ secondaryLinkHref }', label='{ secondaryLinkText }')
       .mt-16.flex.sm_mt-24.lg_ml-10.lg_mr-0.lg_mt-0.lg_max-w-none.lg_flex-none.xl_ml-32
         .max-w-3xl.flex-none.sm_max-w-5xl.lg_max-w-none
@@ -54,7 +54,7 @@
             class='bg-content-heading/5 ring-content-heading/10'
           )
             img.rounded-md.shadow-2xl.ring-1(
-              src='{ productImageUrl }',
+              src='{ featuredProductImageUrl }',
               alt='App screenshot',
               width='2432',
               height='1442',

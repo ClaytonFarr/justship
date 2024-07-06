@@ -40,6 +40,7 @@ const config = {
       },
       fontFamily: {
         sans: [ 'Inter Variable', ...defaultTheme.fontFamily.sans ],
+        display: [ 'Lexend Variable', ...defaultTheme.fontFamily.sans ],
       },
       fontSize: {
         sm: '0.9375rem', // 15px
