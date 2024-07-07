@@ -50,9 +50,6 @@ importers:
       stripe:
         specifier: ^16.0.0
         version: 16.0.0
-      svelte-headlessui:
-        specifier: ^0.0.42
-        version: 0.0.42(svelte@5.0.0-next.148)
     devDependencies:
       '@css-inline/css-inline':
         specifier: ^0.14.1
@@ -2804,11 +2801,6 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
-
-  svelte-headlessui@0.0.42:
-    resolution: {integrity: sha512-u3inaaFTQmRo/JX42zxXZE6qXv62T0tfQ7+9Ljqosqj5QN3IyoHb8bQsmbJIzY0vZAZxyUSvoNpZLz4RTLO+1A==}
-    peerDependencies:
-      svelte: ^4.0.0 || ^5.0.0
 
   svelte-hmr@0.16.0:
     resolution: {integrity: sha512-Gyc7cOS3VJzLlfj7wKS0ZnzDVdv3Pn2IuVeJPk9m2skfhcu5bq3wtIZyQGggr7/Iim5rH5cncyQft/kRLupcnA==}
@@ -5581,10 +5573,6 @@ snapshots:
       postcss: 8.4.38
       postcss-scss: 4.0.9(postcss@8.4.38)
     optionalDependencies:
-      svelte: 5.0.0-next.148
-
-  svelte-headlessui@0.0.42(svelte@5.0.0-next.148):
-    dependencies:
       svelte: 5.0.0-next.148
 
   svelte-hmr@0.16.0(svelte@5.0.0-next.148):

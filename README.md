@@ -66,7 +66,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
   - Lucide (icons)
   - Svelte Preprocess †
   - Pug †
-  - Inter font †
+  - Inter, Lexend fonts †
 - _App Framework & APIs_
   - SvelteKit 2
   - TypeScript

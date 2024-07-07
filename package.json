@@ -70,8 +70,7 @@
 		"oslo": "^1.2.0",
 		"posthog-js": "^1.141.4",
 		"postmark": "^4.0.4",
-		"stripe": "^16.0.0",
-		"svelte-headlessui": "^0.0.42"
+		"stripe": "^16.0.0"
 	},
 	"type": "module"
 }
