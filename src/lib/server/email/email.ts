@@ -2,7 +2,7 @@ import { dev } from '$app/environment'
 import { env } from '$env/dynamic/private'
 import { FROM_EMAIL, POSTMARK_SERVER_TOKEN } from '$env/static/private'
 import { env as public_env } from '$env/dynamic/public'
-import { PUBLIC_ORIGIN, PUBLIC_PROJECT_NAME } from '$env/static/public'
+import { PUBLIC_ORIGIN, PUBLIC_PRODUCT_NAME } from '$env/static/public'
 import { deleteAllEmailTokensForUser, createEmailVerificationToken } from '$lib/server/database/emailtoken.model'
 import { generateIdFromEntropySize } from 'lucia'
 import { SMTPClient } from 'emailjs'
@@ -60,7 +60,13 @@ const sendTestEmail = async (options: { from: string; to: string; subject: strin
   }
 }
 
-export const sendEmail = async (options: { from: string; to: string; subject: string; html: string; headers?: Record<string, string> }) => {
+export const sendEmail = async (options: {
+  from: string
+  to: string
+  subject: string
+  html: string
+  headers?: Record<string, string>
+}) => {
   try {
     if (dev) {
       return await sendTestEmail(options)
@@ -89,12 +95,12 @@ export async function sendVerificationEmail(user: {
   const verificationLink = `${PUBLIC_ORIGIN}/signin/email-verification?verification_token=${verification_token}`
 
   await sendEmail({
-    from: `${public_env.PUBLIC_PROJECT_NAME} <${env.FROM_EMAIL}>`,
+    from: `${public_env.PUBLIC_PRODUCT_NAME} <${env.FROM_EMAIL}>`,
     to: user.email,
-    subject: `Account verification for ${public_env.PUBLIC_PROJECT_NAME}`,
+    subject: `Account verification for ${public_env.PUBLIC_PRODUCT_NAME}`,
     html: loginEmailHtmlTemplate({
       product_url: PUBLIC_ORIGIN,
-      product_name: public_env.PUBLIC_PROJECT_NAME,
+      product_name: public_env.PUBLIC_PRODUCT_NAME,
       action_url: verificationLink,
     }),
     headers: {
@@ -106,12 +112,12 @@ export async function sendVerificationEmail(user: {
 export const sendPasswordResetLink = async (email: string, token: string) => {
   const resetLink = `${PUBLIC_ORIGIN}/password-reset/${token}`
   await sendEmail({
-    from: `${PUBLIC_PROJECT_NAME} <${FROM_EMAIL}>`,
+    from: `${PUBLIC_PRODUCT_NAME} <${FROM_EMAIL}>`,
     to: email,
-    subject: `Password Reset for ${PUBLIC_PROJECT_NAME}`,
+    subject: `Password Reset for ${PUBLIC_PRODUCT_NAME}`,
     html: passwordResetEmailTemplate({
       product_url: PUBLIC_ORIGIN,
-      product_name: PUBLIC_PROJECT_NAME,
+      product_name: PUBLIC_PRODUCT_NAME,
       action_url: resetLink,
     }),
   })
@@ -122,8 +128,7 @@ export const passwordResetEmailTemplate = (variables: PasswordResetEmailVariable
     layout
       .replaceAll('{{{ @content }}}', passwordReset)
       .replaceAll('{{ product_url }}', PUBLIC_ORIGIN)
-      .replaceAll('{{ product_name }}', PUBLIC_PROJECT_NAME)
+      .replaceAll('{{ product_name }}', PUBLIC_PRODUCT_NAME)
       .replaceAll('{{ action_url }}', variables.action_url),
   )
 }
-

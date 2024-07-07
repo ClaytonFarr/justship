@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_PROJECT_NAME } from '$env/static/public'
+  import { PUBLIC_PRODUCT_NAME } from '$env/static/public'
   import Container from '../common/Container.svelte'
   import DropdownMenu from '../common/DropdownMenu.svelte'
   import { Menu, X, LogOut } from 'lucide-svelte'
@@ -23,7 +23,7 @@
         .flex.md_flex-1
           h1: a.flex.items-center.gap-4(href='/', class='-m-1.5 p-1.5')
             img.h-8.w-auto(src='logo.svg', alt='')
-            span.font-display.text-lg.text-xl.font-medium.tracking-tight.text-content-heading {PUBLIC_PROJECT_NAME}
+            span.font-display.text-lg.text-xl.font-medium.tracking-tight.text-content-heading {PUBLIC_PRODUCT_NAME}
         .hidden.md_flex.md_gap-x-12
           +each('navigation as item')
             a.text-sm.font-medium.leading-6.text-content-heading(href='{ item.href }') {item.label}
@@ -49,7 +49,7 @@
             .flex.items-center.justify-between.gap-x-6
               h1: a.flex.items-center.gap-5(href='/', class='-m-1.5 p-1.5')
                 img.h-8.w-auto(src='logo.svg', alt='')
-                span.font-display.text-xl.font-medium.text-content-heading.sm_sr-only {PUBLIC_PROJECT_NAME}
+                span.font-display.text-xl.font-medium.text-content-heading.sm_sr-only {PUBLIC_PRODUCT_NAME}
               button.rounded-md.text-content-body(
                 type='button',
                 class='-m-2.5 p-2.5',

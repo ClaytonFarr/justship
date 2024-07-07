@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_PROJECT_NAME, PUBLIC_ORIGIN } from '$env/static/public'
+  import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN } from '$env/static/public'
   import { tick } from 'svelte'
   import { fade } from 'svelte/transition'
   import { superForm } from 'sveltekit-superforms'
@@ -57,7 +57,7 @@
         +if('!requestReset')
           .mx-auto.w-full.max-w-sm.lg_w-96
             a(href='{PUBLIC_ORIGIN}/')
-              img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
+              img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
             .mt-8.space-y-3
               h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Welcome Back
               p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
@@ -105,7 +105,7 @@
           +else
             .mx-auto.w-full.max-w-sm.lg_w-96
               a(href='{PUBLIC_ORIGIN}/')
-                img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
+                img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
               .mt-8.space-y-3
                 h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Reset Password 
                 p.text-sm.text-content-secondary Receive a link to reset your password.
@@ -140,7 +140,7 @@
         +else
           .mx-auto.w-full.max-w-sm.lg_w-96
             a(href='{PUBLIC_ORIGIN}/')
-              img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PROJECT_NAME }')
+              img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
             .mt-8.space-y-3
               h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Sign Up for Free
               p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
@@ -191,7 +191,4 @@
     .relative.hidden.w-0.flex-1.lg_block
       +if('!returningUser')
         .absolute.inset-0.z-10(class='bg-action/50', transition:fade='{{ duration: 300 }}')
-      img.absolute.inset-0.h-full.w-full.object-cover(
-        src='https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1908&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1908&q=80',
-        alt=''
-      )</template>
+      img.absolute.inset-0.h-full.w-full.object-cover(src='signin-image.jpg', alt='')</template>

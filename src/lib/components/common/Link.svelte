@@ -2,8 +2,9 @@
   export let href: string
   export let label: string
   export let large: boolean = false
-  export let filledButton: boolean = false
-  export let button: boolean = filledButton ? true : false
+  export let filled: boolean = false
+  export let button: boolean = filled ? true : false
+  export let rounded: boolean = false
 </script>
 
 <template lang="pug">
@@ -11,7 +12,7 @@
     // prettier-ignore
     a.font-medium.whitespace-nowrap(
       href='{ href }',
-      class!='{ filledButton ? "rounded-md bg-action hover_bg-action-hover text-surface-lightest shadow-sm focus_bg-action-active transition focus-visible_outline focus-visible_outline-2 focus-visible_outline-offset-2 focus-visible_outline-action" : "dark_text-content-secondary-reversed dark_hover_text-white text-content-body hover_text-action" } { large ? "text-base px-5 py-3.5" : "text-sm px-3.5 py-2.5" }'
+      class!='{ filled ? "bg-action hover_bg-action-hover text-surface-lightest shadow-sm focus_bg-action-active transition focus-visible_outline focus-visible_outline-2 focus-visible_outline-offset-2 focus-visible_outline-action" : "dark_text-content-secondary-reversed dark_hover_text-white text-content-body hover_text-action" } { large ? "text-base px-5 py-3.5" : "text-sm px-3.5 py-2.5" } { rounded ? "rounded-full px-7" : "rounded-md" }'
     ) {label}
     +else
       // prettier-ignore

@@ -1,6 +1,6 @@
 # Converting HTML to Pug
 
-Prompt: `convert this source code to a Svelte component using @html-to-pug-rules.md as a guide`
+Prompt: `convert this source code to a Svelte component using Pug and Typescript - refer to @convert-to-pug-rules.md and @Hero.svelte as syntax guides`
 
 ## Goal
 

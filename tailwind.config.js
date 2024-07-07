@@ -45,10 +45,6 @@ const config = {
         sans: [ 'Inter Variable', ...defaultTheme.fontFamily.sans ],
         display: [ 'Lexend Variable', ...defaultTheme.fontFamily.sans ],
       },
-      fontSize: {
-        sm: '0.9375rem', // 15px
-        xs: '0.875rem', // 14px
-      },
       height: {
         'input': '2.5rem',
         'input-lg': '3rem',
