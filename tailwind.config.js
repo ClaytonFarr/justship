@@ -20,7 +20,7 @@ const config = {
           body: colors.slate[800],
           'body-reversed': colors.slate[100],
           secondary: colors.slate[500],
-          'secondary-reversed': colors.slate[300],
+          'secondary-reversed': colors.slate[400],
           tertiary: colors.slate[400],
           'tertiary-reversed': colors.slate[400],
         },
@@ -32,10 +32,13 @@ const config = {
         rule: {
           DEFAULT: colors.slate[500],
           light: colors.slate[200],
+          dark: colors.slate[700],
         },
         surface: {
           light: colors.slate[50],
-          lightest: colors.white
+          lightest: colors.white,
+          dark: colors.slate[700],
+          darkest: colors.slate[900],
         },
       },
       fontFamily: {
@@ -55,6 +58,7 @@ const config = {
       },
     },
   },
+  darkMode: 'selector',
 	plugins: [
 		require('@tailwindcss/forms'),
 		require('@tailwindcss/typography'),
