@@ -10,9 +10,15 @@
 
 <template lang="pug">
   main
-    Hero(content='{ marketingContent.hero }', reversed)
-    Features(content='{ marketingContent.features }')
-    CallToAction(content='{ marketingContent.cta }', reversed)
-    Pricing(content='{ marketingContent.pricing }')
-    Faqs(content='{ marketingContent.faqs }', reversed)
-    Footer(content='{ marketingContent.footer }', reversed)</template>
+    +if('marketingContent.hero')
+      Hero(content='{ marketingContent.hero }', reversed)
+    +if('marketingContent.features')
+      Features(content='{ marketingContent.features }')
+    +if('marketingContent.cta')
+      CallToAction(content='{ marketingContent.cta }', reversed)
+    +if('marketingContent.pricing')
+      Pricing(content='{ marketingContent.pricing }')
+    +if('marketingContent.faqs')
+      Faqs(content='{ marketingContent.faqs }', reversed)
+    Footer(content='{ marketingContent.footer }', reversed)
+</template>
