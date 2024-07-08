@@ -13,6 +13,7 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - created separate routes for 'marketing' and 'app' content, with auth control
 - removed original marketing components
 - updated sign-up & sign-in to use email & password
+- made Google Oauth sign-up & sign-in optional
 - added password reset flow
 - added new Tailwind marketing components
 - (pending) added app settings page
