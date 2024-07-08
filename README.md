@@ -41,23 +41,29 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 7. create a new account at [sign in page](http://localhost:5173/signin) using any email address
    - check for sign-up email at [Mailpit localhost:8025](http://localhost:8025/)
    - click email activation link to create account and sign in
+8. Update missing / placeholder marketing content
+   - can update which marketing sections are shown based on which content is provided in `src/lib/data/marketingContent.ts`
+   - can reorder marketing sections by editing `src/routes/(marketing)/+page.svelte`
 
 ### Production
 
-1. Update missing/placeholder content
-   - `src/lib/data/marketingContent.ts`
-2. (Optional) Have or get a domain name
+1. (Optional) Have or get a domain name
    - (Optional) Setup email account(s) with new domain to create new infrastructure accounts below (e.g. using service like [Migadu](https://migadu.com/))
-3. Setup mail service with **[Postmark](https://postmarkapp.com/)**
+2. Setup mail service with **[Postmark](https://postmarkapp.com/)**
    - create new account OR access existing account
    - go to 'API Tokens': copy 'Server API token'
-   - add token to `.env` as 'POSTMARK_SERVER_TOKEN' value
-4. Setup database with **[Turso](https://turso.tech/)**
+   - add token to `.env` as `POSTMARK_SERVER_TOKEN` value
+3. Setup database with **[Turso](https://turso.tech/)**
    - create new account OR access existing account
    - create new database
    - select database
-   - copy database url & add to `.env` as 'TURSO_DB_URL' value
-   - generate database token (read & write) & add to `.env` as 'TURSO_DB_AUTH_TOKEN' value
+   - copy database url & add to `.env` as `TURSO_DB_URL` value
+   - generate database token (read & write) & add to `.env` as `TURSO_DB_AUTH_TOKEN` value
+4. Setup analytics with **[PostHog](https://posthog.com)**
+   - create new account OR access existing account
+   - go to 'Settings' : Project ID section
+   - copy 'Project API key'
+   - add key to `.env` as `PUBLIC_POSTHOG_KEY` value
 5. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
    - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env`
    - create new account OR access existing account
@@ -65,13 +71,10 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
    - navigation to 'APIs & Services' : 'Credentials'
    - select '+ Create Credentials' : 'OAuth client ID'
    - (other details pending) …
-6. Setup billing with **[Stripe](https://stripe.com)**
+6. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
    - create new account OR access existing account
    - (details pending) …
-7. Setup analytics with **[PostHog](https://posthog.com)**
-   - create new account OR access existing account
-   - (details pending) …
-8. Setup hosting with **[Vercel](https://vercel.com)**
+7. Setup hosting with **[Vercel](https://vercel.com)**
    - create new account OR access existing account
    - add new project, importing from own repo
    - add environment variables to project
