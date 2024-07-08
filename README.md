@@ -44,7 +44,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 
 ### Production
 
-1. Update missing / placeholder content
+1. Update missing/placeholder content
    - `src/lib/data/marketingContent.ts`
 2. (Optional) Have or get a domain name
    - (Optional) Setup email account(s) with new domain to create new infrastructure accounts below (e.g. using service like [Migadu](https://migadu.com/))
