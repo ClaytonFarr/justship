@@ -6,17 +6,17 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 
 - added Svelte Preprocess + Pug
 - converted markup to Pug syntax
-- added custom font (Inter, Lexend)
+- added custom fonts (Inter, Lexend)
 - added Tailwind Forms
 - removed DaisyUI
 - removed Embla Carousel
 - created separate routes for 'marketing' and 'app' content, with auth control
 - removed original marketing components
-- updated sign-up & sign-in to use email & password
-- made Google Oauth sign-up & sign-in optional
-- added password reset flow
 - added new Tailwind marketing components
-- (pending) add basic layout & linked data for privacy & terms pages
+- updated sign-up & sign-in to use email & password
+- added password reset flow
+- made Google Oauth sign-up & sign-in optional
+- (pending) added basic layout & linked data for privacy & terms pages
 - (pending) added app settings page
 
 ========================
@@ -29,7 +29,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 
 ### Local Development
 
-1. Use original repo as template (or fork) to create new repo
+1. Use original repo as template (or fork) to create new GitHub repo
 2. Within local copy of repo run `npm install --legacy-peer-deps` or `pnpm install`
 3. Rename the `.env.example` file to `.env`
    - add a value to `.env` for `FROM_EMAIL` (e.g. 'noreply@domain.com')
@@ -48,47 +48,59 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
      - `static/socialcard.jpg`
      - `static/product-image-hero.png` / `static/product-screenshot-hero.svg`
      - `static/signin-image.jpg`
-   - marketing content:
+   - update marketing content:
      - can update which marketing sections are shown based on which content is provided in `src/lib/data/marketingContent.ts`
      - can reorder marketing sections by editing `src/routes/(marketing)/+page.svelte`
 
 ### Production
 
-1. (Optional) Have or get a domain name
+1. Have or get a domain name
    - (Optional) Setup email account(s) with new domain to create new infrastructure accounts below (e.g. using service like [Migadu](https://migadu.com/))
-2. Setup mail service with **[Postmark](https://postmarkapp.com/)**
-   - create new account OR access existing account
-   - go to 'API Tokens': copy 'Server API token'
-   - add token to `.env` as `POSTMARK_SERVER_TOKEN` value
-3. Setup database with **[Turso](https://turso.tech/)**
-   - create new account OR access existing account
-   - create new database
-   - select database
-   - copy database url & add to `.env` as `TURSO_DB_URL` value
-   - generate database token (read & write) & add to `.env` as `TURSO_DB_AUTH_TOKEN` value
-4. Setup analytics with **[PostHog](https://posthog.com)**
-   - create new account OR access existing account
-   - go to 'Settings' : Project ID section
-   - copy 'Project API key'
-   - add key to `.env` as `PUBLIC_POSTHOG_KEY` value
-5. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
-   - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env`
-   - create new account OR access existing account
-   - create new project OR use existing project
-   - navigation to 'APIs & Services' : 'Credentials'
-   - select '+ Create Credentials' : 'OAuth client ID'
-   - (other details pending) …
-6. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
-   - create new account OR access existing account
-   - (details pending) …
-7. Setup hosting with **[Vercel](https://vercel.com)**
-   - create new account OR access existing account
-   - add new project, importing from own repo
-   - add environment variables to project
+2. Setup hosting with **[Vercel](https://vercel.com)**
+   - create new account, or access existing account
+   - add new project by importing repo from GitHub
+   - add environment variables to Vercel project
      - can copy-paste full text from `.env` into 'Environment Variables' section of Vercel 'Configure Project' step
    - check for successful build
-     - if encounter issues, can run `npm run build` in local project to problem-solve
-   - (Optional) add domain name to project on Vercel
+     - if encounter issues, can run `npm run build` locally to help problem-solve
+   - add domain to project on Vercel
+     - enable Vercel DNS and update A & CNAME records as indicated by Vercel
+3. Setup mail service with **[Postmark](https://postmarkapp.com/)**
+   - create new account, or access existing account
+   - confirm new account email (through auto email link), if needed
+   - navigate to 'Sender Signatures'
+     - check valid email address present / add new one as needed
+     - update DNS records to validate domain for email delivery
+       - add Postmark's TEXT & CNAME records to Vercel 'DNS Records' for custom domain
+       - check for successful verification at Postmark
+   - go to 'API Tokens': copy 'Server API token'
+   - update `.env` values, both locally and in Vercel project
+     - update `FROM_EMAIL` value to email address from Postmark 'Sender Signatures'
+     - add token as `POSTMARK_SERVER_TOKEN` value
+4. Setup database with **[Turso](https://turso.tech/)**
+   - create new account, or access existing account
+   - create new database (if necessary, create new group first)
+   - update `.env` values, both locally and in Vercel project; select database then
+     - copy database url & add as `TURSO_DB_URL` value
+     - generate database token (read & write) & add as `TURSO_DB_AUTH_TOKEN` value
+   - in local repo, run `npm run migrate:prod` to create tables on production database tables
+     - should see rows read/written in Turso database dashboard update from 0
+5. Setup analytics with **[PostHog](https://posthog.com)**
+   - create new account OR access existing account
+   - complete Product Analytics : 'Get Started' setup flow
+   - go to 'Settings' and copy 'Project API key'
+   - update `.env` values, both locally and in Vercel project
+     - add API key as `PUBLIC_POSTHOG_KEY` value
+6. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
+   - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env` (both locally and in Vercel project)
+   - create new account, or access existing account
+   - create new project, or use existing project
+   - navigate to 'APIs & Services' : 'Credentials'
+   - select '+ Create Credentials' : 'OAuth client ID'
+   - (other details pending) …
+7. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
+   - create new account OR access existing account
+   - (details pending) …
 
 ========================
 
