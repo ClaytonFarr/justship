@@ -43,6 +43,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 ### Production
 
 1. (Optional) Have or get a domain name
+   - (Optional) Setup email account(s) with new domain to create new infrastructure accounts below (e.g. using service like [Migadu](https://migadu.com/))
 2. Setup mail service with **[Postmark](https://postmarkapp.com/)**
    - create new account OR access existing account
    - go to 'API Tokens': copy 'Server API token'
@@ -62,10 +63,10 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
    - (other details pending) …
 5. Setup billing with **[Stripe](https://stripe.com)**
    - create new account OR access existing account
-   - (other details pending) …
+   - (details pending) …
 6. Setup analytics with **[PostHog](https://posthog.com)**
    - create new account OR access existing account
-   - (other details pending) …
+   - (details pending) …
 7. Setup hosting with **[Vercel](https://vercel.com)**
    - create new account OR access existing account
    - add new project, importing from own repo
