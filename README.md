@@ -27,28 +27,52 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 
 ### Local Development
 
-1. Run `npm install --legacy-peer-deps` or `pnpm install`
-2. Rename the `.env.example` file to `.env`
+1. Use original repo as template (or fork) to create new repo
+2. Within local copy of repo run `npm install --legacy-peer-deps` or `pnpm install`
+3. Rename the `.env.example` file to `.env`
    - add a value to `.env` for `FROM_EMAIL` (e.g. 'noreply@domain.com')
-3. Run `npm run generate && npm run migrate` to create a local database
-4. [Install mailpit](https://mailpit.axllent.org/docs/install/) to receive emails locally
+4. Run `npm run generate && npm run migrate` to create a local database
+5. [Install mailpit](https://mailpit.axllent.org/docs/install/) to receive emails locally
    - start mailpit running in background (e.g. `brew services start mailpit`)
    - note: can stop background mailpit process after dev (e.g. `brew services stop mailpit`)
-5. run `npm run dev`
-6. create a new account at [sign in page](http://localhost:5173/signin) using any email address
+6. run `npm run dev`
+7. create a new account at [sign in page](http://localhost:5173/signin) using any email address
    - check for sign-up email at [Mailpit localhost:8025](http://localhost:8025/)
    - click email activation link to create account and sign in
 
 ### Production
 
-1. Get a domain name
-2. Create a **[Postmark](https://postmarkapp.com/)** account and get Server API key
-3. Set up account and database in **[Turso](https://turso.tech/)**
-4. Create OAuth credential in **[Google Cloud](https://console.cloud.google.com/)**
-5. Add project from repo to **[Vercel](https://vercel.com)**
-6. Point main domain name to project on Vercel
-7. Fill out environment variables in `.env`
-8. Add environment variables to project in Vercel
+1. Have / get a domain name
+2. Setup mail service with **[Postmark](https://postmarkapp.com/)**
+   - create new account OR access existing account
+   - go to 'API Tokens': copy 'Server API token'
+   - add token to `.env` as 'POSTMARK_SERVER_TOKEN' value
+3. Setup database with **[Turso](https://turso.tech/)**
+   - create new account OR access existing account
+   - create new database
+   - select database
+   - copy database url & add to `.env` as 'TURSO_DB_URL' value
+   - generate database token (read & write) & add to `.env` as 'TURSO_DB_AUTH_TOKEN' value
+4. (If want to use Google sign-in) setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
+   - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env`
+   - create new account OR access existing account
+   - create new project OR use existing project
+   - navigation to 'APIs & Services' : 'Credentials'
+   - select '+ Create Credentials' : 'OAuth client ID'
+   - (other details pending) …
+5. Setup billing with **[Stripe](https://stripe.com)**
+   - create new account OR access existing account
+   - (other details pending) …
+6. Setup analytics with **[PostHog](https://posthog.com)**
+   - create new account OR access existing account
+   - (other details pending) …
+7. Setup hosting with **[Vercel](https://vercel.com)**
+   - create new account OR access existing account
+   - add new project, importing from own repo
+   - add environment variables to project
+     - can copy-paste full text from `.env` into 'Environment Variables' section of Vercel 'Configure Project' step
+   - check for successful build
+   - add domain name to project on Vercel
 
 ========================
 

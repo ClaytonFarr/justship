@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN } from '$env/static/public'
+  import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN, PUBLIC_GOOGLE_OAUTH_ENABLED } from '$env/static/public'
   import { tick } from 'svelte'
   import { fade } from 'svelte/transition'
   import { superForm } from 'sveltekit-superforms'
@@ -84,17 +84,18 @@
                 .pt-2
                   Button(label='Sign In', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Signing In...')
 
-              .mt-10
-                .flex.items-center
-                  .w-full.border-t.border-input(aria-hidden='true')
-                  span.px-6.text-content-heading.whitespace-nowrap Or sign in with
-                  .w-full.border-t.border-input(aria-hidden='true')
-                .mt-6
-                  a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
-                    href='{PUBLIC_ORIGIN}/signin/google'
-                  )
-                    Google
-                    span.text-sm.font-medium.leading-6 Google
+              +if('PUBLIC_GOOGLE_OAUTH_ENABLED === "true"')
+                .mt-10
+                  .flex.items-center
+                    .w-full.border-t.border-input(aria-hidden='true')
+                    span.px-6.text-content-heading.whitespace-nowrap Or sign in with
+                    .w-full.border-t.border-input(aria-hidden='true')
+                  .mt-6
+                    a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
+                      href='{PUBLIC_ORIGIN}/signin/google'
+                    )
+                      Google
+                      span.text-sm.font-medium.leading-6 Google
               
               .mt-10
                 a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
@@ -161,17 +162,19 @@
                   .pt-2
                     Button(label='Sign Up', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Signing Up...')
 
-                .mt-10
-                  .flex.items-center
-                    .w-full.border-t.border-input(aria-hidden='true')
-                    span.px-6.text-content-heading.whitespace-nowrap Or sign up with
-                    .w-full.border-t.border-input(aria-hidden='true')
-                  .mt-6
-                    a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
-                      href='{PUBLIC_ORIGIN}/signin/google'
-                    )
-                      Google
-                      span.text-sm.font-medium.leading-6 Google
+                +if('PUBLIC_GOOGLE_OAUTH_ENABLED === "true"')
+                  .mt-10
+                    .flex.items-center
+                      .w-full.border-t.border-input(aria-hidden='true')
+                      span.px-6.text-content-heading.whitespace-nowrap Or sign up with
+                      .w-full.border-t.border-input(aria-hidden='true')
+                    .mt-6
+                      a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
+                        href='{PUBLIC_ORIGIN}/signin/google'
+                      )
+                        Google
+                        span.text-sm.font-medium.leading-6 Google
+
               +else
                 .my-6.space-y-1.text-content-body
                   p

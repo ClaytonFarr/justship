@@ -1,4 +1,4 @@
-import { google, lucia } from '$lib/server/auth/auth'
+import { google_oauth, lucia } from '$lib/server/auth/auth'
 import { OAuth2RequestError } from 'arctic'
 import { generateId } from 'lucia'
 import { parseJWT } from 'oslo/jwt'
@@ -32,7 +32,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
   }
 
   try {
-    const tokens = await google.validateAuthorizationCode(code, code_verifier)
+    const tokens = await google_oauth.validateAuthorizationCode(code, code_verifier)
     const google_user = parseJWT(tokens.idToken)!.payload as GoogleUser
     let user = await getUserByEmail(google_user.email)
 
@@ -42,6 +42,8 @@ export async function GET(event: RequestEvent): Promise<Response> {
         id: user_id,
         email: google_user!.email,
         email_verified: true,
+        username: google_user.email.split('@')[0], // Generate a username from the email
+        password_hash: '', // Set an empty password hash for Google sign-in
       })
       if (!user) {
         console.error('Failed to create user for ' + google_user.email)

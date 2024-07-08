@@ -1,5 +1,5 @@
 import { dev } from '$app/environment'
-import { PUBLIC_ORIGIN } from '$env/static/public'
+import { PUBLIC_ORIGIN, PUBLIC_GOOGLE_OAUTH_ENABLED } from '$env/static/public'
 import { GOOGLE_CLIENT_SECRET, GOOGLE_CLIENT_ID } from '$env/static/private'
 
 import { Lucia } from 'lucia'
@@ -41,10 +41,10 @@ interface DatabaseUserAttributes {
   email_verified: boolean
 }
 
-const redirect_url = dev ? 'http://localhost:5173/signin/google/callback' : `${PUBLIC_ORIGIN}/signin/google/callback`
+const google_redirect_url = dev ? 'http://localhost:5173/signin/google/callback' : `${PUBLIC_ORIGIN}/signin/google/callback`
 
-export const google = new Google(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, redirect_url)
+export const google_oauth = new Google(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, google_redirect_url)
 
-if (!dev && (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET)) {
+if (!dev && PUBLIC_GOOGLE_OAUTH_ENABLED === 'true' && (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET)) {
   throw new Error('GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are not set')
 }

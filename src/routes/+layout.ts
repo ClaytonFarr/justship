@@ -1,6 +1,11 @@
 import posthog from 'posthog-js'
 import { browser, dev } from '$app/environment'
-import { PUBLIC_DEFAULT_DESCRIPTION, PUBLIC_DEFAULT_TITLE, PUBLIC_ORIGIN, PUBLIC_POSTHOG_KEY } from '$env/static/public'
+import {
+  PUBLIC_DEFAULT_SEO_DESCRIPTION,
+  PUBLIC_DEFAULT_SEO_TITLE,
+  PUBLIC_ORIGIN,
+  PUBLIC_POSTHOG_KEY,
+} from '$env/static/public'
 import type { DefaultSeo } from '$lib/types'
 
 export const load = async () => {
@@ -13,8 +18,8 @@ export const load = async () => {
     })
   }
   const seo: DefaultSeo = {
-    pageTitle: PUBLIC_DEFAULT_TITLE,
-    pageDescription: PUBLIC_DEFAULT_DESCRIPTION,
+    pageTitle: PUBLIC_DEFAULT_SEO_TITLE,
+    pageDescription: PUBLIC_DEFAULT_SEO_DESCRIPTION,
     twitterCard: 'summary_large_image',
     twitterSite: PUBLIC_ORIGIN,
     twitterImage: `${PUBLIC_ORIGIN}/socialcard.jpg`,
