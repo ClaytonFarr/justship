@@ -6,7 +6,7 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 
 - added Svelte Preprocess + Pug
 - converted markup to Pug syntax
-- added Inter font
+- added custom font (Inter, Lexend)
 - added Tailwind Forms
 - removed DaisyUI
 - removed Embla Carousel
