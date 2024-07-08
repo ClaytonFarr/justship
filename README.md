@@ -15,7 +15,7 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - updated sign-up & sign-in to use email & password
 - added password reset flow
 - added new Tailwind marketing components
-- (pending) added new Tailwind app components
+- (pending) added app settings page
 
 ========================
 
