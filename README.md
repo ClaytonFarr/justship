@@ -59,7 +59,6 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 - _Frontend_
   - Svelte 5
   - TailwindCSS
-  - TailwindUI †
   - Tailwind Typography
   - ~~DaisyUI~~
   - ~~Embla Carousel~~
@@ -75,8 +74,8 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
   - Tailwind Forms †
   - Zod
 - _Auth_
-  - Arctic
   - Lucia
+  - Arctic
   - Olso
 - _Database (SQLite/ORM)_
   - Drizzle
