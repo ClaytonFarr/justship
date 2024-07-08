@@ -41,9 +41,16 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 7. create a new account at [sign in page](http://localhost:5173/signin) using any email address
    - check for sign-up email at [Mailpit localhost:8025](http://localhost:8025/)
    - click email activation link to create account and sign in
-8. Update missing / placeholder marketing content
-   - can update which marketing sections are shown based on which content is provided in `src/lib/data/marketingContent.ts`
-   - can reorder marketing sections by editing `src/routes/(marketing)/+page.svelte`
+8. Update missing / placeholder content
+   - update static resources (or alternatively, the links to them across templates):
+     - `static/logo.svg`
+     - `static/favicon.png`
+     - `static/socialcard.jpg`
+     - `static/product-image-hero.png` / `static/product-screenshot-hero.svg`
+     - `static/signin-image.jpg`
+   - marketing content:
+     - can update which marketing sections are shown based on which content is provided in `src/lib/data/marketingContent.ts`
+     - can reorder marketing sections by editing `src/routes/(marketing)/+page.svelte`
 
 ### Production
 
