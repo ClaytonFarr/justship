@@ -16,8 +16,13 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - updated sign-up & sign-in to use email & password
 - added password reset flow
 - made Google Oauth sign-up & sign-in optional
-- (pending) added basic layout & linked data for privacy & terms pages
-- (pending) added app settings page
+
+*Pending*
+
+- test Google OAuth in production
+- add basic layout & linked data for privacy & terms pages
+- add app settings page
+- determine what needs to be connected to link user accounts to Stripe billing
 
 ========================
 
@@ -44,7 +49,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 8. Update missing / placeholder content
    - update static resources (or alternatively, the links to them across templates):
      - `static/logo.svg`
-     - `static/favicon.png`
+     - `static/favicons/…` (e.g. https://favicon.io/)
      - `static/socialcard.jpg`
      - `static/product-image-hero.png` / `static/product-screenshot-hero.svg`
      - `static/signin-image.jpg`
@@ -65,9 +70,9 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
      - if encounter issues, can run `npm run build` locally to help problem-solve
    - add domain to project on Vercel
      - enable Vercel DNS and update A & CNAME records as indicated by Vercel
-3. Setup mail service with **[Postmark](https://postmarkapp.com/)**
+3. Setup email service with **[Postmark](https://postmarkapp.com/)**
    - create new account, or access existing account
-   - confirm new account email (through auto email link), if needed
+   - confirm email if new account
    - navigate to 'Sender Signatures'
      - check valid email address present / add new one as needed
      - update DNS records to validate domain for email delivery
@@ -91,14 +96,21 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
    - go to 'Settings' and copy 'Project API key'
    - update `.env` values, both locally and in Vercel project
      - add API key as `PUBLIC_POSTHOG_KEY` value
-6. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
+6. Test email service, database, and analytics
+   - redeploy Vercel site if needed to use latest environment variables
+   - on deployed site, create a new account
+     - initially must use a valid email address that matches domain connected to Postmark account (during its 'review period')
+     - should receive verification email (and also see 'Transactional Stream' messages number update in Postmark account)
+     - should be able to sign in (and also see a new user in Turso `users` table with `email_verified=1`)
+     - should see events in PostHog 'Web Analytics' dashboard
+7. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
    - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env` (both locally and in Vercel project)
    - create new account, or access existing account
    - create new project, or use existing project
    - navigate to 'APIs & Services' : 'Credentials'
    - select '+ Create Credentials' : 'OAuth client ID'
    - (other details pending) …
-7. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
+8. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
    - create new account OR access existing account
    - (details pending) …
 

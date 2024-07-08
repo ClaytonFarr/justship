@@ -17,8 +17,8 @@ export const marketingContent: MarketingContent = {
         href: '/signin?new',
       },
       secondary: {
-        text: 'Learn More  ↓',
-        href: '#features',
+        text: 'Sign In  →',
+        href: '/signin',
       },
     },
     image: {
