@@ -1,6 +1,6 @@
 <script lang="ts">
   import { PUBLIC_PRODUCT_NAME } from '$env/static/public'
-  import { ChevronRight } from 'lucide-svelte'
+  import { ChevronRight, ChevronDown } from 'lucide-svelte'
   import type { HeroContent } from '$lib/types'
 
   import Container from '$components/common/Container.svelte'
@@ -8,6 +8,7 @@
   import Link from '$components/common/Link.svelte'
   import Pattern01 from '$components/common/Pattern01.svelte'
 
+  export let id: string = 'hero'
   export let reversed: boolean = false
   export let showLogo: boolean = true
   export let content: HeroContent = {
@@ -18,16 +19,16 @@
       show: true,
       primaryText: 'Take Note of This',
       secondaryText: 'See Something Important',
-      href: '#add',
+      href: '#faqs',
     },
     links: {
       primary: {
         text: 'Try for Free',
-        href: '#add',
+        href: '/signin?new',
       },
       secondary: {
-        text: 'Learn More →',
-        href: '#add',
+        text: 'Learn More  ↓',
+        href: '#features',
       },
     },
     image: {
@@ -41,7 +42,7 @@
 </script>
 
 <template lang="pug">
-  div(class!='{ reversed ? "dark" : "" }')
+  div(class!='{ reversed ? "dark" : "" }' id='{id}')
     .relative.isolate.overflow-hidden.bg-surface-lightest.dark_bg-surface-darkest
       Pattern01(
         strokeWidthClass='stroke-1',
@@ -56,7 +57,10 @@
             +if('content.newsTag.show')
               a.inline-flex.flex-wrap.gap-x-5.gap-y-4(href='{ content.newsTag.href }').group
                 Tag(label='{ content.newsTag.primaryText }', style='filled')
-                Tag(label='{ content.newsTag.secondaryText }', iconRight='{ ChevronRight }')
+                Tag(
+                  label='{ content.newsTag.secondaryText }',
+                  iconRight!='{ content.newsTag.href.includes("#") ? ChevronDown : ChevronRight }'
+                )
           .max-w-xl
             h1.mt-9.sm_mt-10.text-5xl.font-display.font-medium.tracking-tight.text-content-heading.md_text-6xl.dark_text-content-heading-reversed(class='leading-[1.1] sm_leading-[1.1]') {content.heading}
             p.mt-7.sm_mt-8.text-lg.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed.max-w-lg {content.subheading}

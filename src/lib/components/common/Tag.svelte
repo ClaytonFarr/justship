@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { ArrowRight } from 'lucide-svelte'
+  import { ArrowRight, ArrowDown } from 'lucide-svelte'
 
   export let label: string
   export let style: 'ghost' | 'filled' | 'bordered' = 'ghost'
   export let iconLeft
   export let iconRight
+  export let arrowDirection: 'right' | 'down' = 'right'
   export let href: string
   export let hrefCtaLabel: string = 'Read more'
   export let additionalClasses: string = ''
@@ -33,7 +34,10 @@
         svelte:component.h-4.w-4(this='{ iconRight }')
       span.flex.items-center.space-x-1.transition.text-action.group-hover_text-action-hover
         span {hrefCtaLabel}
-        ArrowRight(size=12 strokeWidth=3)
+        +if("arrowDirection === 'down'")
+          ArrowDown(size=12 strokeWidth=3)
+          +else
+            ArrowRight(size=12 strokeWidth=3)
     +else
       // prettier-ignore
       span(class='{ tagClasses }').space-x-2

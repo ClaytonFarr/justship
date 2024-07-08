@@ -3,6 +3,7 @@
   import type { FaqContent } from '$lib/types'
   import Container from '$components/common/Container.svelte'
 
+  export let id: string = 'faqs'
   export let reversed = false
   export let content: FaqContent = {
     items: [
@@ -42,7 +43,7 @@
 
 <template lang="pug">
   // prettier-ignore
-  div(class!='{ reversed ? "dark" : "" }')
+  div(class!='{ reversed ? "dark" : "" }' id='{id}')
     .bg-surface-lightest.dark_bg-surface-darkest
       Container(additionalClasses='pt-16 pb-20 sm_pt-24 sm_pb-32')
         .lg_text-center

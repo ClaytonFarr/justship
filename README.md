@@ -42,7 +42,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 
 ### Production
 
-1. Have / get a domain name
+1. (Optional) Have or get a domain name
 2. Setup mail service with **[Postmark](https://postmarkapp.com/)**
    - create new account OR access existing account
    - go to 'API Tokens': copy 'Server API token'
@@ -53,7 +53,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
    - select database
    - copy database url & add to `.env` as 'TURSO_DB_URL' value
    - generate database token (read & write) & add to `.env` as 'TURSO_DB_AUTH_TOKEN' value
-4. (If want to use Google sign-in) setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
+4. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
    - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env`
    - create new account OR access existing account
    - create new project OR use existing project
@@ -72,7 +72,8 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
    - add environment variables to project
      - can copy-paste full text from `.env` into 'Environment Variables' section of Vercel 'Configure Project' step
    - check for successful build
-   - add domain name to project on Vercel
+     - if encounter issues, can run `npm run build` in local project to problem-solve
+   - (Optional) add domain name to project on Vercel
 
 ========================
 

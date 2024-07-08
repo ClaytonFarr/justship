@@ -9,16 +9,16 @@ export const marketingContent: MarketingContent = {
       show: true,
       primaryText: 'Take Note of This',
       secondaryText: 'See Something Important',
-      href: '#add',
+      href: '#faqs',
     },
     links: {
       primary: {
         text: 'Try for Free',
-        href: '#add',
+        href: '/signin?new',
       },
       secondary: {
-        text: 'Learn More →',
-        href: '#add',
+        text: 'Learn More  ↓',
+        href: '#features',
       },
     },
     image: {

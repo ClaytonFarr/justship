@@ -7,29 +7,32 @@
   import { enhance } from '$app/forms'
   import type { Link } from '$lib/types'
 
-  let mobileMenuOpen: boolean = false
-  const navigation: Link[] = [
-    { label: 'Features', href: '#features' },
-    { label: 'Testimonials', href: '#testimonials' },
+  export const wideViewNavigationAlignment: 'left' | 'center' | 'right' = 'right'
+  export const navigation: Link[] = [
+    { label: 'Product', href: '#features' },
     { label: 'Pricing', href: '#pricing' },
   ]
-  const accountNavigation: Link[] = [{ label: 'Settings', href: '/app/settings' }]
+
+  let mobileMenuOpen: boolean = false
 </script>
 
 <template lang="pug">
   header.bg-white
     Container
-      nav.flex.h-20.items-center.justify-between.gap-x-6.py-6.lg_py-8(aria-label='Global')
-        .flex.md_flex-1
+      nav.flex.h-20.items-center.justify-between.gap-x-12.py-6.lg_py-8(aria-label='Global')
+        // prettier-ignore
+        .flex(class!='{ wideViewNavigationAlignment === "center" ? "flex-1" : "" }')
           h1: a.flex.items-center.gap-4(href='/', class='-m-1.5 p-1.5')
             img.h-8.w-auto(src='logo.svg', alt='')
             span.font-display.text-lg.text-xl.font-medium.tracking-tight.text-content-heading {PUBLIC_PRODUCT_NAME}
-        .hidden.md_flex.md_gap-x-12
+        // prettier-ignore
+        .hidden.md_flex.md_gap-x-10(class!='{ wideViewNavigationAlignment === "left" ? "justify-start flex-1" : wideViewNavigationAlignment === "center" ? "justify-center" : "justify-end flex-1" }')
           +each('navigation as item')
-            a.text-sm.font-medium.leading-6.text-content-heading(href='{ item.href }') {item.label}
-        .flex.flex-1.items-center.justify-end
+            a.text-sm.font-medium.leading-6.text-content-heading.hover_text-action.transition(href='{ item.href }') {item.label}
+        // prettier-ignore
+        .flex.items-center(class!='{ wideViewNavigationAlignment === "center" ? "flex-1 justify-end" : "" }')
           a.whitespace-nowrap.rounded.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
-            href!='{ $page.data.user ? "/app" : "/signin" }'
+            href!='{ $page.data.user ? "/app" : "/signin?new" }'
           ) Try for Free
         .flex.md_hidden
           button.inline-flex.items-center.justify-center.rounded-md.text-content-body(
@@ -66,5 +69,5 @@
                     ) {item.label}
                 .py-8
                   a.whitespace-nowrap.rounded.bg-action.px-3.py-3.text-base.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
-                    href!='{ $page.data.user ? "/app" : "/signin" }'
+                    href!='{ $page.data.user ? "/app" : "/signin?new" }'
                   ) Try for Free</template>

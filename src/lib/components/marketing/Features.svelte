@@ -2,9 +2,9 @@
   import { onMount } from 'svelte'
   import * as lucide from 'lucide-svelte'
   import type { Features } from '$lib/types'
-
   import Container from '$components/common/Container.svelte'
 
+  export let id: string = 'features'
   export let reversed = false
   export let content: Features = {
     headingTagline: 'Accomplish what you need',
@@ -60,7 +60,7 @@
 
 <template lang="pug">
   // prettier-ignore
-  div(class!='{ reversed ? "dark" : "" }')
+  div(class!='{ reversed ? "dark" : "" }' id='{id}')
     .bg-surface-lightest.dark_bg-surface-darkest
       Container(additionalClasses='pt-20 pb-32 md_pt-32 md_pb-40')
         .lg_mx-auto.lg_max-w-2xl.lg_text-center

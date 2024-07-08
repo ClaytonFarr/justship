@@ -1,6 +1,5 @@
 <script lang="ts">
   import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN, PUBLIC_GOOGLE_OAUTH_ENABLED } from '$env/static/public'
-  import { tick } from 'svelte'
   import { fade } from 'svelte/transition'
   import { superForm } from 'sveltekit-superforms'
   import TextInput from '$components/common/forms/TextInput.svelte'
@@ -10,7 +9,7 @@
 
   const { data } = $props()
 
-  let returningUser = $state(true)
+  let returningUser = $state(!data.isNewUser)
   let email = $state('')
   let password = $state('')
   let email_input: HTMLInputElement | null = $state(null)

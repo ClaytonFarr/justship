@@ -10,6 +10,7 @@
   import Github from '$components/common/images/icons/Github.svelte'
   import Youtube from '$components/common/images/icons/Youtube.svelte'
 
+  export let id: string = 'footer'
   export let reversed = false
   export let currentYear: number = new Date().getFullYear()
 
@@ -97,7 +98,7 @@
 
 <template lang="pug">
   // prettier-ignore
-  footer(class!='{ reversed ? "dark" : "" }', aria-labelledby='footer-heading')
+  footer(class!='{ reversed ? "dark" : "" }', aria-labelledby='footer-heading' id='{id}')
     h2#footer-heading.sr-only Footer
     .bg-surface-lightest.dark_bg-surface-darkest
       Container(additionalClasses='pb-8 pt-16 sm_pb-12 sm_pt-24')

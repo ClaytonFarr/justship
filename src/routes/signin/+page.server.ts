@@ -29,7 +29,8 @@ const resetPasswordSchema = z.object({
 export const load: PageServerLoad = async (e) => {
   const form = await superValidate(zod(schema))
   const error = e.url.searchParams.get('error')
-  return { form, user: e.locals.user, error }
+  const isNewUser = e.url.searchParams.has('new');
+  return { form, user: e.locals.user, error, isNewUser }
 }
 
 export const actions: Actions = {

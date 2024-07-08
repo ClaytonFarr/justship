@@ -2,6 +2,7 @@
   import Container from '$components/common/Container.svelte'
   import type { PricingContent, PricingPlan } from '$lib/types'
 
+  export let id: string = 'pricing'
   export let reversed = false
   export let includeBuyLinks = true // also requires including `purchaseUrl` in each plan
   export let content: PricingContent = {
@@ -62,7 +63,7 @@
 
 <template lang="pug">
   // prettier-ignore
-  div(class!='{ reversed ? "dark" : "" }')
+  div(class!='{ reversed ? "dark" : "" }' id='{id}')
     .bg-surface-lightest.dark_bg-surface-darkest.py-24.sm_py-32
       Container
         .mx-auto.max-w-4xl.lg_text-center

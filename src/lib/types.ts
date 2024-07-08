@@ -18,12 +18,12 @@ export interface HeroContent {
     secondaryText: string
     href: string
   }
-  links: {
+  links?: {
     primary: {
       text: string
       href: string
     }
-    secondary: {
+    secondary?: {
       text: string
       href: string
     }
@@ -99,7 +99,7 @@ export interface FooterContent {
   }
   social?: {
     include: boolean
-    links: SocialLink[]
+    links: Link[]
   }
 }
 
@@ -113,7 +113,7 @@ interface FooterNavSection {
   links: FooterLink[]
 }
 
-export interface SocialLink {
+export interface Link {
   label: string
   href: string
 }
