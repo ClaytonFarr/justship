@@ -14,4 +14,4 @@ if (!dev && !env.TURSO_DB_AUTH_TOKEN) {
 }
 
 const libsql = createClient({ url, authToken: env.TURSO_DB_AUTH_TOKEN })
-export const db = drizzle(libsql, { schema });
+export const db = drizzle(libsql, { schema })
