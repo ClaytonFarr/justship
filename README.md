@@ -16,6 +16,7 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - made Google Oauth sign-up & sign-in optional
 - added password reset flow
 - added new Tailwind marketing components
+- (pending) add basic layout & linked data for privacy & terms pages
 - (pending) added app settings page
 
 ========================
@@ -43,32 +44,34 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 
 ### Production
 
-1. (Optional) Have or get a domain name
+1. Update missing / placeholder content
+   - `src/lib/data/marketingContent.ts`
+2. (Optional) Have or get a domain name
    - (Optional) Setup email account(s) with new domain to create new infrastructure accounts below (e.g. using service like [Migadu](https://migadu.com/))
-2. Setup mail service with **[Postmark](https://postmarkapp.com/)**
+3. Setup mail service with **[Postmark](https://postmarkapp.com/)**
    - create new account OR access existing account
    - go to 'API Tokens': copy 'Server API token'
    - add token to `.env` as 'POSTMARK_SERVER_TOKEN' value
-3. Setup database with **[Turso](https://turso.tech/)**
+4. Setup database with **[Turso](https://turso.tech/)**
    - create new account OR access existing account
    - create new database
    - select database
    - copy database url & add to `.env` as 'TURSO_DB_URL' value
    - generate database token (read & write) & add to `.env` as 'TURSO_DB_AUTH_TOKEN' value
-4. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
+5. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
    - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env`
    - create new account OR access existing account
    - create new project OR use existing project
    - navigation to 'APIs & Services' : 'Credentials'
    - select '+ Create Credentials' : 'OAuth client ID'
    - (other details pending) …
-5. Setup billing with **[Stripe](https://stripe.com)**
+6. Setup billing with **[Stripe](https://stripe.com)**
    - create new account OR access existing account
    - (details pending) …
-6. Setup analytics with **[PostHog](https://posthog.com)**
+7. Setup analytics with **[PostHog](https://posthog.com)**
    - create new account OR access existing account
    - (details pending) …
-7. Setup hosting with **[Vercel](https://vercel.com)**
+8. Setup hosting with **[Vercel](https://vercel.com)**
    - create new account OR access existing account
    - add new project, importing from own repo
    - add environment variables to project

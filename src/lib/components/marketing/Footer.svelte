@@ -66,17 +66,16 @@
         {
           heading: 'Legal',
           links: [
-            { text: 'Claim', href: '#add' },
-            { text: 'Privacy', href: '#add' },
-            { text: 'Terms', href: '#add' },
+            { text: 'Privacy', href: '/privacy-policy' },
+            { text: 'Terms', href: '/terms-of-service' },
           ],
         },
       ],
     },
     newsletter: {
       include: true,
-      heading: 'Subscribe to our newsletter',
-      subheading: 'Get the latest updates and special savings sent to your inbox.',
+      heading: 'Subscribe for updates',
+      subheading: 'Get the latest product updates and special savings sent to your inbox.',
       ctaLabel: 'Subscribe',
       form: {
         action: '#add',

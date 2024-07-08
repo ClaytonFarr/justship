@@ -1,17 +1,18 @@
 <script lang="ts">
   import { PUBLIC_PRODUCT_NAME } from '$env/static/public'
+  import { page } from '$app/stores'
+  import { marketingContent } from '$lib/data/marketingContent'
+  import { enhance } from '$app/forms'
   import Container from '../common/Container.svelte'
   import DropdownMenu from '../common/DropdownMenu.svelte'
   import { Menu, X, LogOut } from 'lucide-svelte'
-  import { page } from '$app/stores'
-  import { enhance } from '$app/forms'
   import type { Link } from '$lib/types'
 
   export const wideViewNavigationAlignment: 'left' | 'center' | 'right' = 'right'
   export const navigation: Link[] = [
-    { label: 'Product', href: '#features' },
-    { label: 'Pricing', href: '#pricing' },
-  ]
+    ...(marketingContent.features ? [{ label: 'Product', href: '#features' }] : []),
+    ...(marketingContent.pricing ? [{ label: 'Pricing', href: '#pricing' }] : []),
+  ].filter(Boolean)
 
   let mobileMenuOpen: boolean = false
 </script>
