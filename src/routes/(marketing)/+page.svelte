@@ -24,7 +24,7 @@
   ].filter(Boolean)
   const headerCta = {
     include: true,
-    label: 'Try for Free',
+    label: 'Get Started Today',
     href: '/signin?new',
   }
 
@@ -51,12 +51,13 @@
     .fixed.inset-x-0.top-0.z-50.shadow-md(transition:fade='{{ duration: 200, easing: cubicInOut }}')
       Header(navItems='{ headerNavItems }', navAlignment='{ headerNavAlignment }', cta='{ headerCta }')
 
+  // prettier-ignore
   main
     +if('marketingContent.hero')
-      Hero(content='{ marketingContent.hero }', reversed)
+      Hero(content='{ marketingContent.hero }', reversed, id='hero')
 
     +if('marketingContent.features')
-      Features#features(content='{ marketingContent.features }')
+      Features(content='{ marketingContent.features }' id='features')
 
     +if('marketingContent.cta')
       CallToAction(content='{ marketingContent.cta }', reversed)
@@ -65,9 +66,9 @@
       Pricing#pricing(content='{ marketingContent.pricing }')
 
     +if('marketingContent.faqs')
-      Faqs(content='{ marketingContent.faqs }', reversed)
+      Faqs(content='{ marketingContent.faqs }', reversed, id='faqs')
 
-    Footer(content='{ marketingContent.footer }', reversed)
+    Footer(content='{ marketingContent.footer }', reversed, id='footer')
 
   //- hack to keep prettier from moving closing template tag
   span</template>

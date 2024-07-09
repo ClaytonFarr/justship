@@ -7,11 +7,11 @@
   import { enhance } from '$app/forms'
   import type { Link } from '$lib/types'
 
-  export const navigation: Link[] = [
+  export let navigation: Link[] = [
     { label: 'Create', href: '/app/create' },
     { label: 'View', href: '/app/view' },
   ]
-  export const accountNavigation: Link[] = [{ label: 'Settings', href: '/app/settings' }]
+  export let accountNavigation: Link[] = [{ label: 'Settings', href: '/app/settings' }]
 
   let mobileMenuOpen: boolean = false
 </script>

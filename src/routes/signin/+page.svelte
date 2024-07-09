@@ -142,7 +142,7 @@
             a(href='{PUBLIC_ORIGIN}/')
               img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
             .mt-8.space-y-3
-              h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Sign Up for Free
+              h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Get Started Today
               p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
                 span Have an account?
                 button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => returningUser = !returningUser }')

@@ -1,19 +1,20 @@
 import type { MarketingContent } from '$lib/types'
 
+const annualPriceDiscount = (1 / 12) * 10 // e.g. 2 months free
+
 export const marketingContent: MarketingContent = {
   hero: {
     heading: 'Accomplish the thing you desire',
     subheading:
       'Achieve your goals with ease and confidence using our suite of specific, high-value tools and features.',
-    newsTag: {
-      show: true,
-      primaryText: 'Take Note of This',
-      secondaryText: 'See Something Important',
-      href: '#faqs',
-    },
+    // newsTag: {
+    //   primaryText: 'Take Note of This',
+    //   secondaryText: 'See Something Important',
+    //   href: '#faqs',
+    // },
     links: {
       primary: {
-        text: 'Try for Free',
+        text: 'Get Started Today',
         href: '/signin?new',
       },
       secondary: {
@@ -87,48 +88,49 @@ export const marketingContent: MarketingContent = {
     headingTagline: 'Pricing',
     heading: 'Pricing plans for teams of all sizes',
     subheading:
-      "Choose an affordable plan that's packed with the best features for engaging your audience, creating customer loyalty, and driving sales.",
+      'Choose a plan that fits your needs – from our free starter option to our plans with comprehensive professional features.',
+    cta: {
+      include: true,
+      requirePurchaseUrl: false,
+    },
     plans: [
       {
-        id: 'freelancer',
-        name: 'Freelancer',
-        description: 'The essentials to provide your best work for clients.',
-        monthlyPrice: 15,
-        annualPrice: 144,
-        features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
-        purchaseUrl: '/signup',
+        id: 'starter',
+        name: 'Starter',
+        description: 'Get started with essential features at no cost.',
+        monthlyPrice: 0,
+        annualPrice: Math.floor(0 * 12 * annualPriceDiscount),
+        features: ['3 products', 'Up to 500 subscribers', 'Basic analytics', 'Email support'],
       },
       {
-        id: 'startup',
-        name: 'Startup',
-        description: 'A plan that scales with your rapidly growing business.',
-        monthlyPrice: 30,
-        annualPrice: 288,
+        id: 'pro',
+        name: 'Pro',
+        description: 'Advanced features for growing businesses and teams.',
+        monthlyPrice: 49,
+        annualPrice: Math.floor(49 * 12 * annualPriceDiscount),
         features: [
           '25 products',
           'Up to 10,000 subscribers',
           'Advanced analytics',
-          '24-hour support response time',
+          '24-hour support time',
           'Marketing automations',
         ],
         isPopular: true,
-        purchaseUrl: '/signup',
       },
       {
-        id: 'enterprise',
-        name: 'Enterprise',
-        description: 'Dedicated support and infrastructure for your company.',
-        monthlyPrice: 60,
-        annualPrice: 576,
+        id: 'elite',
+        name: 'Elite',
+        description: 'Comprehensive features and support for large operations.',
+        monthlyPrice: 99,
+        annualPrice: Math.floor(99 * 12 * annualPriceDiscount),
         features: [
           'Unlimited products',
           'Unlimited subscribers',
           'Advanced analytics',
-          '1-hour, dedicated support response time',
+          '4-hour response time',
           'Marketing automations',
           'Custom reporting tools',
         ],
-        purchaseUrl: '/signup',
       },
     ],
   },

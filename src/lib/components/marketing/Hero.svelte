@@ -11,19 +11,20 @@
   export let id: string = 'hero'
   export let reversed: boolean = false
   export let showLogo: boolean = true
+
+  // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
   export let content: HeroContent = {
     heading: 'Accomplish the thing you desire',
     subheading:
       'Achieve your goals with ease and confidence using our suite of specific, high-value tools and features.',
     newsTag: {
-      show: true,
       primaryText: 'Take Note of This',
       secondaryText: 'See Something Important',
       href: '#faqs',
     },
     links: {
       primary: {
-        text: 'Try for Free',
+        text: 'Get Started Today',
         href: '/signin?new',
       },
       secondary: {
@@ -53,8 +54,8 @@
         .lg_mx-0.lg_max-w-xl.lg_flex-shrink-0.lg_pt-8
           +if('showLogo')
             img.h-11(src='logo.svg', alt='{ PUBLIC_PRODUCT_NAME }').dark_invert
-          .mt-12.sm_mt-16.lg_mt-16
-            +if('content.newsTag.show')
+          .mt-12.sm_mt-16
+            +if('content.newsTag')
               a.inline-flex.flex-wrap.gap-x-5.gap-y-4(href='{ content.newsTag.href }').group
                 Tag(label='{ content.newsTag.primaryText }', style='filled')
                 Tag(
@@ -64,7 +65,7 @@
           .max-w-xl
             h1.mt-9.sm_mt-10.text-5xl.font-display.font-medium.tracking-tight.text-content-heading.md_text-6xl.dark_text-content-heading-reversed(class='leading-[1.1] sm_leading-[1.1]') {content.heading}
             p.mt-7.sm_mt-8.text-lg.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed.max-w-lg {content.subheading}
-          .mt-8.sm_mt-10.flex.flex-wrap.items-baseline.gap-4
+          .mt-8.sm_mt-12.flex.flex-wrap.items-baseline.gap-4
             Link(href='{ content.links.primary.href }', label='{ content.links.primary.text }', filled, large)
             +if('content.links.secondary.text && content.links.secondary.text')
               Link(href='{ content.links.secondary.href }', label='{ content.links.secondary.text }', button)

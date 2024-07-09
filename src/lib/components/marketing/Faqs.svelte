@@ -5,6 +5,8 @@
 
   export let id: string = 'faqs'
   export let reversed = false
+
+  // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
   export let content: FaqContent = {
     items: [
       {

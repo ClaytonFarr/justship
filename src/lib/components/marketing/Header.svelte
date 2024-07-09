@@ -5,13 +5,15 @@
   import type { Link } from '$lib/types'
 
   export let navAlignment: 'left' | 'center' | 'right' = 'right'
+
+  // Default content - can overridden by data passed in at route page
   export let navItems: Link[] = [
     { label: 'Product', href: '#features' },
     { label: 'Pricing', href: '#pricing' },
   ]
   export let cta = {
     include: false,
-    label: 'Try for Free',
+    label: 'Get Started Today',
     href: '/signin?new',
   }
 
@@ -35,7 +37,7 @@
         +if('cta.include')
           // prettier-ignore
           .flex.items-center(class!='{ navAlignment === "center" ? "flex-1 justify-end" : "" }')
-            a.whitespace-nowrap.rounded.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
+            a.whitespace-nowrap.rounded.bg-action.bg-gradient-to-br.from-action-hover.to-action.hover_bg-none.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
               href='{cta.href}'
             ) {cta.label}
         +if('navItems.length > 1')

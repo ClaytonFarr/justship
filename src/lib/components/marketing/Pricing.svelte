@@ -1,56 +1,61 @@
 <script lang="ts">
   import Container from '$components/common/Container.svelte'
+  import Link from '$components/common/Link.svelte'
   import type { PricingContent, PricingPlan } from '$lib/types'
+  import { Plane } from 'lucide-svelte'
 
   export let id: string = 'pricing'
   export let reversed = false
-  export let includeBuyLinks = true // also requires including `purchaseUrl` in each plan
+
+  // Default values - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
+  export let annualPriceDiscount = (1 / 12) * 10 // e.g. 2 months free
   export let content: PricingContent = {
     headingTagline: 'Pricing',
     heading: 'Pricing plans for teams of all sizes',
     subheading:
-      "Choose an affordable plan that's packed with the best features for engaging your audience, creating customer loyalty, and driving sales.",
+      'Choose a plan that fits your needs – from our free starter option to our plans with comprehensive professional features.',
+    cta: {
+      include: true,
+      requirePurchaseUrl: false,
+    },
     plans: [
       {
-        id: 'freelancer',
-        name: 'Freelancer',
-        description: 'The essentials to provide your best work for clients.',
-        monthlyPrice: 15,
-        annualPrice: 144,
-        features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response'],
-        purchaseUrl: '/signup',
+        id: 'starter',
+        name: 'Starter',
+        description: 'Get started with essential features at no cost.',
+        monthlyPrice: 0,
+        annualPrice: Math.floor(0 * 12 * annualPriceDiscount),
+        features: ['3 products', 'Up to 500 subscribers', 'Basic analytics', 'Email support'],
       },
       {
-        id: 'startup',
-        name: 'Startup',
-        description: 'A plan that scales with your rapidly growing business.',
-        monthlyPrice: 30,
-        annualPrice: 288,
+        id: 'pro',
+        name: 'Pro',
+        description: 'Advanced features for growing businesses and teams.',
+        monthlyPrice: 49,
+        annualPrice: Math.floor(49 * 12 * annualPriceDiscount),
         features: [
           '25 products',
           'Up to 10,000 subscribers',
           'Advanced analytics',
-          '24-hour support response time',
+          '24-hour support time',
           'Marketing automations',
         ],
         isPopular: true,
-        purchaseUrl: '/signup',
       },
       {
-        id: 'enterprise',
-        name: 'Enterprise',
-        description: 'Dedicated support and infrastructure for your company.',
-        monthlyPrice: 60,
-        annualPrice: 576,
+        id: 'elite',
+        name: 'Elite',
+        description: 'Comprehensive features and support for large operations.',
+        monthlyPrice: 99,
+        annualPrice: Math.floor(99 * 12 * annualPriceDiscount),
         features: [
           'Unlimited products',
           'Unlimited subscribers',
           'Advanced analytics',
-          '1-hour, dedicated support response time',
+          '4-hour response time',
           'Marketing automations',
           'Custom reporting tools',
         ],
-        purchaseUrl: '/signup',
       },
     ],
   }
@@ -69,7 +74,6 @@
         .mx-auto.max-w-4xl.lg_text-center
           h2.font-display.text-base.font-medium.leading-7.text-action.dark_text-action-hover { content.headingTagline }
           p.mt-2.font-display.text-4xl.font-medium.tracking-tight.text-content-heading.dark_text-content-heading-reversed.sm_text-4xl { content.heading }
-
         p.lg_mx-auto.mt-6.max-w-2xl.lg_text-center.text-lg.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed { content.subheading }
 
         .mt-16.flex.lg_justify-center
@@ -86,10 +90,10 @@
                 input.sr-only(type='radio', name='frequency', value='annually', bind:group='{ frequency }')
                 span Annually
 
-        .isolate.lg_mx-auto.mt-10.grid.grid-cols-1.gap-8.md_gap-5.lg_gap-8.md_mx-0.md_max-w-none.md_grid-cols-3
+        .isolate.lg_mx-auto.mt-10.flex.flex-wrap.lg_justify-center.gap-8.md_gap-5.lg_gap-8.md_mx-0.md_max-w-none
           +each('content.plans as plan')
             // prettier-ignore
-            .rounded-3xl.p-8.xl_p-10(class!="{ plan.isPopular ? 'ring-2 ring-action' : 'ring-1 ring-rule-light dark_ring-rule-light/40' }")
+            .rounded-3xl.p-8.xl_p-10(class='flex-1 min-w-64' class!="{ plan.isPopular ? 'ring-2 ring-action' : 'ring-1 ring-rule-light dark_ring-rule-light/40' }")
               // prettier-ignore
               .flex.items-center.justify-between
                 h3.text-lg.font-medium.leading-8(id='plan-{plan.id}', class!="{ plan.isPopular ? 'text-action dark_text-action-hover' : 'text-content-heading dark_text-content-heading-reversed' }") {plan.name}
@@ -104,21 +108,32 @@
                 span.text-sm.font-medium.leading-6.text-content-body.dark_text-content-body-reversed #[span.opacity-60 /]&thinsp;{period}
 
               // prettier-ignore
-              +if('includeBuyLinks && plan.purchaseUrl')
-                a.mt-6.block.rounded-md.px-3.py-3.text-center.font-medium.leading-6.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action.text-white.shadow-sm.ring-1.ring-inset.transition(
-                  href='{plan.purchaseUrl}',
-                  aria-describedby='plan-{plan.id}',
-                  class!="{ plan.isPopular ? 'bg-action hover_bg-action-hover' : 'hover_text-action-hover ring-action/30 dark_ring-action-hover/60 dark_bg-white/10 dark_hover_bg-white hover_ring-action/60' }"
-                  )
-                  span(class!="{ plan.isPopular ? 'text-white' : 'text-action dark_text-action-hover' }") Get Started
+              +if('content.cta.include && content.cta.requirePurchaseUrl')
+                Link(
+                  label!='{ plan.monthlyPrice === 0 ? "Try for Free" : "Sign Up" }', 
+                  button, large, fullWidth, shadow,
+                  href='/signin?new&plan={plan.id}', 
+                  filled='{plan.isPopular}', 
+                  outlined='{!plan.isPopular}'
+                  additionalClasses='mt-6')
 
-              ul.mt-8.space-y-3.text-sm.leading-normal.text-content-body.dark_text-content-body-reversed.xl_mt-10(role='list')
+              ul.mt-8.space-y-3.text-sm.leading-normal.text-content-body.dark_text-content-body-reversed(role='list')
                 +each('plan.features as feature')
                   li.flex.gap-x-4
-                    svg.md_hidden.lg_block.h-6.w-5.flex-none.text-action.dark_text-action-hover(viewBox='0 0 20 20', fill='currentColor', aria-hidden='true')
+                    svg.h-6.w-5.flex-none.text-action.dark_text-action-hover(viewBox='0 0 20 20', fill='currentColor', aria-hidden='true')
                       path(
                         fill-rule='evenodd',
                         d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z',
                         clip-rule='evenodd'
                       )
-                    | {feature}</template>
+                    | {feature}
+                    
+
+        +if('content.cta.include && !content.cta.requirePurchaseUrl')
+          .mt-9.lg_text-center.md_px-12
+            Link(
+              label='Get Started Today  –  Free', 
+              button, large, shadow,
+              href='/signin?new', 
+              filled, rounded, fullWidth,
+              additionalClasses='lg_max-w-lg py-4 text-lg')</template>

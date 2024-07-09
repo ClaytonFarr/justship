@@ -12,8 +12,7 @@ export interface MarketingContent {
 export interface HeroContent {
   heading: string
   subheading: string
-  newsTag: {
-    show: boolean
+  newsTag?: {
     primaryText: string
     secondaryText: string
     href: string
@@ -63,13 +62,16 @@ export interface PricingPlan {
   annualPrice: number
   features: string[]
   isPopular?: boolean
-  purchaseUrl?: string
 }
 
 export interface PricingContent {
   headingTagline: string
   heading: string
   subheading: string
+  cta: {
+    include: boolean
+    requirePurchaseUrl: boolean
+  }
   plans: PricingPlan[]
 }
 

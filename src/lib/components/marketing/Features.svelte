@@ -73,7 +73,7 @@
             +each('content.features as feature')
               .flex.flex-col
                 dt.flex.items-center.gap-x-6
-                  .flex.items-center.justify-center.h-10.w-10.rounded-lg.bg-action.text-white(class='p-2.5')
+                  .flex.items-center.justify-center.h-10.w-10.rounded-lg.bg-gradient-to-br.from-action-hover.to-action.text-white(class='p-2.5')
                     svelte:component(this='{ lucide[feature.lucideIcon] }', strokeWidth='2')
                   h3.text-base.font-medium.leading-7.text-content-heading.dark_text-content-heading-reversed {feature.heading}
                 dd.ml-16.mt-3.flex.flex-auto.flex-col.text-base.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed
