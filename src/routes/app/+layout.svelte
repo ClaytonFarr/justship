@@ -7,4 +7,4 @@
 <template lang="pug">
   Header
   Container
-  | {@render children()}</template>
+    | {@render children()}</template>

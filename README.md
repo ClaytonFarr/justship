@@ -13,16 +13,16 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - created separate routes for 'marketing' and 'app' content, with auth control
 - removed original marketing components
 - added new Tailwind marketing components
+- added default privacy & terms content
 - updated sign-up & sign-in to use email & password
 - added password reset flow
 - made Google Oauth sign-up & sign-in optional
 
-*Pending*
+_Pending_
 
-- test Google OAuth in production
-- add basic layout & linked data for privacy & terms pages
+- setup plans & billing with Stripe
 - add app settings page
-- determine what needs to be connected to link user accounts to Stripe billing
+- test Google OAuth in production
 
 ========================
 
@@ -54,8 +54,11 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
      - `static/product-image-hero.png` / `static/product-screenshot-hero.svg`
      - `static/signin-image.jpg`
    - update marketing content:
-     - can update which marketing sections are shown based on which content is provided in `src/lib/data/marketingContent.ts`
+     - can update marketing content in `src/lib/data/marketingContent.ts`
+       - sections without content will not be shown
      - can reorder marketing sections by editing `src/routes/(marketing)/+page.svelte`
+     - can update privacy policy and terms in `src/routes/(marketing)/privacy/+page.svelte` and `src/routes/(marketing)/terms/+page.svelte`
+       - e.g. Privacy/Terms [References](https://github.com/basecamp/policies/tree/master?tab=readme-ov-file#steal-these-policies) of [Generators](https://app.termsfeed.com/)
 
 ### Production
 

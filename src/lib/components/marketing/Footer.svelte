@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms'
-  import { PUBLIC_PRODUCT_NAME } from '$env/static/public'
+  import { PUBLIC_PRODUCT_NAME, PUBLIC_COMPANY_NAME } from '$env/static/public'
   import type { FooterContent } from '$lib/types'
 
   import Container from '$components/common/Container.svelte'
@@ -32,46 +32,47 @@
   }
 
   export let content: FooterContent = {
-    footerNav: {
-      include: true,
-      sections: [
-        {
-          heading: 'Solutions',
-          links: [
-            { text: 'Marketing', href: '#add' },
-            { text: 'Analytics', href: '#add' },
-            { text: 'Commerce', href: '#add' },
-            { text: 'Insights', href: '#add' },
-          ],
-        },
-        {
-          heading: 'Support',
-          links: [
-            { text: 'Pricing', href: '#add' },
-            { text: 'Documentation', href: '#add' },
-            { text: 'Guides', href: '#add' },
-            { text: 'API Status', href: '#add' },
-          ],
-        },
-        {
-          heading: 'Company',
-          links: [
-            { text: 'About', href: '#add' },
-            { text: 'Blog', href: '#add' },
-            { text: 'Jobs', href: '#add' },
-            { text: 'Press', href: '#add' },
-            { text: 'Partners', href: '#add' },
-          ],
-        },
-        {
-          heading: 'Legal',
-          links: [
-            { text: 'Privacy', href: '/privacy-policy' },
-            { text: 'Terms', href: '/terms-of-service' },
-          ],
-        },
-      ],
-    },
+    // example footer nav content below (likely unwanted or necessary if initially focusing on a single-page landing page)
+    // footerNav: {
+    //   include: true,
+    //   sections: [
+    //     {
+    //       heading: 'Solutions',
+    //       links: [
+    //         { text: 'Marketing', href: '#add' },
+    //         { text: 'Analytics', href: '#add' },
+    //         { text: 'Commerce', href: '#add' },
+    //         { text: 'Insights', href: '#add' },
+    //       ],
+    //     },
+    //     {
+    //       heading: 'Support',
+    //       links: [
+    //         { text: 'Pricing', href: '#add' },
+    //         { text: 'Documentation', href: '#add' },
+    //         { text: 'Guides', href: '#add' },
+    //         { text: 'API Status', href: '#add' },
+    //       ],
+    //     },
+    //     {
+    //       heading: 'Company',
+    //       links: [
+    //         { text: 'About', href: '#add' },
+    //         { text: 'Blog', href: '#add' },
+    //         { text: 'Jobs', href: '#add' },
+    //         { text: 'Press', href: '#add' },
+    //         { text: 'Partners', href: '#add' },
+    //       ],
+    //     },
+    //     {
+    //       heading: 'Legal',
+    //       links: [
+    //         { text: 'Privacy', href: '/policies/privacy-policy' },
+    //         { text: 'Terms', href: '/policies/terms-of-service' },
+    //       ],
+    //     },
+    //   ],
+    // },
     newsletter: {
       include: true,
       heading: 'Subscribe for updates',
@@ -146,12 +147,19 @@
         .mt-8.border-t.border-rule-light.dark_border-rule-dark.pt-8.md_flex.md_items-center.md_justify-between
           //- Social Links
           +if('content.social?.include && content.social.links.length > 0')
-            .flex.space-x-6.md_order-2
+            .flex.space-x-6.md_order-1
               +each('content.social.links as link')
-                a.text-content-secondary.dark_text-content-secondary-reversed.opacity-75.hover_opacity-100(href='{ link.href }')
+                a.text-content-secondary.dark_text-content-secondary-reversed.opacity-75.hover_opacity-100.hover_text-action-hover(href='{ link.href }')
                   span.sr-only {link.label}
                   +if('getIconComponent(link.label)')
                     svelte:component(this='{ getIconComponent(link.label) }', size=24)
 
-          //- Copyright
-          p.mt-8.text-xs.leading-5.text-content-tertiary.md_order-1.md_mt-0 &copy; {currentYear} {PUBLIC_PRODUCT_NAME}. All rights reserved.</template>
+          .flex.space-x-6.md_order-2.leading-5.text-xs.text-content-secondary.dark_text-content-secondary-reversed.mt-8.md_mt-0
+            //- Policies
+            .flex.space-x-2
+              a.hover_text-action-hover(href='/policies/privacy-policy') Privacy
+              span &middot;
+              a.hover_text-action-hover(href='/policies/terms-of-service') Terms
+
+            //- Copyright
+            span.text-content-tertiary &copy; {currentYear} {PUBLIC_COMPANY_NAME}. All rights reserved.</template>

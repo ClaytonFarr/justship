@@ -1,18 +1,19 @@
 <script lang="ts">
   import { PUBLIC_PRODUCT_NAME } from '$env/static/public'
-  import { page } from '$app/stores'
-  import { marketingContent } from '$lib/data/marketingContent'
-  import { enhance } from '$app/forms'
+  import { Menu, X } from 'lucide-svelte'
   import Container from '../common/Container.svelte'
-  import DropdownMenu from '../common/DropdownMenu.svelte'
-  import { Menu, X, LogOut } from 'lucide-svelte'
   import type { Link } from '$lib/types'
 
-  export const wideViewNavigationAlignment: 'left' | 'center' | 'right' = 'right'
-  export const navigation: Link[] = [
-    ...(marketingContent.features ? [{ label: 'Product', href: '#features' }] : []),
-    ...(marketingContent.pricing ? [{ label: 'Pricing', href: '#pricing' }] : []),
-  ].filter(Boolean)
+  export let navAlignment: 'left' | 'center' | 'right' = 'right'
+  export let navItems: Link[] = [
+    { label: 'Product', href: '#features' },
+    { label: 'Pricing', href: '#pricing' },
+  ]
+  export let cta = {
+    include: false,
+    label: 'Try for Free',
+    href: '/signin?new',
+  }
 
   let mobileMenuOpen: boolean = false
 </script>
@@ -20,29 +21,32 @@
 <template lang="pug">
   header.bg-white
     Container
-      nav.flex.h-20.items-center.justify-between.gap-x-12.py-6.lg_py-8(aria-label='Global')
+      nav.flex.h-20.items-center.justify-between.gap-x-6.py-6.sm_gap-x-10.lg_py-8(aria-label='Global')
         // prettier-ignore
-        .flex(class!='{ wideViewNavigationAlignment === "center" ? "flex-1" : "" }')
+        .flex(class!='{ navAlignment === "center" ? "flex-1" : "flex-1 sm_flex-0" }')
           h1: a.flex.items-center.gap-4(href='/', class='-m-1.5 p-1.5')
-            img.h-8.w-auto(src='logo.svg', alt='')
+            img.h-8.w-auto(src='/logo.svg', alt='')
             span.font-display.text-lg.text-xl.font-medium.tracking-tight.text-content-heading {PUBLIC_PRODUCT_NAME}
         // prettier-ignore
-        .hidden.md_flex.md_gap-x-10(class!='{ wideViewNavigationAlignment === "left" ? "justify-start flex-1" : wideViewNavigationAlignment === "center" ? "justify-center" : "justify-end flex-1" }')
-          +each('navigation as item')
-            a.text-sm.font-medium.leading-6.text-content-heading.hover_text-action.transition(href='{ item.href }') {item.label}
-        // prettier-ignore
-        .flex.items-center(class!='{ wideViewNavigationAlignment === "center" ? "flex-1 justify-end" : "" }')
-          a.whitespace-nowrap.rounded.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
-            href!='{ $page.data.user ? "/app" : "/signin?new" }'
-          ) Try for Free
-        .flex.md_hidden
-          button.inline-flex.items-center.justify-center.rounded-md.text-content-body(
-            type='button',
-            class='-m-2.5 p-2.5',
-            on:click!='{ () => mobileMenuOpen = true }'
-          )
-            span.sr-only Open main menu
-            Menu.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')
+        +if('navItems.length > 0')
+          .md_gap-x-10(class!='{navItems.length > 1 ? "hidden md_flex" : "flex"} { navAlignment === "left" ? "justify-start flex-1" : navAlignment === "center" ? "justify-center" : "justify-end flex-1" }')
+            +each('navItems as item')
+              a.text-sm.font-medium.leading-6.text-content-heading.hover_text-action.transition(href='{ item.href }') {item.label}
+        +if('cta.include')
+          // prettier-ignore
+          .flex.items-center(class!='{ navAlignment === "center" ? "flex-1 justify-end" : "" }')
+            a.whitespace-nowrap.rounded.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
+              href='{cta.href}'
+            ) {cta.label}
+        +if('navItems.length > 1')
+          .flex.md_hidden
+            button.inline-flex.items-center.justify-center.rounded-md.text-content-body(
+              type='button',
+              class='-m-2.5 p-2.5',
+              on:click!='{ () => mobileMenuOpen = true }'
+            )
+              span.sr-only Open main menu
+              Menu.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')
 
       +if('mobileMenuOpen')
         .md_hidden(role='dialog', aria-modal='true')
@@ -62,13 +66,15 @@
                 span.sr-only Close menu
                 X.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')
             .mt-6.flow-root
-              .-my-6.divide-y(class='divide-rule/10')
-                .space-y-2.py-6
-                  +each('navigation as item')
-                    a.hover_bg-surface-light-50.-mx-3.block.rounded-lg.px-3.py-2.text-base.font-medium.leading-7.text-content-heading(
-                      href='{ item.href }'
-                    ) {item.label}
-                .py-8
-                  a.whitespace-nowrap.rounded.bg-action.px-3.py-3.text-base.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
-                    href!='{ $page.data.user ? "/app" : "/signin?new" }'
-                  ) Try for Free</template>
+              +if('navItems.length > 0')
+                .-my-6.divide-y(class='divide-rule/10')
+                  .space-y-2.py-6
+                    +each('navItems as item')
+                      a.hover_bg-surface-light-50.-mx-3.block.rounded-lg.px-3.py-2.text-base.font-medium.leading-7.text-content-heading(
+                        href='{ item.href }'
+                      ) {item.label}
+                +if('cta.include')
+                  .py-8
+                    a.whitespace-nowrap.rounded.bg-action.px-3.py-3.text-base.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
+                      href='{ cta.href }'
+                    ) {cta.label}</template>

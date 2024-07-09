@@ -118,6 +118,24 @@ export interface Link {
   href: string
 }
 
+export interface PolicyLink {
+  include: boolean
+  url: string
+}
+
+export type PolicyLinks = {
+  [key: string]: PolicyLink
+}
+
+export interface PrivacyFeature {
+  include: boolean
+  url?: string
+}
+
+export type PrivacyFeatures = {
+  [key: string]: PrivacyFeature
+}
+
 export type DefaultSeo = {
   pageTitle: string
   pageDescription: string

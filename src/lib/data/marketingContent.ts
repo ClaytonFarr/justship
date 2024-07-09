@@ -167,46 +167,47 @@ export const marketingContent: MarketingContent = {
     ],
   },
   footer: {
-    footerNav: {
-      include: false,
-      sections: [
-        {
-          heading: 'Solutions',
-          links: [
-            { text: 'Marketing', href: '#add' },
-            { text: 'Analytics', href: '#add' },
-            { text: 'Commerce', href: '#add' },
-            { text: 'Insights', href: '#add' },
-          ],
-        },
-        {
-          heading: 'Support',
-          links: [
-            { text: 'Pricing', href: '#add' },
-            { text: 'Documentation', href: '#add' },
-            { text: 'Guides', href: '#add' },
-            { text: 'API Status', href: '#add' },
-          ],
-        },
-        {
-          heading: 'Company',
-          links: [
-            { text: 'About', href: '#add' },
-            { text: 'Blog', href: '#add' },
-            { text: 'Jobs', href: '#add' },
-            { text: 'Press', href: '#add' },
-            { text: 'Partners', href: '#add' },
-          ],
-        },
-        {
-          heading: 'Legal',
-          links: [
-            { text: 'Privacy', href: '/privacy-policy' },
-            { text: 'Terms', href: '/terms-of-service' },
-          ],
-        },
-      ],
-    },
+    // example footer nav content below (likely unwanted or necessary if initially focusing on a single-page landing page)
+    // footerNav: {
+    //   include: true,
+    //   sections: [
+    //     {
+    //       heading: 'Product',
+    //       links: [
+    //         { text: 'Marketing', href: '#add' },
+    //         { text: 'Analytics', href: '#add' },
+    //         { text: 'Commerce', href: '#add' },
+    //         { text: 'Insights', href: '#add' },
+    //       ],
+    //     },
+    //     {
+    //       heading: 'Support',
+    //       links: [
+    //         { text: 'Pricing', href: '#add' },
+    //         { text: 'Documentation', href: '#add' },
+    //         { text: 'Guides', href: '#add' },
+    //         { text: 'API Status', href: '#add' },
+    //       ],
+    //     },
+    //     {
+    //       heading: 'Company',
+    //       links: [
+    //         { text: 'About', href: '#add' },
+    //         { text: 'Blog', href: '#add' },
+    //         { text: 'Jobs', href: '#add' },
+    //         { text: 'Press', href: '#add' },
+    //         { text: 'Partners', href: '#add' },
+    //       ],
+    //     },
+    //     {
+    //       heading: 'Legal',
+    //       links: [
+    //         { text: 'Privacy', href: '/policies/privacy-policy' },
+    //         { text: 'Terms', href: '/policies/terms-of-service' },
+    //       ],
+    //     },
+    //   ],
+    // },
     newsletter: {
       include: true,
       heading: 'Subscribe for updates',
