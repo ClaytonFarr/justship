@@ -1,22 +1,16 @@
 <script lang="ts">
-  import {
-    PUBLIC_COMPANY_NAME,
-    PUBLIC_PRODUCT_NAME,
-    PUBLIC_PRODUCT_DOMAIN,
-    PUBLIC_ORIGIN,
-    PUBLIC_SUPPORT_EMAIL,
-  } from '$env/static/public'
+  import { PUBLIC_COMPANY_NAME, PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN, PUBLIC_SUPPORT_EMAIL } from '$env/static/public'
   import type { PrivacyFeatures } from '$lib/types'
+  const PUBLIC_COMPANY_NAME_SHORT = PUBLIC_COMPANY_NAME.replace(/,?\s*LLC$/, '') // strip LLC, if present
 
-  const PUBLIC_COMPANY_NAME_SHORT = PUBLIC_COMPANY_NAME.replace(/,?\s*LLC$/, '')
+  const lastUpdatedDate: string = 'July 9, 2024'
 
-  export let lastUpdatedDate: string = 'July 9, 2024'
-  export let dataDeletion = {
+  const dataDeletion = {
     include: false,
     activeSystemsDeletionDays: 30,
     backupsDeletionDays: 60,
   }
-  export let privacyFeatures: PrivacyFeatures = {
+  const privacyFeatures: PrivacyFeatures = {
     advertising: {
       include: false,
     },

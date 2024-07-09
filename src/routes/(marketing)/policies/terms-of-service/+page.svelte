@@ -7,20 +7,20 @@
     PUBLIC_SUPPORT_EMAIL,
   } from '$env/static/public'
   import type { PolicyLinks } from '$lib/types'
+  const PUBLIC_COMPANY_NAME_SHORT = PUBLIC_COMPANY_NAME.replace(/,?\s*LLC$/, '') // strip LLC, if present
 
-  const PUBLIC_COMPANY_NAME_SHORT = PUBLIC_COMPANY_NAME.replace(/,?\s*LLC$/, '')
+  const lastUpdatedDate: string = 'July 9, 2024'
 
-  export let lastUpdatedDate: string = 'July 9, 2024'
-  export let appStatusMonitoringUrl = {
+  const appStatusMonitoringUrl = {
     include: false,
-    url: 'status.domain.com', // (omit `https://` prefix)
+    url: 'status.domain.com', // omit `https://` prefix
   }
-  export let dataDeletion = {
+  const dataDeletion = {
     include: false,
     activeSystemsDeletionDays: 30,
     backupsDeletionDays: 60,
   }
-  export let additionalPolicies: PolicyLinks = {
+  const additionalPolicies: PolicyLinks = {
     abuse: {
       include: false,
       url: '/policies/abuse/',
