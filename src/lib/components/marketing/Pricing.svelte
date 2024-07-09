@@ -61,7 +61,6 @@
   }
 
   let frequency: 'monthly' | 'annually' = 'monthly'
-
   $: price = (plan: PricingPlan) => (frequency === 'monthly' ? plan.monthlyPrice : plan.annualPrice)
   $: period = frequency === 'monthly' ? 'month' : 'year'
 </script>

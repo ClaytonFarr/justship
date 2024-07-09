@@ -14,12 +14,15 @@ import { createSignin, getSignins } from '$lib/server/database/signin.model'
 import { generatePasswordResetToken } from '$lib/server/auth/resettoken'
 import type { Actions, PageServerLoad } from './$types'
 
+const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
+
 const schema = z.object({
   email: z.string().trim().email({ message: 'Invalid email address.' }),
   password: z.string().min(8, { message: 'Password must be 8 or more characters.' }).max(255),
   remember_me: z.boolean().optional(),
   signin_error_message: z.string().optional(),
   signup_error_message: z.string().optional(),
+  receive_product_updates: z.boolean().optional(),
 })
 const resetPasswordSchema = z.object({
   email: z.string().trim().email({ message: 'Invalid email address.' }),
@@ -29,7 +32,7 @@ const resetPasswordSchema = z.object({
 export const load: PageServerLoad = async (e) => {
   const form = await superValidate(zod(schema))
   const error = e.url.searchParams.get('error')
-  const isNewUser = e.url.searchParams.has('new');
+  const isNewUser = e.url.searchParams.has('new')
   return { form, user: e.locals.user, error, isNewUser }
 }
 
@@ -41,7 +44,7 @@ export const actions: Actions = {
       return fail(400, { form })
     }
 
-    const { email, password } = form.data
+    const { email, password, receive_product_updates } = form.data
     const normalizedEmail = email.toLowerCase()
 
     // Check if user already exists
@@ -69,6 +72,7 @@ export const actions: Actions = {
       username: normalizedEmail, // Using email as username
       email_verified: false,
       password_hash: passwordHash,
+      receive_product_updates: receive_product_updates ?? false,
     })
 
     if (!user) {
@@ -143,7 +147,7 @@ export const actions: Actions = {
       maxAge: remember_me ? 60 * 60 * 24 * 15 : undefined,
     })
 
-    redirect(302, `${PUBLIC_ORIGIN}/app`)
+    redirect(302, `${rootUrl}/app`)
   },
 
   request_password_reset: async ({ request, getClientAddress }) => {

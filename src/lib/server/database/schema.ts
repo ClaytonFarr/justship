@@ -6,6 +6,7 @@ export const userTable = sqliteTable('user', {
   password_hash: text('password_hash'),
   email: text('email').notNull(),
   email_verified: integer('email_verified', { mode: 'boolean' }),
+  receive_product_updates: integer('receive_product_updates', { mode: 'boolean' }).default(false),
 })
 
 export const sessionTable = sqliteTable('session', {

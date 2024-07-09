@@ -12,6 +12,8 @@ import layout from './layout.html?raw'
 import verification from './verification-email.html?raw'
 import passwordReset from './password-reset-email.html?raw'
 
+const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
+
 const localClient = new SMTPClient({
   host: 'localhost',
   port: 1025,
@@ -92,14 +94,14 @@ export async function sendVerificationEmail(user: {
 }) {
   await deleteAllEmailTokensForUser(user.id)
   const verification_token = await createEmailVerificationToken(user.id, user.email)
-  const verificationLink = `${PUBLIC_ORIGIN}/signin/email-verification?verification_token=${verification_token}`
+  const verificationLink = `${rootUrl}/signin/email-verification?verification_token=${verification_token}`
 
   await sendEmail({
     from: `${public_env.PUBLIC_PRODUCT_NAME} <${env.FROM_EMAIL}>`,
     to: user.email,
     subject: `Account verification for ${public_env.PUBLIC_PRODUCT_NAME}`,
     html: loginEmailHtmlTemplate({
-      product_url: PUBLIC_ORIGIN,
+      product_url: rootUrl,
       product_name: public_env.PUBLIC_PRODUCT_NAME,
       action_url: verificationLink,
     }),
@@ -110,13 +112,13 @@ export async function sendVerificationEmail(user: {
 }
 
 export const sendPasswordResetLink = async (email: string, token: string) => {
-  const resetLink = `${PUBLIC_ORIGIN}/password-reset/${token}`
+  const resetLink = `${rootUrl}/password-reset/${token}`
   await sendEmail({
     from: `${PUBLIC_PRODUCT_NAME} <${FROM_EMAIL}>`,
     to: email,
     subject: `Password Reset for ${PUBLIC_PRODUCT_NAME}`,
     html: passwordResetEmailTemplate({
-      product_url: PUBLIC_ORIGIN,
+      product_url: rootUrl,
       product_name: PUBLIC_PRODUCT_NAME,
       action_url: resetLink,
     }),
@@ -127,7 +129,7 @@ export const passwordResetEmailTemplate = (variables: PasswordResetEmailVariable
   return inline(
     layout
       .replaceAll('{{{ @content }}}', passwordReset)
-      .replaceAll('{{ product_url }}', PUBLIC_ORIGIN)
+      .replaceAll('{{ product_url }}', rootUrl)
       .replaceAll('{{ product_name }}', PUBLIC_PRODUCT_NAME)
       .replaceAll('{{ action_url }}', variables.action_url),
   )

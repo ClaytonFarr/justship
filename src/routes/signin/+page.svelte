@@ -1,5 +1,6 @@
 <script lang="ts">
   import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN, PUBLIC_GOOGLE_OAUTH_ENABLED } from '$env/static/public'
+  import { dev } from '$app/environment'
   import { fade } from 'svelte/transition'
   import { superForm } from 'sveltekit-superforms'
   import TextInput from '$components/common/forms/TextInput.svelte'
@@ -7,6 +8,7 @@
   import Button from '$components/common/forms/Button.svelte'
   import Google from '$components/common/images/icons/Google.svelte'
 
+  const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
   const { data } = $props()
 
   let returningUser = $state(!data.isNewUser)
@@ -15,6 +17,7 @@
   let email_input: HTMLInputElement | null = $state(null)
   let password_input: HTMLInputElement | null = $state(null)
   let rememberMe = $state(false)
+  let receiveProductUpdates = $state(true)
   let requestReset = $state(false)
   let signup_email_sent = $state(false)
   let reset_email_sent = $state(false)
@@ -55,8 +58,8 @@
       +if('returningUser')
         +if('!requestReset')
           .mx-auto.w-full.max-w-sm.lg_w-96
-            a(href='{PUBLIC_ORIGIN}/')
-              img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
+            a(href='{rootUrl}/')
+              img.h-10.w-auto(src='{rootUrl}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
             .mt-8.space-y-3
               h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Welcome Back
               p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
@@ -68,20 +71,43 @@
             .mt-10
               +if('loadErrorMessage')
                 .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border.border-rose-200.bg-rose-50.mb-6 { loadErrorMessage }
-              form.space-y-6(method='post', action='{PUBLIC_ORIGIN}/signin?/signin_with_email', use:enhance)
+              form.space-y-6(method='post', action='{rootUrl}/signin?/signin_with_email', use:enhance)
                 // prettier-ignore
-                TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{returningUser ? true : false}')
+                TextInput(
+                  required, 
+                  type='email', 
+                  id='email', 
+                  label='Email', 
+                  bind:value='{ email_input }', autofocus='{returningUser ? true : false}'
+                  )
                 // prettier-ignore
-                TextInput(id='password', label='Password', type='password', required, bind:value='{ password_input }', autocomplete='current-password')
+                TextInput(
+                  required, 
+                  type='password', 
+                  id='password', 
+                  label='Password', 
+                  autocomplete='current-password'
+                  bind:value='{ password_input }', 
+                  )
                 .flex.items-center.justify-between
                   // prettier-ignore
-                  Checkbox(id='remember-me', label='Remember me', bind:checked='{ rememberMe }')
+                  Checkbox(
+                    id='remember-me', 
+                    label='Remember me', 
+                    bind:checked='{ rememberMe }'
+                    )
                   .text-sm.leading-6
                     button.font-medium.text-action.hover_text-action-hover(type='button', onclick!='{ () => requestReset = !requestReset }') Forgot password?
                 +if('$errors.signin_error_message || $errors.email || $errors.password')
                   .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border.border-rose-200.bg-rose-50 { $errors.signin_error_message } { $errors.email } { $errors.password }
                 .pt-2
-                  Button(label='Sign In', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Signing In...')
+                  Button(
+                    large, 
+                    type='submit', 
+                    label='Sign In', 
+                    processingLabel='Signing In...'
+                    loading='{ $submitting }', disabled='{ $submitting }', 
+                    )
 
               +if('PUBLIC_GOOGLE_OAUTH_ENABLED === "true"')
                 .mt-10
@@ -91,21 +117,21 @@
                     .w-full.border-t.border-input(aria-hidden='true')
                   .mt-6
                     a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
-                      href='{PUBLIC_ORIGIN}/signin/google'
+                      href='{rootUrl}/signin/google'
                     )
                       Google
                       span.text-sm.font-medium.leading-6 Google
               
               .mt-10
-                a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
+                a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{rootUrl}/')
                   span &larr;
                   span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 
           //- RESET REQUEST FORM
           +else
             .mx-auto.w-full.max-w-sm.lg_w-96
-              a(href='{PUBLIC_ORIGIN}/')
-                img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
+              a(href='{rootUrl}/')
+                img.h-10.w-auto(src='{rootUrl}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
               .mt-8.space-y-3
                 h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Reset Password 
                 p.text-sm.text-content-secondary Receive a link to reset your password.
@@ -118,20 +144,32 @@
 
               +if('!reset_email_sent')
                 .mt-10
-                  form.space-y-6(method='post', action='{PUBLIC_ORIGIN}/signin?/request_password_reset', use:enhance)
+                  form.space-y-6(method='post', action='{rootUrl}/signin?/request_password_reset', use:enhance)
                     // prettier-ignore
-                    TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{requestReset ? true : false}')
+                    TextInput(
+                      required, 
+                      type='email', 
+                      id='email', 
+                      label='Email', 
+                      bind:value='{ email_input }', autofocus='{requestReset ? true : false}'
+                      )
                     +if('$errors.reset_error_message || $errors.email')
                       .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border.border-rose-200.bg-rose-50 { $errors.reset_error_message } { $errors.email }
                     .pt-2
-                      Button(label='Send Reset Link', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Sending...')
+                      Button(
+                        large, 
+                        type='submit', 
+                        label='Send Reset Link', 
+                        processingLabel='Sending...'
+                        loading='{ $submitting }', disabled='{ $submitting }', 
+                        )
                 +else
                   .mt-10.space-y-3.text-content-body.text-sm.max-w-xs
                     p If an account exists for this address, you will receive a password reset link&nbsp;shortly.
                     p Please follow the instructions to reset your&nbsp;password.
 
               .mt-10
-                a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
+                a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{rootUrl}/')
                   span &larr;
                   span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 
@@ -139,8 +177,8 @@
         //- SIGN UP FORM
         +else
           .mx-auto.w-full.max-w-sm.lg_w-96
-            a(href='{PUBLIC_ORIGIN}/')
-              img.h-10.w-auto(src='{PUBLIC_ORIGIN}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
+            a(href='{rootUrl}/')
+              img.h-10.w-auto(src='{rootUrl}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
             .mt-8.space-y-3
               h2.text-2xl.font-medium.leading-9.tracking-tight.text-content-heading Get Started Today
               p.mt-2.flex.gap-x-2.text-sm.leading-6.text-content-secondary
@@ -151,15 +189,41 @@
 
             +if('!signup_email_sent')
               .mt-10
-                form.space-y-6(method='post', action='{PUBLIC_ORIGIN}/signin?/signup_with_email', use:enhance)
+                form.space-y-6(method='post', action='{rootUrl}/signin?/signup_with_email', use:enhance)
                   // prettier-ignore
-                  TextInput(id='email', label='Email', type='email', required, bind:value='{ email_input }', autofocus='{!returningUser ? true : false}')
+                  TextInput(
+                    required, 
+                    type='email', 
+                    id='email', 
+                    label='Email', 
+                    bind:value='{ email_input }', autofocus='{!returningUser ? true : false}'
+                    )
                   // prettier-ignore
-                  TextInput(id='password', label='Password', type='password', required, bind:value='{ password_input }', autocomplete='current-password')
+                  TextInput(
+                    required, 
+                    type='password', 
+                    id='password', 
+                    label='Password', 
+                    bind:value='{ password_input }', autocomplete='current-password'
+                    )
+                  // prettier-ignore
+                  .flex.gap-x-2
+                    Checkbox(
+                      id='receive_product_updates', 
+                      label='Receive product updates?', 
+                      secondaryLabel, 
+                      bind:checked='{ receiveProductUpdates }',)
                   +if('$errors.signup_error_message || $errors.email || $errors.password')
                     .text-sm.px-4.py-3.my-1.rounded.text-rose-900.border.border-rose-200.bg-rose-50 { $errors.signup_error_message } { $errors.email } { $errors.password }
                   .pt-2
-                    Button(label='Sign Up', type='submit', large, loading='{ $submitting }', disabled='{ $submitting }', processingLabel='Signing Up...')
+                    Button(
+                      large, 
+                      type='submit', 
+                      label='Sign Up', 
+                      processingLabel='Signing Up...'
+                      loading='{ $submitting }', disabled='{ $submitting }', 
+                      )
+                  p.text-sm.text-content-tertiary By signing up, you agree to our #[a(href='{rootUrl}/policies/terms-of-service').underline.hover_text-action Terms of Service]
 
                 +if('PUBLIC_GOOGLE_OAUTH_ENABLED === "true"')
                   .mt-10
@@ -169,7 +233,7 @@
                       .w-full.border-t.border-input(aria-hidden='true')
                     .mt-6
                       a.flex.w-full.items-center.justify-center.gap-3.rounded-md.bg-white.px-3.py-2.text-sm.font-medium.text-content-heading.shadow-sm.ring-1.ring-inset.ring-input.hover_bg-surface-light-50.focus-visible_ring-transparent(
-                        href='{PUBLIC_ORIGIN}/signin/google'
+                        href='{rootUrl}/signin/google'
                       )
                         Google
                         span.text-sm.font-medium.leading-6 Google
@@ -186,7 +250,7 @@
                   p Please verify your address to sign in.
 
             .mt-10
-              a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{PUBLIC_ORIGIN}/')
+              a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{rootUrl}/')
                 span &larr;
                 span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 

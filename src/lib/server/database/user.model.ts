@@ -36,6 +36,7 @@ type NewUser = {
   password_hash: string // do not expose to client
   email: string
   email_verified: boolean
+  receive_product_updates: boolean
 }
 
 export const createNewUser = async (user: NewUser) => {

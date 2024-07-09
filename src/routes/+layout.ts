@@ -8,10 +8,12 @@ import {
 } from '$env/static/public'
 import type { DefaultSeo } from '$lib/types'
 
+const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
+
 export const load = async () => {
   if (browser && !dev) {
     posthog.init(PUBLIC_POSTHOG_KEY, {
-      api_host: `${PUBLIC_ORIGIN}/ingest`,
+      api_host: `${rootUrl}/ingest`,
       ui_host: 'https://us.posthog.com',
       capture_pageview: false,
       capture_pageleave: false,
@@ -21,11 +23,11 @@ export const load = async () => {
     pageTitle: PUBLIC_DEFAULT_SEO_TITLE,
     pageDescription: PUBLIC_DEFAULT_SEO_DESCRIPTION,
     twitterCard: 'summary_large_image',
-    twitterSite: PUBLIC_ORIGIN,
-    twitterImage: `${PUBLIC_ORIGIN}/socialcard.jpg`,
+    twitterSite: rootUrl,
+    twitterImage: `${rootUrl}/socialcard.jpg`,
     ogType: 'website',
-    ogUrl: PUBLIC_ORIGIN,
-    ogImage: `${PUBLIC_ORIGIN}/socialcard.jpg`,
+    ogUrl: rootUrl,
+    ogImage: `${rootUrl}/socialcard.jpg`,
   }
   return seo
 }

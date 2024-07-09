@@ -1,7 +1,10 @@
 <script lang="ts">
   import { PUBLIC_COMPANY_NAME, PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN, PUBLIC_SUPPORT_EMAIL } from '$env/static/public'
+  import { dev } from '$app/environment'
   import type { PrivacyFeatures } from '$lib/types'
+
   const PUBLIC_COMPANY_NAME_SHORT = PUBLIC_COMPANY_NAME.replace(/,?\s*LLC$/, '') // strip LLC, if present
+  const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
 
   const lastUpdatedDate: string = 'July 9, 2024'
 
@@ -80,7 +83,7 @@
   p However, this policy does not cover information about a customer’s end users that { PUBLIC_COMPANY_NAME_SHORT } receives from a customer, or otherwise processes on a customer’s behalf, in connection with the services provided by { PUBLIC_COMPANY_NAME_SHORT } to the customer pursuant to an applicable services agreement (including the content of messages of customer end users ("End User Communications")). { PUBLIC_COMPANY_NAME_SHORT } processes End User Communications under the instructions of the relevant customer, which is the "data controller" or "business" (or occupies a similar role as defined in applicable privacy laws), as described in the applicable services agreement between such customer and { PUBLIC_COMPANY_NAME_SHORT }. { PUBLIC_COMPANY_NAME_SHORT }’s obligations as a "data processor" or "service provider" with respect to such information are defined in such services agreement and applicable data protection addendum and are not made part of this policy.
   p If you are a customer’s end user and you have questions about how your information is collected and processed through the services, please contact the organization who has provided your information to us for more information.
   +if('privacyFeatures.ccpa.include')
-    p If you are a California resident, please #[a(href='{PUBLIC_ORIGIN}{privacyFeatures.ccpa.url}') click here to see our California Notice at Collection], which includes additional disclosures as required by California law.
+    p If you are a California resident, please #[a(href='{rootUrl}{privacyFeatures.ccpa.url}') click here to see our California Notice at Collection], which includes additional disclosures as required by California law.
 
   h2 What we collect and why
   p Our guiding principle is to collect only what we need. Here’s what that means in practice:
@@ -139,7 +142,7 @@
 
   h2 When we access or disclose your information
   +if('privacyFeatures.subprocessors.include')
-    p #[strong To provide products or services you’ve requested]. We use some third-party subprocessors to help run our applications and provide the Services to you. You can see a list of #[a(href='{PUBLIC_ORIGIN}{privacyFeatures.subprocessors.url}') all our subprocessors here].
+    p #[strong To provide products or services you’ve requested]. We use some third-party subprocessors to help run our applications and provide the Services to you. You can see a list of #[a(href='{rootUrl}{privacyFeatures.subprocessors.url}') all our subprocessors here].
   p We may disclose your information at your direction if you integrate a third-party service into your use of our products. For example, we may allow you, at your option, to connect your Gmail account to your {PUBLIC_PRODUCT_NAME} account so that you can sign in.
   p No { PUBLIC_COMPANY_NAME_SHORT } human looks at your content except for limited purposes with your express permission, for example, if an error occurs that stops an automated process from working and requires manual intervention to fix. These are rare cases, and when they happen, we look for root cause solutions as much as possible to avoid them recurring. We may also access your data if required in order to respond to legal process (see "When required under applicable law" below).
   p #[strong To exclude you from seeing our ads.] Where permissible by law and if you have a {PUBLIC_PRODUCT_NAME} account, we may disclose a one-way hash of your email address with ad companies to exclude you from seeing our ads.
@@ -177,7 +180,7 @@
     h2 How we secure your data
     p All data is encrypted via #[a(href='https://en.wikipedia.org/wiki/Transport_Layer_Security') SSL/TLS] when transmitted from our servers to your browser. The database backups are also encrypted. In addition, we go to great lengths to secure your data at rest.
       +if('privacyFeatures.security_details.include')
-        | For more information about how we keep your information secure, please review our #[a(href='{PUBLIC_ORIGIN}{privacyFeatures.security_details.url}') security overview].
+        | For more information about how we keep your information secure, please review our #[a(href='{rootUrl}{privacyFeatures.security_details.url}') security overview].
 
   +if('dataDeletion.include || privacyFeatures.cancellation.include')
     h2 What happens when you delete content in your product accounts
@@ -188,7 +191,7 @@
       +if('dataDeletion.include')
         | Your data should be purged from our systems in full within {dataDeletion.backupsDeletionDays} days. This applies both for cases when an account owner directly cancels and for auto-canceled accounts.
       +if('privacyFeatures.cancellation?.url')
-        | Please refer to our #[a(href='{PUBLIC_ORIGIN}{privacyFeatures.cancellation.url}') Cancellation policy] for more details.
+        | Please refer to our #[a(href='{rootUrl}{privacyFeatures.cancellation.url}') Cancellation policy] for more details.
 
   h2 Data retention
   p We keep your information for the time necessary for the purposes for which it is processed. The length of time for which we retain information depends on the purposes for which we collected and use it and your choices, after which time we may delete and/or aggregate it. We may also retain and use this information as necessary to comply with our legal obligations, resolve disputes, and enforce our agreements. Through this policy, we have provided specific retention periods for certain types of information.
@@ -199,12 +202,12 @@
 
   +if('privacyFeatures.gdpr_dpa.include && privacyFeatures.gdpr_dpa.url')
     h2 When transferring personal data from the EU
-    p The European Data Protection Board (EDPB) has issued guidance that personal data transferred out of the EU must be treated with the same level of protection that is granted under EU privacy law. UK law provides similar safeguards for UK user data that is transferred out of the UK. Accordingly, { PUBLIC_COMPANY_NAME_SHORT } has adopted a data processing addendum with Standard Contractual Clauses to help ensure this protection. { PUBLIC_COMPANY_NAME_SHORT }’s DPA is #[a(href='{PUBLIC_ORIGIN}{privacyFeatures.gdpr_dpa.url}') available here].
+    p The European Data Protection Board (EDPB) has issued guidance that personal data transferred out of the EU must be treated with the same level of protection that is granted under EU privacy law. UK law provides similar safeguards for UK user data that is transferred out of the UK. Accordingly, { PUBLIC_COMPANY_NAME_SHORT } has adopted a data processing addendum with Standard Contractual Clauses to help ensure this protection. { PUBLIC_COMPANY_NAME_SHORT }’s DPA is #[a(href='{rootUrl}{privacyFeatures.gdpr_dpa.url}') available here].
     p There are also a few ad hoc cases where EU personal data may be transferred to the U.S. in connection with { PUBLIC_COMPANY_NAME_SHORT } operations, for instance, if an EU user signs up for our newsletter or participates in one of our surveys or buys swag from our company online store. Such transfers are only occasional and data is transferred under the #[a(href='https://gdpr-info.eu/art-49-gdpr/') Article 49(1)(b) derogation] under GDPR and the UK version of GDPR.
 
   h2 Changes and questions
   p We may update this policy as needed to comply with relevant regulations and reflect any new practices.&nbsp;
     +if('privacyFeatures.changelog.include && privacyFeatures.changelog.url')
-      | You can view a history of the #[a(href='{PUBLIC_ORIGIN}{privacyFeatures.changelog.url}') changes to our policies here].&nbsp;
+      | You can view a history of the #[a(href='{rootUrl}{privacyFeatures.changelog.url}') changes to our policies here].&nbsp;
     | Whenever we make a significant change to our policies, we will refresh the date at the top of this page and take any other appropriate steps to notify users.
   p Have any questions, comments, or concerns about this privacy policy, your data, or your rights with respect to your information? Please get in touch by emailing us at #[a(href='mailto:{PUBLIC_SUPPORT_EMAIL}') {PUBLIC_SUPPORT_EMAIL}] and we’ll be happy to try to answer them.</template>
