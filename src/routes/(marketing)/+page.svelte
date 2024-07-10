@@ -14,8 +14,6 @@
 
   import type { Link } from '$lib/types'
 
-  const isProduction = import.meta.env.PROD
-
   let { children } = $props()
 
   // Header Content
@@ -55,7 +53,6 @@
 
   // prettier-ignore
   main
-    p isProduction: {isProduction}
     +if('marketingContent.hero')
       Hero(content='{ marketingContent.hero }', reversed, id='hero')
 

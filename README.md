@@ -111,24 +111,17 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
      - should be able to sign in (and also see a new user in Turso `users` table with `email_verified=1`)
      - should see events in PostHog 'Web Analytics' dashboard
 7. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
-   - setup account & plans
-     - create new account OR access existing account
-     - goto / search for 'Product Catalog'
+   - create new account OR access existing account
+     - configure public details at 'Settings : Business : Public details' (e.g. business name, help link, privacy/terms links, etc.)
+   - setup test environment
+     - search for 'Product Catalog'
        - create a product for each plan level (e.g. 'Starter Plan', 'Pro Plan', 'Elite Plan')
-         - add pricing for each product (can optionally add multiple prices per product for monthly/yearly)
-         - will most likely use 'flat-rate' billing (for app recurring subscriptions)
-     - can goto / search for 'Subscriptions' to complete checklist there or manually visit settings below
+       - add pricing for each product (can optionally add multiple prices per product for monthly/yearly)
+       - will most likely use 'flat-rate' billing (for app recurring subscriptions)
      - configure Customer Portal settings at 'Settings : Billing : Customer portal'
        - e.g. business info, ability to switch subscription plans, etc.
-     - optional: configure branding settings at 'Settings : Business : Branding'
-       - e.g. logo, brand colors
-     - configure public details at 'Settings : Business : Public details'
-       - e.g. business name, help link, privacy/terms links, etc.
-   - connect plans to app
-     - goto / search for 'Developers : API Keys'
-       - copy available key(s) to `.env` (e.g. `STRIPE_SECRET_KEY_TEST`, `STRIPE_SECRET_KEY`; locally and in Vercel project)
-       - can use only 'test' key before Stripe account is activated
-     - goto / search for 'Developers : Webhooks' (may be called 'Event Destinations' later)
+       - optional: configure branding settings at 'Settings : Business : Branding'
+     - search for 'Developers : Webhooks' (may be called 'Event Destinations' later)
        - create new endpoint with url `https://{www.yourdomain.com}/stripe/webhook`
        - add events to listen for:
          - `checkout.session.completed`
@@ -136,11 +129,17 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
          - `customer.subscription.updated`
          - `invoice.paid`
          - `invoice.payment_failed`
-       - save endpoint and copy 'Signing secret' value to `STRIPE_WEBHOOK_SIGNING_SECRET` in .env (locally and in Vercel project)
+       - save endpoint and copy 'Signing secret' value to `STRIPE_WEBHOOK_SIGNING_SECRET_TEST` in `.env` (locally and in Vercel project)
+     - search for 'Developers : API Keys'
+       - copy key to `STRIPE_SECRET_KEY_TEST` in `.env` (locally and in Vercel project)
    - test plan subscriptions
      - …
-   - make plan subscriptions live
-     - complete company details to activate live billing at 'Settings : Business : Business details'
+   - make account live / setup production environment
+     - complete company details at 'Settings : Business : Business details' to activate production environment
+     - in production environment, repeat steps above to create Products, configure Customer Portal, create webhook
+       - yep, for some reason, this all has to be redone manually 🤦‍♂️
+     - copy production webhook signing secret to `STRIPE_WEBHOOK_SIGNING_SECRET` in `.env` (locally and in Vercel project)
+     - copy production secret key to `STRIPE_SECRET_KEY` in `.env` (locally and in Vercel project)
 8. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
    - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env` (both locally and in Vercel project)
    - create new account, or access existing account
