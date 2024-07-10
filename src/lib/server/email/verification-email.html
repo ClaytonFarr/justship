@@ -1,17 +1,10 @@
 <h1>Account Verification Link</h1>
 <p>
-  Here’s your verification link for {{ product_name }}. The link expires in an
-  hour, but you can always get a new one by going through the sign in steps
-  again.
+  Here’s your verification link for <b>{{ product_name }}</b>. The link expires in an hour, but you can always get a new
+  one by going through the sign in steps again.
 </p>
 <!-- Action -->
-<table
-  class="body-action"
-  align="center"
-  width="100%"
-  cellpadding="0"
-  cellspacing="0"
->
+<table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
   <tr>
     <td align="center">
       <!-- Border based button https://litmus.com/blog/a-guide-to-bulletproof-buttons-in-email-design -->
@@ -21,12 +14,7 @@
             <table border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td>
-                  <a
-                    href="{{ action_url }}"
-                    class="button button--"
-                    target="_blank"
-                    >Open {{ product_name }}</a
-                  >
+                  <a href="{{ action_url }}" class="button button--" target="_blank">Verify My Account</a>
                 </td>
               </tr>
             </table>
@@ -36,15 +24,14 @@
     </td>
   </tr>
 </table>
-<p>Thanks,<br />The {{ product_name }} Team</p>
+<p>Thanks!<br />The {{ product_name }} Team</p>
 
 <!-- Sub copy -->
 <table class="body-sub">
   <tr>
     <td>
       <p class="sub">
-        If you’re having trouble using the link above, you can also copy and paste the URL
-        below into your web browser –
+        If you’re having trouble using the link above, you can also copy and paste the URL below into your web browser –
       </p>
       <p class="sub">{{ action_url }}</p>
     </td>
