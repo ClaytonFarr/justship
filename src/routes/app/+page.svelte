@@ -1,2 +1,2 @@
 <template lang="pug">
-  h1 At App</template>
+  h1 Dashboard</template>

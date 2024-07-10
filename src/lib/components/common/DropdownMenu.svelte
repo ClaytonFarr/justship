@@ -8,12 +8,10 @@
     {
       label: 'Item One',
       href: '#',
-      description: 'This is a description',
     },
     {
       label: 'Item Two',
       href: '#',
-      description: 'This is a description',
     },
   ]
   export let slotBorder: boolean = false
@@ -29,7 +27,7 @@
   }
 
   function onWindowClick(event: MouseEvent) {
-    if (!container.contains(event.target as Node)) isOpen = false
+    if (!container.contains(event.target as Node) || menuElement.contains(event.target as Node)) isOpen = false
   }
 
   function setMenuPosition() {
@@ -65,7 +63,7 @@
 
 <template lang="pug">
   .relative(bind:this='{ container }')
-    button.text-content-heading.inline-flex.items-center.gap-x-2.text-sm.font-medium.leading-6(
+    button.inline-flex.items-center.gap-x-2.text-sm.font-medium.leading-6.text-content-heading(
       type='button',
       aria-expanded='{ isOpen }',
       on:click='{ toggleMenu }',

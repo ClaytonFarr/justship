@@ -5,6 +5,7 @@
 </script>
 
 <template lang="pug">
-  Header
-  Container
-    | {@render children()}</template>
+  .min-h-dvh.bg-surface-light
+    Header
+    Container(additionalClasses='py-8')
+      | {@render children()}</template>

@@ -9,27 +9,32 @@
   import type { Link } from '$lib/types'
 
   const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
+  let mobileMenuOpen: boolean = false
 
   export let navigation: Link[] = [
-    { label: 'Create', href: '/app/create' },
-    { label: 'View', href: '/app/view' },
+    { label: 'Dashboard', href: '/app' },
+    { label: 'New', href: '/app/new' },
+    { label: 'All', href: '/app/all' },
   ]
   export let accountNavigation: Link[] = [{ label: 'Settings', href: '/app/settings' }]
 
-  let mobileMenuOpen: boolean = false
+  const isActive = (href: string): boolean => $page.url.pathname === href
 </script>
 
 <template lang="pug">
-  header.bg-white
+  header.border-b.bg-white(class='border-rule-light/75')
     Container
       nav.flex.h-20.items-center.justify-between.gap-x-8.py-6.lg_py-8(aria-label='Global')
         .flex
           h1: a.flex.items-center.gap-4(href='{rootUrl}/app', class='-m-1.5 p-1.5')
-            img.h-8.w-auto(src='logo.svg', alt='')
+            img.h-8.w-auto(src='/logo.svg', alt='')
             span.sr-only {PUBLIC_PRODUCT_NAME}
         .hidden.md_flex.md_gap-x-8
           +each('navigation as item')
-            a.text-sm.font-medium.leading-6.text-content-heading(href='{rootUrl}{ item.href }') {item.label}
+            a.text-sm.font-medium.leading-6.transition(
+              href='{rootUrl}{ item.href }',
+              class!='{ isActive(item.href) ? "text-action cursor-default" : "text-content-heading hover_text-action" }'
+            ) {item.label}
 
         +if('$page.data.user')
           .flex.flex-1.justify-end
@@ -85,7 +90,8 @@
               .-my-6.divide-y(class='divide-rule/10')
                 .space-y-2.py-6
                   +each('navigation as item')
-                    a.hover_bg-surface-light-50.-mx-3.block.rounded-lg.px-3.py-2.text-base.font-medium.leading-7.text-content-heading(
+                    a.hover_bg-surface-light-50.-mx-3.block.rounded-lg.px-3.py-2.text-base.font-medium.leading-7(
+                      class!='{ isActive(item.href) ? "text-action" : "text-content-heading" }',
                       href='{rootUrl}{ item.href }'
                     ) {item.label}
                 .py-6
