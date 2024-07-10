@@ -17,14 +17,11 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - added default privacy & terms content
 - updated sign-up & sign-in to use email & password
 - added password reset flow
-- update pricing UX to default to free plan
+- connected creation of Stripe customer on sign-up
+- update pricing UX to default new accounts to free plan
 
 _Pending_
 
-- setup plans & billing with Stripe
-  - add plan type to user table
-  - default to creating new accounts on free plan
-  - offer upgrade path UX (prompts)
 - add app settings page
   - ability to upgrade/change plan & cancel account
 - test Google OAuth in production
