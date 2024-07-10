@@ -105,7 +105,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
     - select '+ Create Credentials' : 'OAuth client ID'
     - …
 
-### Production + Paid Plans Dev/Production
+### Production
 
 1. Have or get a domain name
    - (Optional) Setup email account(s) with new domain to create new infrastructure accounts below (e.g. using service like [Migadu](https://migadu.com/))
