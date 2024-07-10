@@ -36,6 +36,20 @@
       "when": 1720556773401,
       "tag": "0004_old_vindicator",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1720637214681,
+      "tag": "0005_flowery_taskmaster",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1720639196170,
+      "tag": "0006_cynical_hannibal_king",
+      "breakpoints": true
     }
   ]
 }

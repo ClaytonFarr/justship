@@ -1,5 +1,5 @@
 import { json, type RequestEvent } from '@sveltejs/kit'
-import { stripeClient } from '../stripe'
+import { stripeClient } from '$lib/server/stripe'
 
 export async function POST(event: RequestEvent): Promise<Response> {
   const data = await event.request.json()

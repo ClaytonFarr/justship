@@ -7,7 +7,7 @@ import { TimeSpan, createDate } from 'oslo'
 export const getSignins = async (signin: { email: string; ip_address: string }) => {
   // 0. delete all signins that are older than 1 hour
   // 1. return all signins from this ip_address in the past hours
-  let batchResult = await db.batch([
+  const batchResult = await db.batch([
     db.delete(signinTable).where(eq(signinTable.logged_in_at, createDate(new TimeSpan(-1, 'h')))),
     db
       .select()

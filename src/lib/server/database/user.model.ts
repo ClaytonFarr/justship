@@ -22,7 +22,11 @@ export const getUserById = async (id: string) => {
 
 type UpdateUser = Partial<typeof userTable.$inferInsert>
 export const updateUser = async (id: string, user: UpdateUser) => {
-  const result = await db.update(userTable).set(user).where(eq(userTable.id, id)).returning()
+  const result = await db
+    .update(userTable)
+    .set({ ...user, updated_at: new Date() })
+    .where(eq(userTable.id, id))
+    .returning()
   if (result.length === 0) {
     return null
   } else {
@@ -37,10 +41,24 @@ type NewUser = {
   email: string
   email_verified: boolean
   receive_product_updates: boolean
+  stripe_customer_id?: string
+  created_at: Date
+  updated_at: Date
+  last_sign_in?: Date
 }
 
 export const createNewUser = async (user: NewUser) => {
-  const result = await db.insert(userTable).values(user).onConflictDoNothing().returning()
+  const now = new Date()
+  const result = await db
+    .insert(userTable)
+    .values({
+      ...user,
+      created_at: now,
+      updated_at: now,
+      last_sign_in: undefined,
+    })
+    .onConflictDoNothing()
+    .returning()
   if (result.length === 0) {
     return null
   } else {

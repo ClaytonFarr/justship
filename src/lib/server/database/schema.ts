@@ -7,6 +7,11 @@ export const userTable = sqliteTable('user', {
   email: text('email').notNull(),
   email_verified: integer('email_verified', { mode: 'boolean' }),
   receive_product_updates: integer('receive_product_updates', { mode: 'boolean' }).default(false),
+  stripe_customer_id: text('stripe_customer_id'),
+  current_plan_id: text('current_plan_id'),
+  created_at: integer('created_at', { mode: 'timestamp' }),
+  updated_at: integer('updated_at', { mode: 'timestamp' }),
+  last_sign_in: integer('last_sign_in', { mode: 'timestamp' }),
 })
 
 export const sessionTable = sqliteTable('session', {

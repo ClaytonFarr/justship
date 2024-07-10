@@ -9,7 +9,7 @@ import { lucia } from '$lib/server/auth/auth'
 import { generateIdFromEntropySize } from 'lucia'
 import { Argon2id } from 'oslo/password'
 import { sendPasswordResetLink, sendVerificationEmail } from '$lib/server/email/email'
-import { createNewUser, getUserByEmail } from '$lib/server/database/user.model'
+import { createNewUser, getUserByEmail, updateUser } from '$lib/server/database/user.model'
 import { createSignin, getSignins } from '$lib/server/database/signin.model'
 import { generatePasswordResetToken } from '$lib/server/auth/resettoken'
 import type { Actions, PageServerLoad } from './$types'
@@ -73,6 +73,9 @@ export const actions: Actions = {
       email_verified: false,
       password_hash: passwordHash,
       receive_product_updates: receive_product_updates ?? false,
+      created_at: new Date(),
+      updated_at: new Date(),
+      last_sign_in: undefined,
     })
 
     if (!user) {
@@ -146,6 +149,8 @@ export const actions: Actions = {
       // If remember_me is true, set maxAge to 15 days, otherwise use the default (session)
       maxAge: remember_me ? 60 * 60 * 24 * 15 : undefined,
     })
+
+    await updateUser(user.id, { last_sign_in: new Date() })
 
     redirect(302, `${rootUrl}/app`)
   },
