@@ -21,7 +21,11 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 _Pending_
 
 - setup plans & billing with Stripe
+  - add plan type to user table
+  - default to creating new accounts on free plan
+  - offer upgrade path UX (prompts)
 - add app settings page
+  - ability to upgrade/change plan & cancel account
 - test Google OAuth in production
 
 ========================
@@ -106,16 +110,44 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
      - should receive verification email (and also see 'Transactional Stream' messages number update in Postmark account)
      - should be able to sign in (and also see a new user in Turso `users` table with `email_verified=1`)
      - should see events in PostHog 'Web Analytics' dashboard
-7. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
+7. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
+   - setup account & plans
+     - create new account OR access existing account
+     - goto / search for 'Product Catalog'
+       - create a product for each plan level (e.g. 'Starter Plan', 'Pro Plan', 'Elite Plan')
+         - add pricing for each product (can optionally add multiple prices per product for monthly/yearly)
+         - will most likely use 'flat-rate' billing (for app recurring subscriptions)
+     - can goto / search for 'Subscriptions' to complete checklist there or manually visit settings below
+     - configure Customer Portal settings at 'Settings : Billing : Customer portal'
+       - e.g. business info, ability to switch subscription plans, etc.
+     - optional: configure branding settings at 'Settings : Business : Branding'
+       - e.g. logo, brand colors
+     - configure public details at 'Settings : Business : Public details'
+       - e.g. business name, help link, privacy/terms links, etc.
+   - connect plans to app
+     - goto / search for 'Developers : API Keys'
+       - copy available key(s) to `.env` (e.g. `STRIPE_SECRET_KEY_TEST`, `STRIPE_SECRET_KEY`; locally and in Vercel project)
+       - can use only 'test' key before Stripe account is activated
+     - goto / search for 'Developers : Webhooks' (may be called 'Event Destinations' later)
+       - create new endpoint with url `https://{www.yourdomain.com}/stripe/webhook`
+       - add events to listen for:
+         - `checkout.session.completed`
+         - `customer.subscription.deleted`
+         - `customer.subscription.updated`
+         - `invoice.paid`
+         - `invoice.payment_failed`
+       - save endpoint and copy 'Signing secret' value to `STRIPE_WEBHOOK_SIGNING_SECRET` in .env (locally and in Vercel project)
+   - test plan subscriptions
+     - …
+   - make plan subscriptions live
+     - complete company details to activate live billing at 'Settings : Business : Business details'
+8. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
    - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env` (both locally and in Vercel project)
    - create new account, or access existing account
    - create new project, or use existing project
    - navigate to 'APIs & Services' : 'Credentials'
    - select '+ Create Credentials' : 'OAuth client ID'
    - (other details pending) …
-8. (Optional: if have paid user accounts) Setup billing with **[Stripe](https://stripe.com)**
-   - create new account OR access existing account
-   - (details pending) …
 
 ========================
 
