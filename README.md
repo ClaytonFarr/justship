@@ -95,7 +95,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
      - search for 'Developers : API Keys'
        - copy key to `STRIPE_SECRET_KEY_TEST` in `.env` (locally and in Vercel project)
    - test plan subscriptions
-     - you should now be able to in dev 1) create a new account, 2) verify email (using Mailpit), 3) see new Stripe user created with subscription to free product
+     - you should now be able to in dev 1) create a new account, 2) verify email (using Mailpit), 3) see new Stripe user created with subscription to free product in Stripe's test environment
 10. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
     - (full details pending) …
     - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env` (both locally and in Vercel project)
@@ -161,6 +161,8 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
        - copy price id value to `STRIPE_FREE_PLAN_PRICE_ID` in `.env` (locally and in Vercel project)
      - copy production webhook signing secret to `STRIPE_WEBHOOK_SIGNING_SECRET` in `.env` (locally and in Vercel project)
      - copy production secret key to `STRIPE_SECRET_KEY` in `.env` (locally and in Vercel project)
+   - test plan subscriptions
+     - you should now be able to in prod 1) create a new account (use address currently allowed by Postmark account), 2) verify email, 3) see new Stripe user created with subscription to free product in Stripe's production environment
 
 ========================
 
