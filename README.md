@@ -2,6 +2,8 @@
 
 A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) SvelteKit marketing + app boilerplate.
 
+This boilerplate provides a full stack shell for a SaaS application driven by SvelteKit with Typescript/Node and SQLite, with separate marketing and application front-ends, user accounts, auth access and control, and paid plans billed with Stripe.
+
 ## Customizations
 
 - added Svelte Preprocess + Pug
@@ -20,11 +22,11 @@ A customized version of Fulco's [JustShip](https://github.com/ocluf/justship) Sv
 - connected creation of Stripe customer on sign-up
 - update pricing UX to default new accounts to free plan
 
-_Pending_
+_You'll Need To Build_
 
-- add app settings page
-  - ability to upgrade/change plan & cancel account
-- test Google OAuth in production
+- your application 😉
+- application settings page (allowing user to manage auth settings and update plan, via Stripe Checkout)
+- responses to billing events (see `src/routes/stripe/webhook/server.ts` for starter)
 
 ========================
 
@@ -34,7 +36,7 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
 
 ## Pricing UX + Plan Assumptions
 
-- The current UX and code presume you have a free plan, plus optional paid plans. When a user signs up, the app will create a new user record + an associated Stripe customer record + that is subscribed automatically to your free plan. The user can then change plans within their app settings when prompted/desired.
+The current UX and code presume you have a free plan, plus optional paid plans. When a user signs up, the app will create a new user record + an associated Stripe customer record + that is subscribed automatically to your free plan. The user can then change plans within their app settings when prompted/desired.
 
 ## Getting Started 🚀
 
@@ -94,13 +96,12 @@ A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justsh
    - test plan subscriptions
      - you should now be able to in dev 1) create a new account, 2) verify email (using Mailpit), 3) see new Stripe user created with subscription to free product in Stripe's test environment
 10. (Optional: if want to use Google sign-up/in) Setup Google OAuth with **[Google Cloud](https://console.cloud.google.com/)**
-    - (full details pending) …
     - set `PUBLIC_GOOGLE_OAUTH_ENABLED=true` in `.env` (both locally and in Vercel project)
     - create new account, or access existing account
     - create new project, or use existing project
     - navigate to 'APIs & Services' : 'Credentials'
     - select '+ Create Credentials' : 'OAuth client ID'
-    - …
+    - (full details pending…)
 
 ### Production
 
