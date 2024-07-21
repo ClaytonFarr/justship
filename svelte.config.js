@@ -16,7 +16,7 @@ const config = {
       precompress: false,
       strict: true
 		}),
-      alias: {
+		alias: {
 			$actions: path.resolve('./src/lib/actions'),
 			$components: path.resolve('./src/lib/components'),
 			$util: path.resolve('./src/lib/util')
