@@ -1,16 +1,32 @@
 <script lang="ts">
   import { Eye, EyeOff } from 'lucide-svelte'
-  export let id: string
-  export let name: string = id
-  export let label: string
-  export let placeholder: string
-  export let type: string = 'text'
-  export let value: string = ''
-  export let required: boolean = false
-  export let autocomplete: string = 'off'
-  export let autofocus: boolean = false
-  export let showPassword: boolean = false
-  export let large: boolean = false
+  interface Props {
+    id: string;
+    name?: string;
+    label: string;
+    placeholder: string;
+    type?: string;
+    value?: string;
+    required?: boolean;
+    autocomplete?: string;
+    autofocus?: boolean;
+    showPassword?: boolean;
+    large?: boolean;
+  }
+
+  let {
+    id,
+    name = id,
+    label,
+    placeholder,
+    type = 'text',
+    value = $bindable(''),
+    required = false,
+    autocomplete = 'off',
+    autofocus = false,
+    showPassword = $bindable(false),
+    large = false
+  }: Props = $props();
 
   function toggleShowPassword() {
     showPassword = !showPassword
@@ -36,7 +52,7 @@
       +if("type === 'password'")
         // prettier-ignore
         button.absolute.inline-flex.items-center.justify-center.rounded-md.rounded-l-none.px-4.bg-white(
-        on:click='{ toggleShowPassword }',
+        onclick='{ toggleShowPassword }',
         class='top-[2px] right-[2px] bottom-[2px]',
         type='button',
         )

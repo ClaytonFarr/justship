@@ -7,11 +7,11 @@ export const marketingContent: MarketingContent = {
     heading: 'Accomplish the thing you desire',
     subheading:
       'Achieve your goals with ease and confidence using our suite of specific, high-value tools and features.',
-    // newsTag: {
-    //   primaryText: 'Take Note of This',
-    //   secondaryText: 'See Something Important',
-    //   href: '#faqs',
-    // },
+    newsTag: {
+      primaryText: 'Take Note of This',
+      secondaryText: 'See Something Important',
+      href: '#faqs',
+    },
     links: {
       primary: {
         text: 'Get Started Today',
@@ -32,47 +32,47 @@ export const marketingContent: MarketingContent = {
     headingTagline: 'Accomplish what you need',
     heading: 'Everything you need to do exactly what you need.',
     subheading:
-      'Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.',
+      'Discover our comprehensive suite of tools designed to streamline your workflow and boost productivity. Our platform offers innovative solutions to meet your business needs.',
     features: [
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'This feature provides a powerful solution to enhance your productivity. It streamlines complex processes and saves you valuable time.',
         lucideIcon: 'CloudUpload',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Improve your workflow efficiency with this intuitive feature. It offers advanced capabilities to optimize your daily tasks.',
         lucideIcon: 'LockKeyhole',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Experience seamless integration and enhanced collaboration with this feature. It enables smooth communication across your team.',
         lucideIcon: 'RefreshCw',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Unlock new possibilities with this innovative feature. It provides cutting-edge tools to drive your business forward.',
         lucideIcon: 'Award',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Gain valuable insights and make informed decisions with this analytical feature. It offers comprehensive data visualization and reporting.',
         lucideIcon: 'BookText',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Enhance your security and protect your data with this robust feature. It implements advanced measures to safeguard your information.',
         lucideIcon: 'Cable',
         url: '',
       },
@@ -137,34 +137,34 @@ export const marketingContent: MarketingContent = {
   faqs: {
     items: [
       {
-        question: 'Question One',
+        question: 'First Frequently Asked Question',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'This is a placeholder answer for the first frequently asked question. It provides a brief explanation or clarification on a common topic or concern related to our product or service.',
       },
       {
-        question: 'Question Two',
+        question: 'Second Frequently Asked Question',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'Here is a sample response to the second frequently asked question. This answer aims to address another common inquiry or provide additional information about a specific aspect of what we offer.',
       },
       {
-        question: 'Question Three',
+        question: 'Third Frequently Asked Question',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'The third question is answered with this placeholder text. It could cover details about pricing, features, or any other relevant topic that customers often want to know more about.',
       },
       {
-        question: 'Question Four',
+        question: 'Fourth Frequently Asked Question',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'This is a generic answer to the fourth question in our FAQ section. It might explain a process, clarify a policy, or provide guidance on how to use a particular feature of our product or service.',
       },
       {
-        question: 'Question Five',
+        question: 'Fifth Frequently Asked Question',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'The fifth FAQ item is addressed with this placeholder response. It could cover topics such as customer support, account management, or any other relevant area of interest to our users.',
       },
       {
-        question: 'Question Six',
+        question: 'Sixth Frequently Asked Question',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'Our final FAQ item is answered here with generic placeholder text. This could be used to address any remaining common questions, concerns, or to provide additional helpful information to our customers.',
       },
     ],
   },

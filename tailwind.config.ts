@@ -1,13 +1,15 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import defaultTheme from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+import type { Config } from 'tailwindcss';
 
-/** @type {import('tailwindcss').Config} */
-const config = {
+export default {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	darkMode: 'selector',
 	separator: '_',
-	content: ['./src/**/*.{svelte,js,ts,html}'],
 	theme: {
-    extend: {
+		extend: {
       colors: {
         action: {
           DEFAULT: colors.sky[600],
@@ -41,7 +43,7 @@ const config = {
           darkest: colors.slate[900],
         },
       },
-      fontFamily: {
+			fontFamily: {
         sans: [ 'Inter Variable', ...defaultTheme.fontFamily.sans ],
         display: [ 'Lexend Variable', ...defaultTheme.fontFamily.sans ],
       },
@@ -50,15 +52,10 @@ const config = {
         'input-lg': '3rem',
       },
       lineHeight: {
-        'open': 1.75,
+        'open': "1.75",
       },
-    },
-  },
-  darkMode: 'selector',
-	plugins: [
-		require('@tailwindcss/forms'),
-		require('@tailwindcss/typography'),
-	],
-};
+		}
+	},
 
-export default config;
+	plugins: [typography, forms]
+} as Config;

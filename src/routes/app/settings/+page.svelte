@@ -1,2 +1,3 @@
 <template lang="pug">
-  h1 Settings</template>
+  h1 Settings
+</template>

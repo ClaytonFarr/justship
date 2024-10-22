@@ -7,5 +7,19 @@
   "printWidth": 120,
   "plugins": ["prettier-plugin-svelte", "@prettier/plugin-pug", "prettier-plugin-tailwindcss"],
   "svelteAllowShorthand": true,
-  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte",
+        "pugSingleFileComponentIndentation": true,
+        "pugClassNotation": "attribute",
+        "pugIdNotation": "attribute",
+        "pugBracketSameLine": false,
+        "pugBracketSpacing": true,
+        "pugSingleQuote": false,
+        "pugAttributeSeparator": "none"
+      }
+    }
+  ]
 }

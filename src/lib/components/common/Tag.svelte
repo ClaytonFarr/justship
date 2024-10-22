@@ -1,14 +1,27 @@
 <script lang="ts">
   import { ArrowRight, ArrowDown } from 'lucide-svelte'
 
-  export let label: string
-  export let style: 'ghost' | 'filled' | 'bordered' = 'ghost'
-  export let iconLeft
-  export let iconRight
-  export let arrowDirection: 'right' | 'down' = 'right'
-  export let href: string
-  export let hrefCtaLabel: string = 'Read more'
-  export let additionalClasses: string = ''
+  interface Props {
+    label: string;
+    style?: 'ghost' | 'filled' | 'bordered';
+    iconLeft: any;
+    iconRight: any;
+    arrowDirection?: 'right' | 'down';
+    href: string;
+    hrefCtaLabel?: string;
+    additionalClasses?: string;
+  }
+
+  let {
+    label,
+    style = 'ghost',
+    iconLeft,
+    iconRight,
+    arrowDirection = 'right',
+    href,
+    hrefCtaLabel = 'Read more',
+    additionalClasses = ''
+  }: Props = $props();
 
   let commonClasses =
     'inline-flex items-center text-sm leading-6 opacity-90 hover_opacity-100 group-hover_opacity-100 whitespace-nowrap'
@@ -19,7 +32,7 @@
     bordered:
       'rounded-full px-5 py-1 ring-1 ring-rule/40 bg-white/15 dark_bg-white/10 text-content-secondary/85 dark_text-content-secondary-reversed/70',
   }
-  $: tagClasses = `${commonClasses} ${styleClasses[style]} ${additionalClasses}`
+  let tagClasses = $derived(`${commonClasses} ${styleClasses[style]} ${additionalClasses}`)
 </script>
 
 <!-- svelte-ignore a11y_missing_content -->
@@ -28,10 +41,12 @@
     // prettier-ignore
     a(href='{ href }', class='{ tagClasses }').group.space-x-4
       +if('iconLeft')
-        svelte:component.h-4.w-4(this='{ iconLeft }')
+        +const('Icon = iconLeft')
+        <Icon class='w-4 h-4' />
       span {label}
       +if('iconRight')
-        svelte:component.h-4.w-4(this='{ iconRight }')
+        +const('Icon = iconRight')
+        <Icon class='w-4 h-4' />
       span.flex.items-center.space-x-1.transition.text-action.group-hover_text-action-hover
         span {hrefCtaLabel}
         +if("arrowDirection === 'down'")
@@ -42,7 +57,10 @@
       // prettier-ignore
       span(class='{ tagClasses }').space-x-2
         +if('iconLeft')
-          svelte:component.h-4.w-4(this='{ iconLeft }')
+          +const('Icon = iconLeft')
+          <Icon class='w-4 h-4' />
         span {label}
         +if('iconRight')
-          svelte:component.h-4.w-4(this='{ iconRight }')</template>
+          +const('Icon = iconRight')
+          <Icon class='w-4 h-4' />
+</template>

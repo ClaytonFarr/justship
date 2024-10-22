@@ -1,10 +1,16 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
   import { ChevronDown } from 'lucide-svelte'
   import type { Link } from '$lib/types'
 
-  export let menuLabel: string = 'Menu'
-  export let menuItems: Link[] = [
+  interface Props {
+    menuLabel?: string;
+    menuItems?: Link[];
+    slotBorder?: boolean;
+    content?: Snippet;
+  }
+
+  let { menuLabel = 'Menu', menuItems = [
     {
       label: 'Item One',
       href: '#',
@@ -13,21 +19,22 @@
       label: 'Item Two',
       href: '#',
     },
-  ]
-  export let slotBorder: boolean = false
+  ],
+    slotBorder = false,
+    content,
+  }: Props = $props();
 
-  let isOpen: boolean = false
+  let isOpen: boolean = $state(false)
   let container: HTMLDivElement
   let buttonElement: HTMLButtonElement
-  let menuElement: HTMLDivElement
-  let menuPosition: 'center' | 'left' | 'right' = 'center'
+  let menuElement = $state<HTMLDivElement | null>(null);
+  let menuPosition: 'center' | 'left' | 'right' = $state('center')
 
   function toggleMenu(): void {
     isOpen = !isOpen
   }
-
   function onWindowClick(event: MouseEvent) {
-    if (!container.contains(event.target as Node) || menuElement.contains(event.target as Node)) isOpen = false
+    if (!container.contains(event.target as Node) || (menuElement && menuElement.contains(event.target as Node))) isOpen = false
   }
 
   function setMenuPosition() {
@@ -54,23 +61,25 @@
     return () => window.removeEventListener('resize', setMenuPosition)
   })
 
-  $: if (isOpen) {
-    setTimeout(setMenuPosition, 0)
-  }
+  $effect(() => {
+    if (isOpen) {
+      setTimeout(setMenuPosition, 0)
+    }
+  });
 </script>
 
-<svelte:window on:click={onWindowClick} />
+<svelte:window onclick={onWindowClick} />
 
 <template lang="pug">
   .relative(bind:this='{ container }')
     button.inline-flex.items-center.gap-x-2.text-sm.font-medium.leading-6.text-content-heading(
       type='button',
       aria-expanded='{ isOpen }',
-      on:click='{ toggleMenu }',
+      onclick='{ toggleMenu }',
       bind:this='{ buttonElement }'
     )
       span { menuLabel }
-      svelte:component.h-4.w-4(this='{ ChevronDown }', aria-hidden='true')
+      ChevronDown.h-4.w-4(aria-hidden='true')
 
     +if('isOpen')
       // prettier-ignore
@@ -90,4 +99,7 @@
                   span.absolute.inset-0
                 p.mt-1.text-content-secondary { item.description }
           div(class!='{slotBorder ? "border-t border-1 border-input-light py-2" : "-mt-2 pb-2"}')
-            slot</template>
+          +if('content')
+            | {@render content()}
+
+</template>

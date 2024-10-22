@@ -1,8 +1,19 @@
 <script lang="ts">
-  export let monochrome = false
-  export let colorClass: string = 'currentColor'
-  export let heightClass = 'h-5'
-  export let widthClass = !heightClass ? 'w-5' : ''
+  interface Props {
+    monochrome?: boolean;
+    colorClass?: string;
+    heightClass?: string;
+    widthClass?: any;
+    [key: string]: any
+  }
+
+  let {
+    monochrome = false,
+    colorClass = 'currentColor',
+    heightClass = 'h-5',
+    widthClass = !heightClass ? 'w-5' : '',
+    ...rest
+  }: Props = $props();
 </script>
 
 <svg
@@ -10,7 +21,7 @@
   fill="currentColor"
   viewBox="0 0 24 24"
   aria-hidden="true"
-  {...$$restProps}
+  {...rest}
 >
   <path
     fill-rule="evenodd"

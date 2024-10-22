@@ -1,12 +1,25 @@
 <script lang="ts">
-  export let id: string
-  export let label: string
-  export let processingLabel: string = 'Processing...'
-  export let type: string = 'button'
-  export let large: boolean = false
-  export let onClick: (() => void) | undefined = undefined
-  export let loading: boolean = false
-  export let disabled: boolean = false
+  interface Props {
+    id: string;
+    label: string;
+    processingLabel?: string;
+    type?: string;
+    large?: boolean;
+    onClick?: (() => void) | undefined;
+    loading?: boolean;
+    disabled?: boolean;
+  }
+
+  let {
+    id,
+    label,
+    processingLabel = 'Processing...',
+    type = 'button',
+    large = false,
+    onClick = undefined,
+    loading = false,
+    disabled = false
+  }: Props = $props();
 </script>
 
 <template lang="pug">
@@ -15,7 +28,7 @@
     id='{ id }',
     type='{ type }',
     class!='{ large ? "h-input-lg text-base" : "h-input text-sm" } { loading || disabled ? "opacity-75 cursor-not-allowed" : "" }',
-    on:click='{ onClick }',
+    onclick='{ onClick }',
     disabled='{ disabled || loading }'
   )
     +if('loading')

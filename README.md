@@ -42,16 +42,15 @@ The current UX and code presume you have a free plan, plus optional paid plans. 
 
 ### Local Development
 
-1. Use original repo as template (or fork) to create new GitHub repo
-2. Within local copy of repo run `npm install --legacy-peer-deps` or `pnpm install`
+1. Use this repo as template (or fork) to create new GitHub repo
+2. Within local copy of repo run `pnpm install`
 3. Rename the `.env.example` file to `.env`
-   - add a value to `.env` for `FROM_EMAIL` (e.g. 'noreply@domain.com')
-4. Run `npm run generate && npm run migrate` to create a local database
+4. Run `pnpm run generate && pnpm run migrate` to create a local database
 5. [Install mailpit](https://mailpit.axllent.org/docs/install/) to receive emails locally
-   - start mailpit running in background (e.g. `brew services start mailpit`)
+   - start mailpit running in background in separate terminal (e.g. `brew services start mailpit`)
    - note: can stop background mailpit process after dev (e.g. `brew services stop mailpit`)
-6. run `npm run dev`
-7. create a new account at [sign in page](http://localhost:5173/signin) using any email address
+6. run `pnpm run dev`
+7. create a new account at [sign in page](http://localhost:5173/signin?new) using any email address
    - check for sign-up email at [Mailpit localhost:8025](http://localhost:8025/)
    - click email activation link to create account and sign in
 8. Update missing / placeholder content

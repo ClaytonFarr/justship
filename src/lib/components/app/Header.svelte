@@ -9,14 +9,20 @@
   import type { Link } from '$lib/types'
 
   const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
-  let mobileMenuOpen: boolean = false
+  let mobileMenuOpen: boolean = $state(false)
 
-  export let navigation: Link[] = [
+  interface Props {
+    navigation?: Link[];
+    accountNavigation?: Link[];
+  }
+
+  let { navigation = [
     { label: 'Dashboard', href: '/app' },
     { label: 'New', href: '/app/new' },
     { label: 'All', href: '/app/all' },
-  ]
-  export let accountNavigation: Link[] = [{ label: 'Settings', href: '/app/settings' }]
+  ], accountNavigation = [
+    { label: 'Settings', href: '/app/settings '},
+  ] }: Props = $props();
 
   const isActive = (href: string): boolean => $page.url.pathname === href
 </script>
@@ -60,7 +66,7 @@
           button.inline-flex.items-center.justify-center.rounded-md.text-content-body(
             type='button',
             class='-m-2.5 p-2.5',
-            on:click!='{ () => mobileMenuOpen = true }'
+            onclick!='{ () => mobileMenuOpen = true }'
           )
             span.sr-only Open main menu
             Menu.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')
@@ -82,7 +88,7 @@
               button.rounded-md.text-content-body(
                 type='button',
                 class='-m-2.5 p-2.5',
-                on:click!='{ () => mobileMenuOpen = false }'
+                onclick!='{ () => mobileMenuOpen = false }'
               )
                 span.sr-only Close menu
                 X.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')

@@ -10,9 +10,6 @@
   import Github from '$components/common/images/icons/Github.svelte'
   import Youtube from '$components/common/images/icons/Youtube.svelte'
 
-  export let id: string = 'footer'
-  export let reversed = false
-  export let currentYear: number = new Date().getFullYear()
 
   function getIconComponent(iconName: string) {
     switch (iconName) {
@@ -31,8 +28,20 @@
     }
   }
 
-  // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
-  export let content: FooterContent = {
+  
+  interface Props {
+    id?: string;
+    reversed?: boolean;
+    currentYear?: number;
+    // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
+    content?: FooterContent;
+  }
+
+  let {
+    id = 'footer',
+    reversed = false,
+    currentYear = new Date().getFullYear(),
+    content = {
     // example footer nav content below (likely unwanted or necessary if initially focusing on a single-page landing page)
     footerNav: {
       include: true,
@@ -95,6 +104,7 @@
       ],
     },
   }
+  }: Props = $props();
 </script>
 
 <template lang="pug">
@@ -148,12 +158,13 @@
         .mt-8.border-t.border-rule-light.dark_border-rule-dark.pt-8.md_flex.md_items-center.md_justify-between
           //- Social Links
           +if('content.social?.include && content.social.links.length > 0')
-            .flex.space-x-6.md_order-1
+            .flex.space-x-4.md_order-1
               +each('content.social.links as link')
                 a.text-content-secondary.dark_text-content-secondary-reversed.opacity-75.hover_opacity-100.hover_text-action-hover(href='{ link.href }')
                   span.sr-only {link.label}
                   +if('getIconComponent(link.label)')
-                    svelte:component(this='{ getIconComponent(link.label) }', size=24)
+                    +const('Icon = getIconComponent(link.label)')
+                    <Icon class='size-5' />
 
           .flex.space-x-6.md_order-2.leading-5.text-xs.text-content-secondary.dark_text-content-secondary-reversed.mt-8.md_mt-0
             //- Policies
@@ -163,4 +174,6 @@
               a.hover_text-action-hover(href='/policies/terms-of-service') Terms
 
             //- Copyright
-            span.text-content-tertiary &copy; {currentYear} {PUBLIC_COMPANY_NAME}. All rights reserved.</template>
+            span.text-content-tertiary &copy; {currentYear} {PUBLIC_COMPANY_NAME}. All rights reserved.
+            
+</template>

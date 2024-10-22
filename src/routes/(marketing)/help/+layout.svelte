@@ -14,4 +14,5 @@
     Container(
       additionalClasses='prose prose-slate prose-sm prose-headings_font-medium prose-h1_text-2xl prose-h1_font-display prose-h2_text-lg prose-h2_font-display prose-h3_font-display prose-h3_text-base'
     )
-      | {@render children()}</template>
+      | {@render children()}
+</template>

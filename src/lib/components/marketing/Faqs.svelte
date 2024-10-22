@@ -3,44 +3,49 @@
   import type { FaqContent } from '$lib/types'
   import Container from '$components/common/Container.svelte'
 
-  export let id: string = 'faqs'
-  export let reversed = false
 
-  // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
-  export let content: FaqContent = {
+  
+  interface Props {
+    id?: string;
+    reversed?: boolean;
+    // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
+    content?: FaqContent;
+  }
+
+  let { id = 'faqs', reversed = false, content = {
     items: [
       {
-        question: 'Question One',
+        question: 'What is the main feature of our product?',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'Our product offers a comprehensive solution for managing your tasks efficiently. It provides an intuitive interface and powerful tools to help you organize and prioritize your work effectively.',
       },
       {
-        question: 'Question Two',
+        question: 'How does the pricing structure work?',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'We offer flexible pricing options to suit different needs. Our plans range from a basic free tier to premium subscriptions with advanced features. Detailed pricing information can be found on our pricing page.',
       },
       {
-        question: 'Question Three',
+        question: 'Is there a mobile app available?',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'Yes, we have mobile apps available for both iOS and Android devices. These apps offer seamless synchronization with the web version, allowing you to access your data on the go.',
       },
       {
-        question: 'Question Four',
+        question: 'What kind of customer support do you provide?',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'We offer comprehensive customer support through various channels. This includes email support, live chat during business hours, and an extensive knowledge base with tutorials and FAQs.',
       },
       {
-        question: 'Question Five',
+        question: 'Can I integrate this with other tools I use?',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'Absolutely. Our product supports integration with a wide range of popular tools and services. We provide APIs and pre-built integrations to help you connect our platform with your existing workflow.',
       },
       {
-        question: 'Question Six',
+        question: 'What security measures are in place to protect my data?',
         answer:
-          'Curabitur blandit tempus porttitor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas faucibus mollis interdum.',
+          'We take data security very seriously. Our platform uses industry-standard encryption protocols, regular security audits, and strict access controls to ensure your data remains safe and confidential at all times.',
       },
     ],
-  }
+  } }: Props = $props();
 </script>
 
 <template lang="pug">

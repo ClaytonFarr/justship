@@ -15,4 +15,5 @@
               | {$page.error.message}
             +else
               | We encountered a site error.
-      p.mt-8: a.text-action.underline(href='/') &larr; Return Home</template>
+      p.mt-8: a.text-action.underline(href='/') &larr; Return Home
+</template>

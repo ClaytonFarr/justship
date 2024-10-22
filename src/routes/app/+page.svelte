@@ -1,2 +1,3 @@
 <template lang="pug">
-  h1 Dashboard</template>
+  h1 Dashboard
+</template>

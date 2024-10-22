@@ -1,7 +1,12 @@
 <script lang="ts">
-  export let colorClass: string = 'currentColor'
-  export let heightClass = 'h-5'
-  export let widthClass = !heightClass ? 'w-5' : ''
+  interface Props {
+    colorClass?: string;
+    heightClass?: string;
+    widthClass?: any;
+    [key: string]: any
+  }
+
+  let { colorClass = 'currentColor', heightClass = 'h-5', widthClass = !heightClass ? 'w-5' : '', ...rest }: Props = $props();
 </script>
 
 <svg
@@ -9,7 +14,7 @@
   fill="currentColor"
   viewBox="0 0 20 20"
   aria-hidden="true"
-  {...$$restProps}
+  {...rest}
 >
   <path
     fill-rule="evenodd"

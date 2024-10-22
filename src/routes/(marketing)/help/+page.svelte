@@ -11,4 +11,5 @@
   h1 Help
   .max-w-md
     p If you need help with anything - you can reach us at #[a(href='mailto:{PUBLIC_SUPPORT_EMAIL}') {PUBLIC_SUPPORT_EMAIL}].
-    p We'd love to help with any questions you have.</template>
+    p We'd love to help with any questions you have.
+</template>

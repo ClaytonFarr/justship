@@ -168,4 +168,5 @@
 
   h2 Liability
   p: strong You agree that the Company is not liable to you or to any third party for damages of any kind that result from the use of the Services, in ability to access data, or unauthorized access of your data or account. The Company is also not liable for damages of any kind related to actions of any third party that uses the Services, or any other consequences related to the Terms or Services.
-  p If you have a question about any of these Terms, please #[a(href='mailto:{PUBLIC_SUPPORT_EMAIL}') contact our Support team].</template>
+  p If you have a question about any of these Terms, please #[a(href='mailto:{PUBLIC_SUPPORT_EMAIL}') contact our Support team].
+</template>

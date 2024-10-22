@@ -8,4 +8,5 @@
   .min-h-dvh.bg-surface-light
     Header
     Container(additionalClasses='py-8')
-      | {@render children()}</template>
+      | {@render children()}
+</template>

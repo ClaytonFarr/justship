@@ -210,4 +210,5 @@
     +if('privacyFeatures.changelog.include && privacyFeatures.changelog.url')
       | You can view a history of the #[a(href='{rootUrl}{privacyFeatures.changelog.url}') changes to our policies here].&nbsp;
     | Whenever we make a significant change to our policies, we will refresh the date at the top of this page and take any other appropriate steps to notify users.
-  p Have any questions, comments, or concerns about this privacy policy, your data, or your rights with respect to your information? Please get in touch by emailing us at #[a(href='mailto:{PUBLIC_SUPPORT_EMAIL}') {PUBLIC_SUPPORT_EMAIL}] and we’ll be happy to try to answer them.</template>
+  p Have any questions, comments, or concerns about this privacy policy, your data, or your rights with respect to your information? Please get in touch by emailing us at #[a(href='mailto:{PUBLIC_SUPPORT_EMAIL}') {PUBLIC_SUPPORT_EMAIL}] and we’ll be happy to try to answer them.
+</template>

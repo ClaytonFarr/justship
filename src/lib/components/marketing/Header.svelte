@@ -4,20 +4,25 @@
   import Container from '../common/Container.svelte'
   import type { Link } from '$lib/types'
 
-  export let navAlignment: 'left' | 'center' | 'right' = 'right'
 
-  // Default content - can overridden by data passed in at route page
-  export let navItems: Link[] = [
+  
+  interface Props {
+    navAlignment?: 'left' | 'center' | 'right';
+    // Default content - can overridden by data passed in at route page
+    navItems?: Link[];
+    cta?: any;
+  }
+
+  let { navAlignment = 'right', navItems = [
     { label: 'Product', href: '#features' },
     { label: 'Pricing', href: '#pricing' },
-  ]
-  export let cta = {
+  ], cta = {
     include: false,
     label: 'Get Started Today',
     href: '/signin?new',
-  }
+  } }: Props = $props();
 
-  let mobileMenuOpen: boolean = false
+  let mobileMenuOpen: boolean = $state(false)
 </script>
 
 <template lang="pug">
@@ -45,7 +50,7 @@
             button.inline-flex.items-center.justify-center.rounded-md.text-content-body(
               type='button',
               class='-m-2.5 p-2.5',
-              on:click!='{ () => mobileMenuOpen = true }'
+              onclick!='{ () => mobileMenuOpen = true }'
             )
               span.sr-only Open main menu
               Menu.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')
@@ -63,7 +68,7 @@
               button.rounded-md.text-content-body(
                 type='button',
                 class='-m-2.5 p-2.5',
-                on:click!='{ () => mobileMenuOpen = false }'
+                onclick!='{ () => mobileMenuOpen = false }'
               )
                 span.sr-only Close menu
                 X.h-6.w-6.opacity-50.transition.duration-150.hover_opacity-100(strokeWidth='1.5', aria-hidden='true')
@@ -79,4 +84,6 @@
                   .py-8
                     a.whitespace-nowrap.rounded.bg-action.px-3.py-3.text-base.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
                       href='{ cta.href }'
-                    ) {cta.label}</template>
+                    ) {cta.label}
+                    
+</template>

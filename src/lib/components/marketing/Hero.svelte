@@ -8,36 +8,46 @@
   import Link from '$components/common/Link.svelte'
   import Pattern01 from '$components/common/Pattern01.svelte'
 
-  export let id: string = 'hero'
-  export let reversed: boolean = false
-  export let showLogo: boolean = true
 
-  // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
-  export let content: HeroContent = {
-    heading: 'Accomplish the thing you desire',
-    subheading:
-      'Achieve your goals with ease and confidence using our suite of specific, high-value tools and features.',
-    newsTag: {
-      primaryText: 'Take Note of This',
-      secondaryText: 'See Something Important',
-      href: '#faqs',
-    },
-    links: {
-      primary: {
-        text: 'Get Started Today',
-        href: '/signin?new',
-      },
-      secondary: {
-        text: 'Learn More  ↓',
-        href: '#features',
-      },
-    },
-    image: {
-      type: 'screenshot',
-      url: 'product-screenshot-hero.svg',
-      alt: 'App Screenshot',
-    },
+  
+  interface Props {
+    id?: string;
+    reversed?: boolean;
+    showLogo?: boolean;
+    // Default content - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
+    content?: HeroContent;
   }
+
+  let {
+    id = 'hero',
+    reversed = false,
+    showLogo = true,
+    content = {
+      heading: 'Accomplish the thing you desire',
+      subheading:
+        'Achieve your goals with ease and confidence using our suite of specific, high-value tools and features.',
+      newsTag: {
+        primaryText: 'Take Note of This',
+        secondaryText: 'See Something Important',
+        href: '#faqs',
+      },
+      links: {
+        primary: {
+          text: 'Get Started Today',
+          href: '/signin?new',
+        },
+        secondary: {
+          text: 'Learn More  ↓',
+          href: '#features',
+        },
+      },
+      image: {
+        type: 'screenshot',
+        url: 'product-screenshot-hero.svg',
+        alt: 'App Screenshot',
+      },
+    }
+  }: Props = $props();
 
   let containerClasses = `flex flex-col sm_flex-row ${content.image.type === 'screenshot' ? 'gap-x-16 lg_gap-x-0 pt-10 pb-24 sm_pb-32 lg_py-32' : 'gap-x-12 lg_gap-x-8 gap-y-12 pt-10 pb-12 md_py-24'}`
 </script>
@@ -56,6 +66,7 @@
             img.h-11(src='logo.svg', alt='{ PUBLIC_PRODUCT_NAME }').dark_invert
           .mt-12.sm_mt-16
             +if('content.newsTag')
+              p apple
               a.inline-flex.flex-wrap.gap-x-5.gap-y-4(href='{ content.newsTag.href }').group
                 Tag(label='{ content.newsTag.primaryText }', style='filled')
                 Tag(

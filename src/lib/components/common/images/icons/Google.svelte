@@ -1,11 +1,22 @@
 <script lang="ts">
-  export let monochrome = false
-  export let colorClass: string = 'currentColor'
-  export let heightClass = 'h-5'
-  export let widthClass = !heightClass ? 'w-5' : ''
+  interface Props {
+    monochrome?: boolean;
+    colorClass?: string;
+    heightClass?: string;
+    widthClass?: any;
+    [key: string]: any
+  }
+
+  let {
+    monochrome = false,
+    colorClass = 'currentColor',
+    heightClass = 'h-5',
+    widthClass = !heightClass ? 'w-5' : '',
+    ...rest
+  }: Props = $props();
 </script>
 
-<svg class="{heightClass} {widthClass} {monochrome ? colorClass : ''}" viewBox="0 0 24 24" aria-hidden="true" {...$$restProps}>
+<svg class="{heightClass} {widthClass} {monochrome ? colorClass : ''}" viewBox="0 0 24 24" aria-hidden="true" {...rest}>
   <path
     d="M12.0003 4.75C13.7703 4.75 15.3553 5.36002 16.6053 6.54998L20.0303 3.125C17.9502 1.19 15.2353 0 12.0003 0C7.31028 0 3.25527 2.69 1.28027 6.60998L5.27028 9.70498C6.21525 6.86002 8.87028 4.75 12.0003 4.75Z"
     fill={monochrome ? 'currentColor' : '#EA4335'}

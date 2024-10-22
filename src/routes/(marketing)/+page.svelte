@@ -70,5 +70,4 @@
 
     Footer(content='{ marketingContent.footer }', reversed, id='footer')
 
-  //- hack to keep prettier from moving closing template tag
-  span</template>
+</template>

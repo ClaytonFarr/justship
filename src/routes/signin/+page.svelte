@@ -247,7 +247,7 @@
                       span.font-medium { email_input?.value }
                       +else
                         span .
-                  p Please verify your address to sign in.
+                  p Please verify your email address to sign in.
 
             .mt-10
               a.group.flex.gap-x-1.text-sm.text-content-tertiary.hover_text-action-hover.transition(href='{rootUrl}/')
@@ -257,4 +257,5 @@
     .relative.hidden.w-0.flex-1.lg_block
       +if('!returningUser')
         .absolute.inset-0.z-10(class='bg-action/50', transition:fade='{{ duration: 300 }}')
-      img.absolute.inset-0.h-full.w-full.object-cover(src='signin-image.jpg', alt='')</template>
+      img.absolute.inset-0.h-full.w-full.object-cover(src='signin-image.jpg', alt='')
+</template>

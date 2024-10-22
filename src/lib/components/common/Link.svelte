@@ -1,14 +1,29 @@
 <script lang="ts">
-  export let href: string
-  export let label: string
-  export let large: boolean = false
-  export let rounded: boolean = false
-  export let fullWidth: boolean = false
-  export let filled: boolean = false
-  export let outlined: boolean = false
-  export let button: boolean = filled || outlined ? true : false
-  export let shadow: boolean = false
-  export let additionalClasses: string = ''
+  interface Props {
+    href: string;
+    label: string;
+    large?: boolean;
+    rounded?: boolean;
+    fullWidth?: boolean;
+    filled?: boolean;
+    outlined?: boolean;
+    button?: boolean;
+    shadow?: boolean;
+    additionalClasses?: string;
+  }
+
+  let {
+    href,
+    label,
+    large = false,
+    rounded = false,
+    fullWidth = false,
+    filled = false,
+    outlined = false,
+    button = filled || outlined ? true : false,
+    shadow = false,
+    additionalClasses = ''
+  }: Props = $props();
 </script>
 
 <template lang="pug">
@@ -30,4 +45,6 @@
         href='{ href }'
         class='{ additionalClasses }',
         class!='{ large ? "text-base" : "text-sm" }',
-      ) {label}</template>
+      ) {label}
+      
+</template>

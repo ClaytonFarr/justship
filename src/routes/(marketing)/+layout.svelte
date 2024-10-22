@@ -3,4 +3,5 @@
 </script>
 
 <template lang="pug">
-  | {@render children()}</template>
+  | {@render children()}
+</template>

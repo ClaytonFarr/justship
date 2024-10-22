@@ -40,10 +40,13 @@ export async function GET(event: RequestEvent): Promise<Response> {
       const user_id = generateId(15)
       user = await createNewUser({
         id: user_id,
-        email: google_user!.email,
+        email: google_user.email,
         email_verified: true,
         username: google_user.email.split('@')[0], // Generate a username from the email
         password_hash: '', // Set an empty password hash for Google sign-in
+        receive_product_updates: false, // Default value for new users
+        created_at: new Date(),
+        updated_at: new Date()
       })
       if (!user) {
         console.error('Failed to create user for ' + google_user.email)

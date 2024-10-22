@@ -4,58 +4,62 @@
   import type { Features } from '$lib/types'
   import Container from '$components/common/Container.svelte'
 
-  export let id: string = 'features'
-  export let reversed = false
-  export let content: Features = {
+  interface Props {
+    id?: string;
+    reversed?: boolean;
+    content?: Features;
+  }
+
+  let { id = 'features', reversed = false, content = {
     headingTagline: 'Accomplish what you need',
     heading: 'Everything you need to do exactly what you need.',
     subheading:
-      'Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.',
+      'Discover a suite of powerful tools designed to streamline your workflow and boost productivity…',
     features: [
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'This is a brief description of the feature. It highlights the key benefits and functionality that users can expect from this particular aspect of the product.',
         lucideIcon: 'CloudUpload',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Here we explain another important feature. This text provides a concise overview of how this feature adds value and improves the user experience.',
         lucideIcon: 'LockKeyhole',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'The third feature is described in this section. We outline the main advantages and how it addresses specific user needs or pain points.',
         lucideIcon: 'RefreshCw',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Feature number four is detailed here. This text explains the functionality and benefits, helping users understand how it can be useful for them.',
         lucideIcon: 'Award',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'The fifth feature description goes here. It provides a clear and concise explanation of what the feature does and why it matters to the user.',
         lucideIcon: 'BookText',
         url: '',
       },
       {
         heading: 'Feature Heading',
         summary:
-          'Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat sapien consequat tempor fermentum nibh.',
+          'Our final feature is described in this block. We highlight its key aspects and how it contributes to the overall value proposition of the product.',
         lucideIcon: 'Cable',
         url: '',
       },
     ],
-  }
+  } }: Props = $props();
 </script>
 
 <template lang="pug">
@@ -74,7 +78,9 @@
               .flex.flex-col
                 dt.flex.items-center.gap-x-6
                   .flex.items-center.justify-center.h-10.w-10.rounded-lg.bg-gradient-to-br.from-action-hover.to-action.text-white(class='p-2.5')
-                    svelte:component(this='{ lucide[feature.lucideIcon] }', strokeWidth='2')
+                    +if('lucide[feature.lucideIcon]')
+                      +const('Icon = lucide[feature.lucideIcon]')
+                      <Icon strokeWidth={2} />
                   h3.text-base.font-medium.leading-7.text-content-heading.dark_text-content-heading-reversed {feature.heading}
                 dd.ml-16.mt-3.flex.flex-auto.flex-col.text-base.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed
                   p.flex-auto {feature.summary}
@@ -82,4 +88,5 @@
                     p.mt-4
                       a.text-sm.font-medium.leading-6.text-action(href='{ feature.url }')
                         | Learn more
-                        span(aria-hidden='true') &rarr;</template>
+                        span(aria-hidden='true') &rarr;
+</template>

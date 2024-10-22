@@ -4,12 +4,21 @@
   import type { PricingContent, PricingPlan } from '$lib/types'
   import { Plane } from 'lucide-svelte'
 
-  export let id: string = 'pricing'
-  export let reversed = false
 
-  // Default values - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
-  export let annualPriceDiscount = (1 / 12) * 10 // e.g. 2 months free
-  export let content: PricingContent = {
+  
+  interface Props {
+    id?: string;
+    reversed?: boolean;
+    // Default values - can overridden by data passed in at route page (e.g. `marketingContent.ts`)
+    annualPriceDiscount?: any;
+    content?: PricingContent;
+  }
+
+  let {
+    id = 'pricing',
+    reversed = false,
+    annualPriceDiscount = (1 / 12) * 10,
+    content = {
     headingTagline: 'Pricing',
     heading: 'Pricing plans for teams of all sizes',
     subheading:
@@ -59,10 +68,11 @@
       },
     ],
   }
+  }: Props = $props();
 
-  let frequency: 'monthly' | 'annually' = 'monthly'
-  $: price = (plan: PricingPlan) => (frequency === 'monthly' ? plan.monthlyPrice : plan.annualPrice)
-  $: period = frequency === 'monthly' ? 'month' : 'year'
+  let frequency = $state<'monthly' | 'annually'>('monthly');
+  let price = $derived((plan: PricingPlan) => frequency === 'monthly' ? plan.monthlyPrice : plan.annualPrice);
+  let period = $derived(frequency === 'monthly' ? 'month' : 'year');
 </script>
 
 <template lang="pug">

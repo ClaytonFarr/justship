@@ -77,4 +77,5 @@
               href='{rootUrl}/'
             )
               span &larr;
-              span.underline.transition.group-hover_translate-x-1(class='translate-x-1.5') Return Home</template>
+              span.underline.transition.group-hover_translate-x-1(class='translate-x-1.5') Return Home
+</template>
