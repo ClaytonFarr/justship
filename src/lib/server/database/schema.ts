@@ -43,3 +43,10 @@ export const passwordResetTokenTable = sqliteTable('password_reset_token', {
     .references(() => userTable.id),
   expires_at: integer('expires_at', { mode: 'timestamp' }).notNull(),
 })
+
+export const passwordResetAttemptsTable = sqliteTable('password_reset_attempts', {
+  id: text('id').primaryKey(),
+  email: text('email').notNull(),
+  ip_address: text('ip_address').notNull(),
+  attempted_at: integer('attempted_at', { mode: 'timestamp' }).notNull(),
+})

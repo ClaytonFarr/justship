@@ -10,6 +10,7 @@ import { generateIdFromEntropySize } from 'lucia'
 import { Argon2id } from 'oslo/password'
 import { sendPasswordResetLink, sendVerificationEmail } from '$lib/server/email/email'
 import { createNewUser, getUserByEmail, updateUser } from '$lib/server/database/user.model'
+import { createResetAttempt, getResetAttempts } from '$lib/server/database/resetattempts.model'
 import { createSignin, getSignins } from '$lib/server/database/signin.model'
 import { generatePasswordResetToken } from '$lib/server/auth/resettoken'
 import type { Actions, PageServerLoad } from './$types'
@@ -101,13 +102,13 @@ export const actions: Actions = {
 
     const { email, password, remember_me } = form.data
 
-    // Rate limiting
+    // Rate limiting for sign-ins
     const ip_address = getClientAddress()
     const signins = await getSignins({ email, ip_address })
     const ratelimit = env.SIGNIN_IP_RATELIMIT ? parseInt(env.SIGNIN_IP_RATELIMIT) : 20
 
     if (signins.length > ratelimit) {
-      form.errors.signin_error_message = ['Too many signins from this IP address in last hour, please try again later.']
+      form.errors.signin_error_message = ['Too many signins from this IP address in last hour, please try again later.']
       return fail(429, { form })
     }
 
@@ -164,15 +165,18 @@ export const actions: Actions = {
 
     const { email } = form.data
 
-    // Rate limiting
+    // Rate limiting for password resets
     const ip_address = getClientAddress()
-    const resets = await getSignins({ email, ip_address }) // reuse getSignins for simplicity
+    const resets = await getResetAttempts({ email, ip_address })
     const ratelimit = env.PASSWORD_RESET_RATELIMIT ? parseInt(env.PASSWORD_RESET_RATELIMIT) : 5
 
     if (resets.length > ratelimit) {
-      form.errors.reset_error_message = ['Too many password reset attempts in last hour, please try again later.']
+      form.errors.reset_error_message = ['Too many password reset attempts in last hour, please try again later.']
       return fail(429, { form })
     }
+
+    // Track this reset attempt
+    await createResetAttempt({ email, ip_address })
 
     const user = await getUserByEmail(email)
     if (user) {

@@ -50,6 +50,13 @@
       "when": 1720639196170,
       "tag": "0006_cynical_hannibal_king",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1733688917861,
+      "tag": "0007_blushing_stone_men",
+      "breakpoints": true
     }
   ]
 }

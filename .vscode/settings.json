@@ -31,6 +31,7 @@
     "Preprocess",
     "ratelimit",
     "RATELIMIT",
+    "resetattempts",
     "resettoken",
     "serverside",
     "shadcn",
