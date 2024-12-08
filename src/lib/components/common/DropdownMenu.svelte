@@ -34,7 +34,17 @@
     isOpen = !isOpen
   }
   function onWindowClick(event: MouseEvent) {
-    if (!container.contains(event.target as Node) || (menuElement && menuElement.contains(event.target as Node))) isOpen = false
+    if (!container.contains(event.target as Node)) {
+      isOpen = false
+    } else if (menuElement?.contains(event.target as Node)) {
+      const target = event.target as HTMLElement
+      const isFormButton = target.tagName === 'BUTTON' && target.closest('form')
+      
+      // Don't close if it's a form button (like sign out)
+      if (!isFormButton) {
+        isOpen = false
+      }
+    }
   }
 
   function setMenuPosition() {
