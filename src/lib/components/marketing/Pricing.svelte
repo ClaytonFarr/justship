@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Link from '$components/common/Link.svelte'
+  import Link from '$components/common/custom/Link.svelte'
   import { Plane } from 'lucide-svelte'
   import type { PricingContent, PricingPlan } from '$lib/types'
   

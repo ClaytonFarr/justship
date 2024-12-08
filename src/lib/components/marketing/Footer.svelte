@@ -3,11 +3,11 @@
   import { PUBLIC_PRODUCT_NAME, PUBLIC_COMPANY_NAME } from '$env/static/public'
   import type { FooterContent } from '$lib/types'
 
-  import Facebook from '$components/common/images/icons/Facebook.svelte'
-  import Instagram from '$components/common/images/icons/Instagram.svelte'
-  import X from '$components/common/images/icons/X.svelte'
-  import Github from '$components/common/images/icons/Github.svelte'
-  import Youtube from '$components/common/images/icons/Youtube.svelte'
+  import Facebook from '$components/common/custom/images/icons/Facebook.svelte'
+  import Instagram from '$components/common/custom/images/icons/Instagram.svelte'
+  import X from '$components/common/custom/images/icons/X.svelte'
+  import Github from '$components/common/custom/images/icons/Github.svelte'
+  import Youtube from '$components/common/custom/images/icons/Youtube.svelte'
 
 
   function getIconComponent(iconName: string) {

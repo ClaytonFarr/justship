@@ -2,8 +2,8 @@
   import { dev } from '$app/environment'
   import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN } from '$env/static/public'
   import { superForm } from 'sveltekit-superforms'
-  import TextInput from '$components/common/forms/TextInput.svelte'
-  import Button from '$components/common/forms/Button.svelte'
+  import TextInput from '$components/common/custom/forms/TextInput.svelte'
+  import Button from '$components/common/custom/forms/Button.svelte'
 
   const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
   const { data } = $props()

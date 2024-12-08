@@ -3,10 +3,10 @@
   import { dev } from '$app/environment'
   import { fade } from 'svelte/transition'
   import { superForm } from 'sveltekit-superforms'
-  import TextInput from '$components/common/forms/TextInput.svelte'
-  import Checkbox from '$components/common/forms/Checkbox.svelte'
-  import Button from '$components/common/forms/Button.svelte'
-  import Google from '$components/common/images/icons/Google.svelte'
+  import TextInput from '$components/common/custom/forms/TextInput.svelte'
+  import Checkbox from '$components/common/custom/forms/Checkbox.svelte'
+  import Button from '$components/common/custom/forms/Button.svelte'
+  import Google from '$components/common/custom/images/icons/Google.svelte'
 
   const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
   const { data } = $props()

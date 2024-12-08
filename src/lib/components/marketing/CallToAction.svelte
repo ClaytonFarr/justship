@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Link from '$lib/components/common/Link.svelte'
+  import Link from '$components/common/custom/Link.svelte'
   import type { CtaContent } from '$lib/types'
 
   interface Props {
