@@ -1,15 +1,39 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-import colors from 'tailwindcss/colors';
-import forms from '@tailwindcss/forms';
-import typography from '@tailwindcss/typography';
-import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+import forms from '@tailwindcss/forms'
+import typography from '@tailwindcss/typography'
+import type { Config } from 'tailwindcss'
 
 export default {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-	darkMode: 'selector',
-	separator: '_',
-	theme: {
-		extend: {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  darkMode: 'selector',
+  separator: '_',
+  theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1.5rem', // px-6
+        sm: '2rem', // px-8
+        md: '4rem', // px-16
+      },
+      maxWidth: '80rem', // max-w-7xl
+      screens: {
+        '2xl': '1400px',
+      },
+    },
+
+    extend: {
+      fontFamily: {
+        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
+        display: ['Lexend Variable', ...defaultTheme.fontFamily.sans],
+      },
+      height: {
+        input: '2.5rem',
+        'input-lg': '3rem',
+      },
+      lineHeight: {
+        open: '1.75',
+      },
       colors: {
         action: {
           DEFAULT: colors.sky[600],
@@ -43,19 +67,8 @@ export default {
           darkest: colors.slate[900],
         },
       },
-			fontFamily: {
-        sans: [ 'Inter Variable', ...defaultTheme.fontFamily.sans ],
-        display: [ 'Lexend Variable', ...defaultTheme.fontFamily.sans ],
-      },
-      height: {
-        'input': '2.5rem',
-        'input-lg': '3rem',
-      },
-      lineHeight: {
-        'open': "1.75",
-      },
-		}
-	},
+    },
+  },
 
-	plugins: [typography, forms]
-} as Config;
+  plugins: [typography, forms],
+} as Config
