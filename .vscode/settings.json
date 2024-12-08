@@ -1,3 +1,5 @@
+// cspell:disable
+
 {
   "cSpell.words": [
     "automations",
@@ -5,7 +7,10 @@
     "EDPB",
     "emailtoken",
     "Embla",
+    "evenodd",
+    "favicons",
     "fontsource",
+    "formsnap",
     "Fulco's",
     "headlessui",
     "justship",
@@ -15,9 +20,11 @@
     "mailpit",
     "Mailpit",
     "Migadu",
+    "networkidle",
     "Olso",
     "pageleave",
     "pageview",
+    "Parms",
     "posthog",
     "precompress",
     "premailer",
@@ -26,6 +33,7 @@
     "RATELIMIT",
     "resettoken",
     "serverside",
+    "shadcn",
     "signin",
     "signins",
     "Signins",
@@ -36,8 +44,21 @@
     "Squeezy",
     "subprocessors",
     "Superforms",
+    "toggleable",
     "Turso",
     "unixepoch",
-    "viewbox"
+    "viewbox",
+    "vite"
+  ],
+  "cSpell.ignorePaths": [
+    "package-lock.json",
+    "node_modules",
+    "vscode-extension",
+    ".git/{info,lfs,logs,refs,objects}/**",
+    ".git/{index,*refs,*HEAD}",
+    ".vscode",
+    ".vscode-insiders",
+    "pnpm-lock.yaml",
+    ".env"
   ]
 }
