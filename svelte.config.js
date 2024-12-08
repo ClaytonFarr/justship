@@ -21,7 +21,8 @@ const config = {
 		alias: {
 			$actions: path.resolve('./src/lib/actions'),
 			$components: path.resolve('./src/lib/components'),
-			$util: path.resolve('./src/lib/util')
+			$utils: path.resolve('./src/lib/util'),
+			$hooks: path.resolve('./src/lib/hooks')
 		},
 	},
 	compilerOptions: {
