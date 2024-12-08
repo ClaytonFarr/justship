@@ -2,12 +2,15 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
+import tailwindcssAnimate from 'tailwindcss-animate'
 import type { Config } from 'tailwindcss'
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
+  // darkMode: ['class'],
   darkMode: 'selector',
-  separator: '_',
+  safelist: ['dark'],
+  separator: '_', // necessary for pug syntax
   theme: {
     container: {
       center: true,
@@ -21,8 +24,10 @@ export default {
         '2xl': '1400px',
       },
     },
-
     extend: {
+      // TODO: replace earlier custom styles with shadcn styles as appropriate
+
+      // earlier custom styles
       fontFamily: {
         sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
         display: ['Lexend Variable', ...defaultTheme.fontFamily.sans],
@@ -34,7 +39,9 @@ export default {
       lineHeight: {
         open: '1.75',
       },
+
       colors: {
+        // earlier custom styles
         action: {
           DEFAULT: colors.sky[600],
           hover: colors.sky[500],
@@ -52,7 +59,8 @@ export default {
         },
         input: {
           dark: colors.slate[900],
-          DEFAULT: colors.slate[300],
+          // DEFAULT: colors.slate[300],
+          DEFAULT: 'hsl(var(--input) / <alpha-value>)',
           light: colors.slate[200],
         },
         rule: {
@@ -66,9 +74,78 @@ export default {
           dark: colors.slate[700],
           darkest: colors.slate[900],
         },
+
+        // shadcn styles
+        border: 'hsl(var(--border) / <alpha-value>)',
+        // input: 'hsl(var(--input) / <alpha-value>)',
+        ring: 'hsl(var(--ring) / <alpha-value>)',
+        background: 'hsl(var(--background) / <alpha-value>)',
+        foreground: 'hsl(var(--foreground) / <alpha-value>)',
+        primary: {
+          DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
+          foreground: 'hsl(var(--primary-foreground) / <alpha-value>)',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary) / <alpha-value>)',
+          foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
+          foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted) / <alpha-value>)',
+          foreground: 'hsl(var(--muted-foreground) / <alpha-value>)',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent) / <alpha-value>)',
+          foreground: 'hsl(var(--accent-foreground) / <alpha-value>)',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover) / <alpha-value>)',
+          foreground: 'hsl(var(--popover-foreground) / <alpha-value>)',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card) / <alpha-value>)',
+          foreground: 'hsl(var(--card-foreground) / <alpha-value>)',
+        },
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
+      },
+      borderRadius: {
+        xl: 'calc(var(--radius) + 4px)',
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--bits-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--bits-accordion-content-height)' },
+          to: { height: '0' },
+        },
+        'caret-blink': {
+          '0%,70%,100%': { opacity: '1' },
+          '20%,50%': { opacity: '0' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'caret-blink': 'caret-blink 1.25s ease-out infinite',
       },
     },
   },
-
-  plugins: [typography, forms],
+  plugins: [typography, forms, tailwindcssAnimate],
 } as Config
