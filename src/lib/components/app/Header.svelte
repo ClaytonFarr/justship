@@ -6,9 +6,23 @@
   import { page } from '$app/stores'
   import { enhance } from '$app/forms'
   import type { Link } from '$lib/types'
+  import { afterNavigate } from '$app/navigation'
 
   const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
   let mobileMenuOpen: boolean = $state(false)
+
+  // Close menu after navigation
+  afterNavigate(() => {
+    mobileMenuOpen = false
+  })
+
+  // Handler for sign out form
+  const handleSignOut = () => {
+    mobileMenuOpen = false
+    return async ({ update }: { update: () => Promise<void> }) => {
+      await update()
+    }
+  }
 
   interface Props {
     navigation?: Link[];
@@ -20,7 +34,7 @@
     { label: 'New', href: '/app/new' },
     { label: 'All', href: '/app/all' },
   ], accountNavigation = [
-    { label: 'Settings', href: '/app/settings '},
+    { label: 'Settings', href: '/app/settings'},
   ] }: Props = $props();
 
   const isActive = (href: string): boolean => $page.url.pathname === href
@@ -33,7 +47,7 @@
         .flex
           h1: a.flex.items-center.gap-4(href='{rootUrl}/app', class='-m-1.5 p-1.5')
             img.h-8.w-auto(src='/logo.svg', alt='')
-            span.sr-only {PUBLIC_PRODUCT_NAME}
+            span.font-display.text-xl.font-medium.text-content-heading.sm_sr-only {PUBLIC_PRODUCT_NAME}
 
         .hidden.md_flex.md_gap-x-8
           +each('navigation as item')
@@ -43,7 +57,7 @@
             ) {item.label}
 
         +if('$page.data.user')
-          .flex.flex-1.justify-end
+          .hidden.md_flex.flex-1.justify-end
             DropdownMenu(menuLabel='Account', menuItems='{ accountNavigation }')
               form.hover_bg-surface-light-50.group.flex.w-full.cursor-pointer.items-center.gap-x-3.rounded-md.px-6.py-3.pr-16(
                 method='post',
@@ -79,8 +93,8 @@
             class='sm_ring-input-dark/10'
           )
             .flex.items-center.justify-between.gap-x-6
-              h1: a.flex.items-center.gap-5(href='{rootUrl}/', class='-m-1.5 p-1.5')
-                img.h-8.w-auto(src='logo.svg', alt='')
+              h1: a.flex.items-center.gap-4(href='{rootUrl}/', class='-m-1.5 p-1.5')
+                img.h-8.w-auto(src='/logo.svg', alt='')
                 span.font-display.text-xl.font-medium.text-content-heading.sm_sr-only {PUBLIC_PRODUCT_NAME}
               +if('!$page.data.user')
                 a.ml-auto.whitespace-nowrap.rounded-md.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
@@ -101,11 +115,18 @@
                       class!='{ isActive(item.href) ? "text-action" : "text-content-heading" }',
                       href='{rootUrl}{ item.href }'
                     ) {item.label}
+                .space-y-2.py-6
+                  +each('accountNavigation as item')
+                    a.hover_bg-surface-light-50.-mx-3.block.rounded-lg.px-3.py-2.text-base.font-medium.leading-7(
+                      class!='{ isActive(item.href) ? "text-action" : "text-content-heading" }',
+                      href='{rootUrl}{ item.href }'
+                    ) {item.label}
                 .py-6
                   form.hover_bg-surface-light-50.group.-mx-3.flex.cursor-pointer.items-center.gap-x-3.rounded-md.px-3.py-2(
                     method='post',
                     action='{rootUrl}/signout',
-                    use:enhance
+                    use:enhance='{handleSignOut}'
                   )
                     LogOut.h-4.w-4.opacity-50.group-hover_opacity-75
-                    button.whitespace-nowrap.text-base.font-medium.leading-7(type='submit') Sign Out</template>
+                    button.whitespace-nowrap.text-base.font-medium.leading-7(type='submit') Sign Out
+</template>
