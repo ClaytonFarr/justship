@@ -1,10 +1,7 @@
 <script lang="ts">
-  import Container from '$components/common/Container.svelte'
   import Link from '$components/common/Link.svelte'
-  import type { PricingContent, PricingPlan } from '$lib/types'
   import { Plane } from 'lucide-svelte'
-
-
+  import type { PricingContent, PricingPlan } from '$lib/types'
   
   interface Props {
     id?: string;
@@ -79,7 +76,7 @@
   // prettier-ignore
   div(class!='{ reversed ? "dark" : "" }' id='{id}')
     .bg-surface-lightest.dark_bg-surface-darkest.py-24.sm_py-32
-      Container
+      .container
         .mx-auto.max-w-4xl.lg_text-center
           h2.font-display.text-base.font-medium.leading-7.text-action.dark_text-action-hover { content.headingTagline }
           p.mt-2.font-display.text-4xl.font-medium.tracking-tight.text-content-heading.dark_text-content-heading-reversed.sm_text-4xl { content.heading }

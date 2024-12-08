@@ -1,10 +1,7 @@
 <script lang="ts">
   import { PUBLIC_PRODUCT_NAME } from '$env/static/public'
   import { Menu, X } from 'lucide-svelte'
-  import Container from '../common/Container.svelte'
   import type { Link } from '$lib/types'
-
-
   
   interface Props {
     navAlignment?: 'left' | 'center' | 'right';
@@ -27,7 +24,7 @@
 
 <template lang="pug">
   header.bg-white
-    Container
+    .container
       nav.flex.h-20.items-center.justify-between.gap-x-6.py-6.sm_gap-x-10.lg_py-8(aria-label='Global')
         // prettier-ignore
         .flex(class!='{ navAlignment === "center" ? "flex-1" : "flex-1 sm_flex-0" }')

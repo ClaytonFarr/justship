@@ -1,10 +1,9 @@
 <script>
   import { page } from '$app/stores'
-  import Container from '$components/common/Container.svelte'
 </script>
 
 <template lang="pug">
-  Container
+  .container
     .flex.min-h-screen.flex-col.items-center.justify-center.align-middle
       .mb-4.flex.items-center.justify-items-stretch.divide-x.border.text-content-heading
         h1.px-3.text-lg.font-medium { $page.status }

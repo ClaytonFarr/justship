@@ -1,10 +1,7 @@
 <script lang="ts">
   import { PUBLIC_SUPPORT_EMAIL } from '$env/static/public'
   import type { FaqContent } from '$lib/types'
-  import Container from '$components/common/Container.svelte'
 
-
-  
   interface Props {
     id?: string;
     reversed?: boolean;
@@ -52,7 +49,7 @@
   // prettier-ignore
   div(class!='{ reversed ? "dark" : "" }' id='{id}')
     .bg-surface-lightest.dark_bg-surface-darkest
-      Container(additionalClasses='pt-16 pb-20 sm_pt-24 sm_pb-32')
+      .container.pt-16.pb-20.sm_pt-24.sm_pb-32
         .lg_text-center
           h2.text-2xl.font-display.leading-snug.tracking-tight.text-content-heading.dark_text-content-heading-reversed Frequently asked questions
           p.lg_mx-auto.mt-6.max-w-2xl.text-base.leading-7.text-content-secondary.dark_text-content-secondary-reversed.max-w-prose

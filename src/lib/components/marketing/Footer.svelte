@@ -3,7 +3,6 @@
   import { PUBLIC_PRODUCT_NAME, PUBLIC_COMPANY_NAME } from '$env/static/public'
   import type { FooterContent } from '$lib/types'
 
-  import Container from '$components/common/Container.svelte'
   import Facebook from '$components/common/images/icons/Facebook.svelte'
   import Instagram from '$components/common/images/icons/Instagram.svelte'
   import X from '$components/common/images/icons/X.svelte'
@@ -112,9 +111,9 @@
   footer(class!='{ reversed ? "dark" : "" }', aria-labelledby='footer-heading' id='{id}')
     h2#footer-heading.sr-only Footer
     .bg-surface-lightest.dark_bg-surface-darkest
-      Container(additionalClasses='pb-8 pt-16 sm_pb-12 sm_pt-24')
+      .container.pb-8.pt-16.sm_pb-12.sm_pt-24
 
-        img.h-7.mb-10(src='logo.svg', alt='{ PUBLIC_PRODUCT_NAME }').dark_invert
+        img.h-7.mb-10(src='/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }').dark_invert
         
         //- Footer Nav
         +if('content.footerNav?.include && content.footerNav.sections.length > 0')

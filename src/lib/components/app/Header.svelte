@@ -1,7 +1,6 @@
 <script lang="ts">
   import { dev } from '$app/environment'
   import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN } from '$env/static/public'
-  import Container from '../common/Container.svelte'
   import DropdownMenu from '../common/DropdownMenu.svelte'
   import { Menu, X, LogOut } from 'lucide-svelte'
   import { page } from '$app/stores'
@@ -29,12 +28,13 @@
 
 <template lang="pug">
   header.border-b.bg-white(class='border-rule-light/75')
-    Container
+    .container
       nav.flex.h-20.items-center.justify-between.gap-x-8.py-6.lg_py-8(aria-label='Global')
         .flex
           h1: a.flex.items-center.gap-4(href='{rootUrl}/app', class='-m-1.5 p-1.5')
             img.h-8.w-auto(src='/logo.svg', alt='')
             span.sr-only {PUBLIC_PRODUCT_NAME}
+
         .hidden.md_flex.md_gap-x-8
           +each('navigation as item')
             a.text-sm.font-medium.leading-6.transition(
@@ -62,6 +62,7 @@
               a.whitespace-nowrap.rounded-md.bg-action.px-3.py-2.text-sm.font-medium.text-white.shadow-sm.hover_bg-action-hover.focus-visible_outline.focus-visible_outline-2.focus-visible_outline-offset-2.focus-visible_outline-action(
                 href='{rootUrl}/signin'
               ) Launch App
+
         .flex.md_hidden
           button.inline-flex.items-center.justify-center.rounded-md.text-content-body(
             type='button',

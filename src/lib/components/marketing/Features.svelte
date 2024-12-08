@@ -2,7 +2,6 @@
   import { onMount } from 'svelte'
   import * as lucide from 'lucide-svelte'
   import type { Features } from '$lib/types'
-  import Container from '$components/common/Container.svelte'
 
   interface Props {
     id?: string;
@@ -66,7 +65,7 @@
   // prettier-ignore
   div(class!='{ reversed ? "dark" : "" }' id='{id}')
     .bg-surface-lightest.dark_bg-surface-darkest
-      Container(additionalClasses='pt-20 pb-32 md_pt-32 md_pb-40')
+      .container.pt-20.pb-32.md_pt-32.md_pb-40
         .lg_mx-auto.lg_max-w-2xl.lg_text-center
           h2.font-display.text-base.font-medium.leading-7.text-action.dark_text-action-hover {content.headingTagline}
           p.mt-4.font-display.font-medium.text-3xl.tracking-tight.text-content-heading.dark_text-content-heading-reversed.sm_text-4xl.sm_leading-tight.lg_mx-auto.max-w-md {content.heading}

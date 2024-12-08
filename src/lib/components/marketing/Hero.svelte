@@ -3,12 +3,9 @@
   import { ChevronRight, ChevronDown } from 'lucide-svelte'
   import type { HeroContent } from '$lib/types'
 
-  import Container from '$components/common/Container.svelte'
   import Tag from '$components/common/Tag.svelte'
   import Link from '$components/common/Link.svelte'
   import Pattern01 from '$components/common/Pattern01.svelte'
-
-
   
   interface Props {
     id?: string;
@@ -60,10 +57,10 @@
         strokeColorClass='stroke-rule-light dark_opacity-20',
         additionalClasses='absolute inset-0 -z-10 h-full w-full [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]'
       )
-      Container(additionalClasses='{ containerClasses }')
+      .container(class!='{ containerClasses }')
         .lg_mx-0.lg_max-w-xl.lg_flex-shrink-0.lg_pt-8
           +if('showLogo')
-            img.h-11(src='logo.svg', alt='{ PUBLIC_PRODUCT_NAME }').dark_invert
+            img.h-11(src='/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }').dark_invert
           .mt-12.sm_mt-16
             +if('content.newsTag')
               p apple
