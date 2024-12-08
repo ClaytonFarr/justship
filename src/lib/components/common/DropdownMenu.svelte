@@ -7,7 +7,7 @@
     menuLabel?: string;
     menuItems?: Link[];
     slotBorder?: boolean;
-    content?: Snippet;
+    children?: Snippet;
   }
 
   let { menuLabel = 'Menu', menuItems = [
@@ -21,7 +21,7 @@
     },
   ],
     slotBorder = false,
-    content,
+    children,
   }: Props = $props();
 
   let isOpen: boolean = $state(false)
@@ -99,7 +99,7 @@
                   span.absolute.inset-0
                 p.mt-1.text-content-secondary { item.description }
           div(class!='{slotBorder ? "border-t border-1 border-input-light py-2" : "-mt-2 pb-2"}')
-          +if('content')
-            | {@render content()}
+            +if('children')
+              | {@render children()}
 
 </template>
