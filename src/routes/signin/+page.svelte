@@ -25,7 +25,7 @@
 
   const { enhance, errors, submitting } = superForm(data.form, {
     onResult(event) {
-      console.log(event)
+      // console.log(event)
       if (event.result?.type === 'success') {
         if (event.result.data?.signup_email_sent) {
           signup_email_sent = true
@@ -36,7 +36,7 @@
       }
     },
     onError({ result }) {
-      console.log(result)
+      // console.error(result)
     },
   })
 
