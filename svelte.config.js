@@ -21,11 +21,12 @@ const config = {
 		alias: {
 			$actions: path.resolve('./src/lib/actions'),
 			$components: path.resolve('./src/lib/components'),
-			$utils: path.resolve('./src/lib/util'),
-			$hooks: path.resolve('./src/lib/hooks')
+			$utils: path.resolve('./src/lib/utils'),
+			$hooks: path.resolve('./src/lib/hooks'),
 		},
 	},
 	compilerOptions: {
+		// hide warning from pug syntax
 		warningFilter: ({ code }) => code != 'attribute_quoted',
 	},
 };
