@@ -6,5 +6,5 @@ export const load = async () => {
     pageTitle: `${PUBLIC_PRODUCT_NAME} | Help`,
     pageDescription: `Customer Support for ${PUBLIC_PRODUCT_NAME}`,
   }
-  return { seo }
+  return seo
 }
