@@ -16,7 +16,8 @@
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx ./migrate.ts",
-    "db:migrate:prod": "tsx ./migrate.ts --prod"
+    "db:migrate:prod": "tsx ./migrate.ts --prod",
+    "db:reset-local": "rm -f local.db && pnpm run db:generate && pnpm run db:migrate"
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
