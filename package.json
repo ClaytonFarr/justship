@@ -22,7 +22,7 @@
   "devDependencies": {
     "@playwright/test": "^1.49.0",
     "@prettier/plugin-pug": "^3.2.0",
-    "@sveltejs/adapter-auto": "^3.3.1",
+    "@sveltejs/adapter-vercel": "^5.5.0",
     "@sveltejs/kit": "^2.9.0",
     "@sveltejs/vite-plugin-svelte": "^4.0.2",
     "@tailwindcss/forms": "^0.5.9",

@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto'
+import adapter from '@sveltejs/adapter-vercel'
 import { sveltePreprocess } from 'svelte-preprocess'
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
