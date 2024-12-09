@@ -49,7 +49,7 @@ The current UX and code presume you have a free plan, plus optional paid plans. 
 - Within local copy of repo run `pnpm install`
 - Rename the `.env.example` file to `.env`
   - update PUBLIC environment variables to match your product/project
-- Run `pnpm run generate-db && pnpm run migrate-db` to create a local database
+- Run `pnpm run db:reset-local` to create a local database
   - can run `pnpm db:studio` to view local database tables
 - [Install mailpit](https://mailpit.axllent.org/docs/install/) to receive test emails locally
   - start mailpit running in background in separate terminal (e.g. `brew services start mailpit`)
@@ -152,10 +152,10 @@ The current UX and code presume you have a free plan, plus optional paid plans. 
   - update DNS records to validate domain for email delivery
     - add Postmark's TEXT & CNAME records to Vercel 'DNS Records' for custom domain
     - check for successful verification at Postmark
-- Go to 'API Tokens': copy 'Server API token'
+- Go to Servers : Select Server : 'API Tokens': copy 'Server API token'
 - Update `.env` values, both locally and in Vercel project
-  - update `FROM_EMAIL` value to email address from Postmark 'Sender Signatures'
   - add token as `POSTMARK_SERVER_TOKEN` value
+  - update `FROM_EMAIL` value to email address from Postmark 'Sender Signatures'
 
 **Database (Turso)**
 
@@ -164,7 +164,7 @@ The current UX and code presume you have a free plan, plus optional paid plans. 
 - Update `.env` values, both locally and in Vercel project; select database then
   - copy database url & add as `TURSO_DB_URL` value
   - generate database token (read & write) & add as `TURSO_DB_AUTH_TOKEN` value
-- In local repo, run `pnpm run migrate:prod` to create tables on production database tables
+- In local repo, run `pnpm run db:migrate:prod` to create tables on production database tables
   - should see rows read/written in Turso database dashboard update from 0
 
 **Analytics (PostHog)**
