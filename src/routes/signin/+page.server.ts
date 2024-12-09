@@ -1,6 +1,6 @@
 import { dev } from '$app/environment'
 import { env } from '$env/dynamic/private'
-import { PUBLIC_ORIGIN } from '$env/static/public'
+import { PUBLIC_ORIGIN, PUBLIC_SIGNUP_ENABLED } from '$env/static/public'
 import { error, fail, redirect } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
@@ -34,11 +34,22 @@ export const load: PageServerLoad = async (e) => {
   const form = await superValidate(zod(schema))
   const error = e.url.searchParams.get('error')
   const isNewUser = e.url.searchParams.has('new')
+  
+  // If signup is disabled and user tries to access with ?new, redirect to signin
+  if (isNewUser && PUBLIC_SIGNUP_ENABLED !== 'true') {
+    redirect(302, `${rootUrl}/signin`)
+  }
+  
   return { form, user: e.locals.user, error, isNewUser }
 }
 
 export const actions: Actions = {
   signup_with_email: async ({ request }) => {
+    // Block signup if disabled
+    if (PUBLIC_SIGNUP_ENABLED !== 'true') {
+      throw error(403, 'Signup is currently disabled')
+    }
+
     const form = await superValidate(request, zod(schema))
 
     if (!form.valid) {

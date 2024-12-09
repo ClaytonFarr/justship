@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN, PUBLIC_GOOGLE_OAUTH_ENABLED } from '$env/static/public'
+  import { PUBLIC_PRODUCT_NAME, PUBLIC_ORIGIN, PUBLIC_GOOGLE_OAUTH_ENABLED, PUBLIC_SIGNUP_ENABLED } from '$env/static/public'
   import { dev } from '$app/environment'
   import { fade } from 'svelte/transition'
   import { superForm } from 'sveltekit-superforms'
@@ -8,10 +8,13 @@
   import Button from '$components/ui/custom/forms/Button.svelte'
   import Google from '$components/images/icons/Google.svelte'
 
+  // Flag to control background image visibility
+  const SHOW_BACKGROUND_IMAGE = true
+
   const rootUrl = dev ? 'http://localhost:5173' : PUBLIC_ORIGIN
   const { data } = $props()
 
-  let returningUser = $state(!data.isNewUser)
+  let returningUser = $state(PUBLIC_SIGNUP_ENABLED !== 'true' ? true : !data.isNewUser)
   let email = $state('')
   let password = $state('')
   let email_input: HTMLInputElement | null = $state(null)
@@ -22,6 +25,12 @@
   let signup_email_sent = $state(false)
   let reset_email_sent = $state(false)
   let loadErrorMessage = $state('')
+
+  function handleSignupClick() {
+    if (PUBLIC_SIGNUP_ENABLED === 'true') {
+      returningUser = false
+    }
+  }
 
   const { enhance, errors, submitting } = superForm(data.form, {
     onResult(event) {
@@ -52,7 +61,7 @@
 <template lang="pug">
   .flex.min-h-screen
     // prettier-ignore
-    .flex.flex-1.flex-col.px-6.py-12.sm_py-24.transition.sm_px-6.lg_flex-none.lg_px-20.xl_px-24.returningUser(class!='{ returningUser ? "bg-white" : "bg-action/10" }')
+    .flex.flex-1.flex-col.px-6.py-12.sm_py-24.transition.sm_px-6(class!='{ SHOW_BACKGROUND_IMAGE ? "lg_flex-none lg_px-20 xl_px-24" : "w-full" }').returningUser(class!='{ returningUser ? "bg-white" : "bg-action/10" }')
 
       //- SIGN IN FORM
       +if('returningUser')
@@ -62,11 +71,12 @@
               img.h-10.w-auto(src='{rootUrl}/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
             .mt-8.space-y-3
               h2.text-2xl.font-medium.leading-9.tracking-tight.text-foreground Welcome Back
-              p.mt-2.flex.gap-x-2.text-sm.leading-6.text-muted-foreground
-                span New?
-                button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => returningUser = !returningUser }')
-                  span Sign Up
-                  span(class='group-hover_translate-x-1.5').translate-x-1.transition &rarr;
+              +if('PUBLIC_SIGNUP_ENABLED === "true"')
+                p.mt-2.flex.gap-x-2.text-sm.leading-6.text-muted-foreground
+                  span New?
+                  button.group.flex.font-medium.text-action.hover_text-action-hover.transition(onclick!='{ () => returningUser = !returningUser }')
+                    span Sign Up
+                    span(class='group-hover_translate-x-1.5').translate-x-1.transition &rarr;
 
             .mt-10
               +if('loadErrorMessage')
@@ -254,8 +264,9 @@
                 span &larr;
                 span(class='translate-x-1.5').underline.group-hover_translate-x-1.transition Return Home
 
-    .relative.hidden.w-0.flex-1.lg_block
-      +if('!returningUser')
-        .absolute.inset-0.z-10(class='bg-action/50', transition:fade='{{ duration: 300 }}')
-      img.absolute.inset-0.h-full.w-full.object-cover(src='signin-image.jpg', alt='')
+    +if('SHOW_BACKGROUND_IMAGE')
+      .relative.hidden.w-0.flex-1.lg_block
+        +if('!returningUser')
+          .absolute.inset-0.z-10(class='bg-action/50', transition:fade='{{ duration: 300 }}')
+        img.absolute.inset-0.h-full.w-full.object-cover(src='signin-image.jpg', alt='')
 </template>
