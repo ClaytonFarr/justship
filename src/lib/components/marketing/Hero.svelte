@@ -51,10 +51,10 @@
 
 <template lang="pug">
   div(class!='{ reversed ? "dark" : "" }' id='{id}')
-    .relative.isolate.overflow-hidden.bg-surface-lightest.dark_bg-surface-darkest
+    .relative.isolate.overflow-hidden.bg-background
       Pattern01(
         strokeWidthClass='stroke-1',
-        strokeColorClass='stroke-rule-light dark_opacity-20',
+        strokeColorClass='stroke-border opacity-20 dark_invert dark_opacity-30',
         additionalClasses='absolute inset-0 -z-10 h-full w-full [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]'
       )
       .container(class!='{ containerClasses }')
@@ -63,7 +63,6 @@
             img.h-11(src='/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }').dark_invert
           .mt-12.sm_mt-16
             +if('content.newsTag')
-              p apple
               a.inline-flex.flex-wrap.gap-x-5.gap-y-4(href='{ content.newsTag.href }').group
                 Tag(label='{ content.newsTag.primaryText }', style='filled')
                 Tag(
@@ -71,8 +70,8 @@
                   iconRight!='{ content.newsTag.href.includes("#") ? ChevronDown : ChevronRight }'
                 )
           .max-w-xl
-            h1.mt-9.sm_mt-10.text-5xl.font-display.font-medium.tracking-tight.text-content-heading.md_text-6xl.dark_text-content-heading-reversed(class='leading-[1.1] sm_leading-[1.1]') {content.heading}
-            p.mt-7.sm_mt-8.text-lg.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed.max-w-lg {content.subheading}
+            h1.mt-9.sm_mt-10.text-5xl.font-display.font-medium.tracking-tight.text-foreground.md_text-6xl(class='leading-[1.1] sm_leading-[1.1]') {content.heading}
+            p.mt-7.sm_mt-8.text-lg.leading-relaxed.text-muted-foreground.max-w-lg {content.subheading}
           .mt-8.sm_mt-12.flex.flex-wrap.items-baseline.gap-4
             Link(href='{ content.links.primary.href }', label='{ content.links.primary.text }', filled, large)
             +if('content.links.secondary.text && content.links.secondary.text')
@@ -81,15 +80,15 @@
           .mt-16.flex.sm_mt-24.lg_ml-10.lg_mr-0.lg_mt-0.lg_max-w-none.lg_flex-none.xl_ml-32
             .max-w-3xl.flex-none.sm_max-w-5xl.lg_max-w-none
               .-m-2.rounded-xl.p-2.ring-1.ring-inset.lg_-m-4.lg_rounded-2xl.lg_p-4(
-                class='bg-surface-dark/5 ring-surface-dark/10 dark_bg-surface-light/5 dark_ring-surface-light/15'
+                class='bg-foreground/5 ring-foreground/10'
               )
-                .bg-surface-lightest.dark_bg-surface-darkest.rounded-md.overflow-hidden.shadow-2xl.ring-1
+                .bg-background.rounded-md.overflow-hidden.shadow-2xl.ring-1
                   img(
                     src='{ content.image.url }',
                     alt='{ content.image.alt }',
                     width='2432',
                     height='1442',
-                    class='w-[76rem] ring-content-heading/10'
+                    class='w-[76rem] ring-foreground/10'
                   )
           +elseif("content.image.type === 'photo'")
             .bg-red-100.rounded-2xl.overflow-hidden.aspect-square.sm_aspect-auto

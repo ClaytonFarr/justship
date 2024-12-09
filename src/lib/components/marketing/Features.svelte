@@ -64,12 +64,12 @@
 <template lang="pug">
   // prettier-ignore
   div(class!='{ reversed ? "dark" : "" }' id='{id}')
-    .bg-surface-lightest.dark_bg-surface-darkest
+    .bg-background
       .container.pt-20.pb-32.md_pt-32.md_pb-40
         .lg_mx-auto.lg_max-w-2xl.lg_text-center
-          h2.font-display.text-base.font-medium.leading-7.text-action.dark_text-action-hover {content.headingTagline}
-          p.mt-4.font-display.font-medium.text-3xl.tracking-tight.text-content-heading.dark_text-content-heading-reversed.sm_text-4xl.sm_leading-tight.lg_mx-auto.max-w-md {content.heading}
-          p.mt-6.text-lg.leading-8.text-content-secondary.max-w-xl.lg_max-w-none.lg_mx-auto.dark_text-content-secondary-reversed {content.subheading}
+          h2.font-display.text-base.font-medium.leading-7.text-action {content.headingTagline}
+          p.mt-4.font-display.font-medium.text-3xl.tracking-tight.text-foreground.sm_text-4xl.sm_leading-tight.lg_mx-auto.max-w-md {content.heading}
+          p.mt-6.text-lg.leading-8.text-muted-foreground.max-w-xl.lg_max-w-none.lg_mx-auto {content.subheading}
 
         .mt-16.lg_mt-24.lg_max-w-4xl.lg_mx-auto
           dl.grid.grid-cols-1.gap-x-14.gap-y-8.md_gap-y-16.md_grid-cols-2.max-w-lg.md_max-w-none
@@ -80,8 +80,8 @@
                     +if('lucide[feature.lucideIcon]')
                       +const('Icon = lucide[feature.lucideIcon]')
                       <Icon strokeWidth={2} />
-                  h3.text-base.font-medium.leading-7.text-content-heading.dark_text-content-heading-reversed {feature.heading}
-                dd.ml-16.mt-3.flex.flex-auto.flex-col.text-base.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed
+                  h3.text-base.font-medium.leading-7.text-foreground {feature.heading}
+                dd.ml-16.mt-3.flex.flex-auto.flex-col.text-base.leading-relaxed.text-muted-foreground
                   p.flex-auto {feature.summary}
                   +if('feature.url')
                     p.mt-4

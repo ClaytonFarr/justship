@@ -26,11 +26,11 @@
   let commonClasses =
     'inline-flex items-center text-sm leading-6 opacity-90 hover_opacity-100 group-hover_opacity-100 whitespace-nowrap'
   let styleClasses = {
-    ghost: 'text-content-secondary/85 dark_text-content-secondary-reversed/70',
+    ghost: 'text-muted-foreground/85',
     filled:
-      'font-medium rounded-full px-4 py-1 text-action ring-1 ring-inset bg-action/10 ring-action/15 dark_bg-action/20 dark_ring-action/40',
+      'font-medium rounded-full px-4 py-1 text-action ring-1 ring-inset bg-action/10 ring-action/15 dark_bg-action/10 dark_ring-action/50',
     bordered:
-      'rounded-full px-5 py-1 ring-1 ring-rule/40 bg-white/15 dark_bg-white/10 text-content-secondary/85 dark_text-content-secondary-reversed/70',
+      'rounded-full px-5 py-1 ring-1 ring-border/40 bg-white/15 text-muted-foreground/85 dark_text-muted-foreground/70',
   }
   let tagClasses = $derived(`${commonClasses} ${styleClasses[style]} ${additionalClasses}`)
 </script>

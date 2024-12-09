@@ -1,5 +1,4 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
-import colors from 'tailwindcss/colors'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
 import tailwindcssAnimate from 'tailwindcss-animate'
@@ -8,7 +7,7 @@ import type { Config } from 'tailwindcss'
 export default {
   separator: '_', // necessary for pug syntax
   content: ['./src/**/*.{html,js,svelte,ts}'],
-  darkMode: 'selector', // shadcn docs reference older syntax of `darkMode: ['class']`
+  darkMode: 'selector', // shadcn docs uses older syntax of `darkMode: ['class']`
   safelist: ['dark'],
   theme: {
     container: {
@@ -24,50 +23,36 @@ export default {
       },
     },
     extend: {
-      // TODO: decide whether to sync custom styles with shadcn styles
+      // ----------------------------------
+      // custom styles
+      // ----------------------------------
+      fontFamily: {
+        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
+        display: ['Lexend Variable', ...defaultTheme.fontFamily.sans],
+      },
+      height: {
+        input: '2.5rem',
+        'input-lg': '3rem',
+      },
+      lineHeight: {
+        open: '1.75',
+      },
 
       colors: {
-        // -----------------------------
-        // custom component color styles
-        // -----------------------------
+        // ----------------------------------
+        // custom color styles
+        // ----------------------------------
         action: {
-          DEFAULT: colors.sky[600],
-          hover: colors.sky[500],
-          active: colors.sky[700],
-        },
-        content: {
-          heading: colors.slate[900],
-          'heading-reversed': colors.white,
-          body: colors.slate[800],
-          'body-reversed': colors.slate[100],
-          secondary: colors.slate[500],
-          'secondary-reversed': colors.slate[400],
-          tertiary: colors.slate[400],
-          'tertiary-reversed': colors.slate[400],
-        },
-        input: {
-          dark: colors.slate[900],
-          // DEFAULT: colors.slate[300],
-          DEFAULT: 'hsl(var(--input) / <alpha-value>)',
-          light: colors.slate[200],
-        },
-        rule: {
-          DEFAULT: colors.slate[500],
-          light: colors.slate[200],
-          dark: colors.slate[700],
-        },
-        surface: {
-          light: colors.slate[50],
-          lightest: colors.white,
-          dark: colors.slate[700],
-          darkest: colors.slate[900],
+          DEFAULT: 'hsl(var(--action) / <alpha-value>)',
+          hover: 'hsl(var(--action-hover) / <alpha-value>)',
+          active: 'hsl(var(--action-active) / <alpha-value>)',
         },
 
-        // -------------------
+        // ----------------------------------
         // shadcn color styles
-        // -------------------
+        // ----------------------------------
         border: 'hsl(var(--border) / <alpha-value>)',
-        // input: 'hsl(var(--input) / <alpha-value>)',
+        input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
         background: 'hsl(var(--background) / <alpha-value>)',
         foreground: 'hsl(var(--foreground) / <alpha-value>)',
@@ -110,6 +95,10 @@ export default {
           ring: 'hsl(var(--sidebar-ring))',
         },
       },
+
+      // ----------------------------------
+      // shadcn styles
+      // ----------------------------------
       borderRadius: {
         xl: 'calc(var(--radius) + 4px)',
         lg: 'var(--radius)',
@@ -134,21 +123,6 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'caret-blink': 'caret-blink 1.25s ease-out infinite',
-      },
-
-      // ----------------------------------
-      // custom component additional styles
-      // ----------------------------------
-      fontFamily: {
-        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
-        display: ['Lexend Variable', ...defaultTheme.fontFamily.sans],
-      },
-      height: {
-        input: '2.5rem',
-        'input-lg': '3rem',
-      },
-      lineHeight: {
-        open: '1.75',
       },
     },
   },

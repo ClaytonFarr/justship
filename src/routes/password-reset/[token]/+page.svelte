@@ -35,13 +35,13 @@
 </script>
 
 <template lang="pug">
-  .flex.min-h-screen.items-center.justify-center.bg-surface-light.px-4.py-12.sm_px-6.lg_px-8
+  .flex.min-h-screen.items-center.justify-center.bg-muted.px-4.py-12.sm_px-6.lg_px-8
     .w-full.max-w-sm.space-y-8
       div
         a(href='{rootUrl}/')
           img.mx-auto.h-12.w-auto(src='/logo.svg', alt='{ PUBLIC_PRODUCT_NAME }')
-        h2.mt-6.text-center.text-3xl.font-extrabold.text-content-heading Reset your password
-        p.mt-4.text-center.text-sm.text-content-secondary
+        h2.mt-6.text-center.text-3xl.font-extrabold.text-foreground Reset your password
+        p.mt-4.text-center.text-sm.text-muted-foreground
           | Enter your new password below.
 
       .mt-8
@@ -73,7 +73,7 @@
                   disabled='{ $submitting }'
                 )
           .mt-10
-            a.group.flex.justify-center.gap-x-1.text-sm.text-content-tertiary.transition.hover_text-action-hover(
+            a.group.flex.justify-center.gap-x-1.text-sm.text-muted-foreground.transition.hover_text-action-hover(
               href='{rootUrl}/'
             )
               span &larr;

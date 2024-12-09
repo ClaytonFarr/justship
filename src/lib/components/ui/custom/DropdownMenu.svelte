@@ -82,7 +82,7 @@
 
 <template lang="pug">
   .relative(bind:this='{ container }')
-    button.inline-flex.items-center.gap-x-2.text-sm.font-medium.leading-6.text-content-heading(
+    button.inline-flex.items-center.gap-x-2.text-sm.font-medium.leading-6.text-foreground(
       type='button',
       aria-expanded='{ isOpen }',
       onclick='{ toggleMenu }',
@@ -100,15 +100,15 @@
         class!='{menuPosition === "center" ? "left-1/2 -translate-x-1/2" : ""}',
         bind:this='{ menuElement }'
         )
-        .w-screen.sm_w-auto.max-w-sm.flex-auto.rounded-lg.bg-white.text-sm.leading-6.shadow-lg.ring-1(class='ring-input-dark/5')
+        .w-screen.sm_w-auto.max-w-sm.flex-auto.rounded-lg.bg-white.text-sm.leading-6.shadow-lg.ring-1(class='ring-input/50')
           .py-2
             +each('menuItems as item')
-              .relative.rounded-md.px-6.py-3.pr-16.hover_bg-surface-light-50
-                a.font-medium.text-content-heading(href='{ item.href }')
+              .relative.rounded-md.px-6.py-3.pr-16.hover_bg-muted-50
+                a.font-medium.text-foreground(href='{ item.href }')
                   | { item.label }
                   span.absolute.inset-0
-                p.mt-1.text-content-secondary { item.description }
-          div(class!='{slotBorder ? "border-t border-1 border-input-light py-2" : "-mt-2 pb-2"}')
+                p.mt-1.text-muted-foreground { item.description }
+          div(class!='{slotBorder ? "border-t border-1 border-input py-2" : "-mt-2 pb-2"}')
             +if('children')
               | {@render children()}
 

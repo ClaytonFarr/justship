@@ -5,7 +5,7 @@ let { children } = $props()
 </script>
 
 <template lang="pug">
-  .min-h-dvh.bg-surface-light
+  .min-h-dvh.bg-muted
     Header
     .container.py-8
       | {@render children()}

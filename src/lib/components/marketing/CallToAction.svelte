@@ -19,9 +19,9 @@
 <template lang="pug">
   // prettier-ignore
   div(class!='{ reversed ? "dark" : "" }')
-    .bg-surface-lightest.dark_bg-surface-darkest
+    .bg-background
       .container.flex.flex-col.gap-6.py-24.items-center
-        h1.text-3xl.font-display.font-medium.text-content-heading.dark_text-content-heading-reversed {content.heading}
-        p.pb-2.text-lg.leading-relaxed.max-w-xl.mx-auto.text-center.text-content-secondary.dark_text-content-secondary-reversed {content.subheading}
+        h1.text-3xl.font-display.font-medium.text-foreground {content.heading}
+        p.pb-2.text-lg.leading-relaxed.max-w-xl.mx-auto.text-center.text-muted-foreground {content.subheading}
         Link(label='{content.ctaLabel}', href='/signin', filled, large, rounded)
 </template>

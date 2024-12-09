@@ -29,16 +29,11 @@ _You'll Need To Build_
 - application settings page (allowing user to manage auth settings and update plan, via Stripe Checkout)
 - responses to billing events (see `src/routes/stripe/webhook/server.ts` for starter)
 
-**Current TODOs**
-
-- [ ] attempt to merge latest changes with upstream
-- [ ] replace earlier custom styles and components with shadcn styles and components as appropriate
-
 ====================================================
 
 # Just Ship
 
-A batteries included Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justship
+A batteries included SvelteKit 2 / Svelte 5 SaaS Boilerplate - https://github.com/ocluf/justship
 
 ## Pricing UX + Plan Assumptions
 

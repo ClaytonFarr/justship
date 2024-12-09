@@ -48,15 +48,15 @@
 <template lang="pug">
   // prettier-ignore
   div(class!='{ reversed ? "dark" : "" }' id='{id}')
-    .bg-surface-lightest.dark_bg-surface-darkest
+    .bg-background
       .container.pt-16.pb-20.sm_pt-24.sm_pb-32
         .lg_text-center
-          h2.text-2xl.font-display.leading-snug.tracking-tight.text-content-heading.dark_text-content-heading-reversed Frequently asked questions
-          p.lg_mx-auto.mt-6.max-w-2xl.text-base.leading-7.text-content-secondary.dark_text-content-secondary-reversed.max-w-prose
+          h2.text-2xl.font-display.leading-snug.tracking-tight.text-foreground Frequently asked questions
+          p.lg_mx-auto.mt-6.max-w-2xl.text-base.leading-7.text-muted-foreground.max-w-prose
             | Have a different question and can't find the answer you're looking for? #[span.md_block #[a.text-action.dark_text-action-hover.hover_text-action-hover.underline(href='mailto:{PUBLIC_SUPPORT_EMAIL}') Please send us an email] and we'll get back to you&nbsp;quickly.]
         .mt-12.sm_mt-20
           dl.grid.sm_grid-cols-2.sm_gap-x-6.gap-y-8.sm_gap-y-12.sm_space-y-0.lg_grid-cols-3.lg_gap-x-14
             +each('content.items as faq')
               .space-y-4
-                dt.text-lg.font-medium.leading-7.text-content-heading.dark_text-content-heading-reversed {faq.question}
-                dd.mt-2.text-base.leading-relaxed.text-content-secondary.dark_text-content-secondary-reversed {faq.answer}</template>
+                dt.text-lg.font-medium.leading-7.text-foreground {faq.question}
+                dd.mt-2.text-base.leading-relaxed.text-muted-foreground {faq.answer}</template>

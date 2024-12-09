@@ -7,9 +7,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* shadcn colors */
 @layer base {
   :root {
+    /* custom colors */
+    --action: 200 98% 39%;
+    --action-hover: 199 89% 48%;
+    --action-active: 201 96% 32%;
+    /* shadcn colors */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96.1%;
@@ -41,6 +45,11 @@
   }
 
   .dark {
+    /* custom colors */
+    --action: 200 98% 39%;
+    --action-hover: 199 89% 48%;
+    --action-active: 201 96% 32%;
+    /* shadcn colors */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
