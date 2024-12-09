@@ -6,11 +6,10 @@ import tailwindcssAnimate from 'tailwindcss-animate'
 import type { Config } from 'tailwindcss'
 
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  // darkMode: ['class'],
-  darkMode: 'selector',
-  safelist: ['dark'],
   separator: '_', // necessary for pug syntax
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  darkMode: 'selector', // shadcn docs reference older syntax of `darkMode: ['class']`
+  safelist: ['dark'],
   theme: {
     container: {
       center: true,
@@ -25,23 +24,12 @@ export default {
       },
     },
     extend: {
-      // TODO: replace earlier custom styles with shadcn styles as appropriate
-
-      // earlier custom styles
-      fontFamily: {
-        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
-        display: ['Lexend Variable', ...defaultTheme.fontFamily.sans],
-      },
-      height: {
-        input: '2.5rem',
-        'input-lg': '3rem',
-      },
-      lineHeight: {
-        open: '1.75',
-      },
+      // TODO: decide whether to sync custom styles with shadcn styles
 
       colors: {
-        // earlier custom styles
+        // -----------------------------
+        // custom component color styles
+        // -----------------------------
         action: {
           DEFAULT: colors.sky[600],
           hover: colors.sky[500],
@@ -75,7 +63,9 @@ export default {
           darkest: colors.slate[900],
         },
 
-        // shadcn styles
+        // -------------------
+        // shadcn color styles
+        // -------------------
         border: 'hsl(var(--border) / <alpha-value>)',
         // input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
@@ -144,6 +134,21 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'caret-blink': 'caret-blink 1.25s ease-out infinite',
+      },
+
+      // ----------------------------------
+      // custom component additional styles
+      // ----------------------------------
+      fontFamily: {
+        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
+        display: ['Lexend Variable', ...defaultTheme.fontFamily.sans],
+      },
+      height: {
+        input: '2.5rem',
+        'input-lg': '3rem',
+      },
+      lineHeight: {
+        open: '1.75',
       },
     },
   },

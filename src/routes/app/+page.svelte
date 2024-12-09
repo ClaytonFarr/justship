@@ -1,5 +1,5 @@
 <!-- <script lang="ts">
-  import { Button } from "$components/common/shadcn/button/index.js";
+  import { Button } from "$components/ui/shadcn/button/index.js";
 </script> -->
 
 <template lang="pug">

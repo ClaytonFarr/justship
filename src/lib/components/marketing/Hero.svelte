@@ -3,9 +3,9 @@
   import { ChevronRight, ChevronDown } from 'lucide-svelte'
   import type { HeroContent } from '$lib/types'
 
-  import Tag from '$components/common/custom/Tag.svelte'
-  import Link from '$components/common/custom/Link.svelte'
-  import Pattern01 from '$components/common/custom/Pattern01.svelte'
+  import Tag from '$components/ui/custom/Tag.svelte'
+  import Link from '$components/ui/custom/Link.svelte'
+  import Pattern01 from '$components/images/Pattern01.svelte'
   
   interface Props {
     id?: string;
